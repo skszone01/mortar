@@ -63,7 +63,11 @@ const LANGUAGE_DATA = {
         guideStep2: "2. ใช้ไม้บรรทัดวัดจากขีดสเกลด้านล่าง",
         guideStep3: "3. ดูพิกัด X (เขียว) และ Y (แดง) ที่มุมล่างขวา",
         guideStep4: "4. ในรูปตัวอย่าง: X04730, Y06970",
-        guideStep5: "5. กรอกพิกัดลงในช่อง Grid X และ Grid Y"
+        guideStep5: "5. กรอกพิกัดลงในช่อง Grid X และ Grid Y",
+        visitorStats: "📊 สถิติผู้เข้าชม",
+        totalVisits: "เข้าชมทั้งหมด:",
+        todayVisits: "วันนี้:",
+        onlineNow: "ออนไลน์:"
     },
     en: {
         title: "Mortar Calculator",
@@ -128,7 +132,11 @@ const LANGUAGE_DATA = {
         guideStep2: "2. Use a ruler to measure from the scale at the bottom",
         guideStep3: "3. Check X (green) and Y (red) coordinates at bottom right",
         guideStep4: "4. In the example: X04730, Y06970",
-        guideStep5: "5. Enter coordinates into Grid X and Grid Y fields"
+        guideStep5: "5. Enter coordinates into Grid X and Grid Y fields",
+        visitorStats: "📊 Visitor Statistics",
+        totalVisits: "Total Visits:",
+        todayVisits: "Today:",
+        onlineNow: "Online Now:"
     },
     ja: {
         title: "迫撃砲計算機",
@@ -193,7 +201,11 @@ const LANGUAGE_DATA = {
         guideStep2: "2. 定規を使って下部のスケールから測定",
         guideStep3: "3. 右下のX（緑）とY（赤）座標を確認",
         guideStep4: "4. 例では: X04730, Y06970",
-        guideStep5: "5. Grid XとGrid Yフィールドに座標を入力"
+        guideStep5: "5. Grid XとGrid Yフィールドに座標を入力",
+        visitorStats: "📊 訪問者統計",
+        totalVisits: "総訪問数:",
+        todayVisits: "今日:",
+        onlineNow: "現在オンライン:"
     },
     zh: {
         title: "迫击炮计算器",
@@ -258,7 +270,11 @@ const LANGUAGE_DATA = {
         guideStep2: "2. 使用尺子从底部刻度测量",
         guideStep3: "3. 查看右下角的X（绿色）和Y（红色）坐标",
         guideStep4: "4. 示例中: X04730, Y06970",
-        guideStep5: "5. 将坐标输入到网格X和网格Y字段中"
+        guideStep5: "5. 将坐标输入到网格X和网格Y字段中",
+        visitorStats: "📊 访客统计",
+        totalVisits: "总访问量:",
+        todayVisits: "今日:",
+        onlineNow: "在线:"
     },
     id: {
         title: "Kalkulator Mortar",
@@ -323,7 +339,11 @@ const LANGUAGE_DATA = {
         guideStep2: "2. Gunakan penggaris untuk mengukur dari skala di bawah",
         guideStep3: "3. Lihat koordinat X (hijau) dan Y (merah) di kanan bawah",
         guideStep4: "4. Dalam contoh: X04730, Y06970",
-        guideStep5: "5. Masukkan koordinat ke dalam field Grid X dan Grid Y"
+        guideStep5: "5. Masukkan koordinat ke dalam field Grid X dan Grid Y",
+        visitorStats: "📊 Statistik Pengunjung",
+        totalVisits: "Total Kunjungan:",
+        todayVisits: "Hari Ini:",
+        onlineNow: "Online Sekarang:"
     }
 };
 
@@ -3101,10 +3121,59 @@ class MortarCalculator {
     }
 }
 
+// Visitor Counter Functions
+function initializeVisitorCounter() {
+    const today = new Date().toDateString();
+    
+    // Get or initialize total visits
+    let totalVisits = parseInt(localStorage.getItem('totalVisits') || '0');
+    
+    // Get or initialize today's visits
+    let todayVisits = 0;
+    const lastVisitDate = localStorage.getItem('lastVisitDate');
+    
+    if (lastVisitDate === today) {
+        todayVisits = parseInt(localStorage.getItem('todayVisits') || '0');
+    } else {
+        // New day, reset today's counter
+        localStorage.setItem('lastVisitDate', today);
+        localStorage.setItem('todayVisits', '0');
+    }
+    
+    // Check if this is a new session (not a page refresh)
+    const sessionVisited = sessionStorage.getItem('sessionVisited');
+    if (!sessionVisited) {
+        // New session - increment counters
+        totalVisits++;
+        todayVisits++;
+        
+        // Save to storage
+        localStorage.setItem('totalVisits', totalVisits.toString());
+        localStorage.setItem('todayVisits', todayVisits.toString());
+        sessionStorage.setItem('sessionVisited', 'true');
+    }
+    
+    // Update display
+    updateVisitorDisplay(totalVisits, todayVisits);
+}
+
+function updateVisitorDisplay(total, today) {
+    const totalElement = document.getElementById('total-visits');
+    const todayElement = document.getElementById('today-visits');
+    const onlineElement = document.getElementById('online-now');
+    
+    if (totalElement) totalElement.textContent = total.toLocaleString();
+    if (todayElement) todayElement.textContent = today.toLocaleString();
+    if (onlineElement) onlineElement.textContent = '1'; // Always show 1 for current user
+}
+
 // Initialize the calculator when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize language system first
     initializeLanguage();
+    
+    // Initialize visitor counter
+    initializeVisitorCounter();
     
     // Then initialize the calculator and store reference
     window.mortarCalculator = new MortarCalculator();

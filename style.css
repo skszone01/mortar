@@ -773,6 +773,72 @@ footer {
     border-top: 1px solid #30363d;
 }
 
+/* Visitor Counter Styles */
+.visitor-counter {
+    margin-top: 20px;
+    padding: 20px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.visitor-counter h3 {
+    margin: 0 0 15px 0;
+    color: #58a6ff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.counter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.flag-counter {
+    text-align: center;
+}
+
+.flag-counter img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.local-counter {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 400px;
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.counter-item {
+    text-align: center;
+    flex: 1;
+}
+
+.counter-item .label {
+    color: #8b949e;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.counter-item .value {
+    color: #58a6ff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: block;
+}
+
 /* Tablet Styles */
 @media (min-width: 768px) {
     .container {
@@ -1666,6 +1732,39 @@ footer {
     
     .numpad-coords {
         font-size: 0.4rem;
+    }
+    
+    /* Visitor Counter Mobile Styles */
+    .visitor-counter {
+        padding: 15px;
+        margin-top: 15px;
+    }
+    
+    .visitor-counter h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .local-counter {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .counter-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+    }
+    
+    .counter-item .label {
+        font-size: 0.75rem;
+        margin-bottom: 0;
+    }
+    
+    .counter-item .value {
+        font-size: 1rem;
     }
 }
 
