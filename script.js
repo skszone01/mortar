@@ -55,7 +55,15 @@ const LANGUAGE_DATA = {
         outOfRange: "เกินระยะ",
         noRingsAvailable: "ไม่มี Ring ที่ใช้ได้สำหรับระยะนี้",
         numpadReference: "🎯 Numpad Reference",
-        numpadInstructions: "กดเลข 1-9 เพื่อปรับพิกัดตามตำแหน่ง Numpad (ต้องมีเลขในพิกัด 3 ตัวขึ้นไป)"
+        numpadInstructions: "กดเลข 1-9 เพื่อปรับพิกัดตามตำแหน่ง Numpad (ต้องมีเลขในพิกัด 3 ตัวขึ้นไป)",
+        coordinateErrorMessage: "⚠️ กรุณากรอกพิกัด Grid X และ Grid Y ให้ครบ 5 หลัก (เช่น 10000-99999)",
+        coordinateGuide: "📍 วิธีหาพิกัดเบื้องต้น (click)",
+        guideScale: "🔍 มาตราส่วน: 1mm = 10",
+        guideStep1: "1. เปิดแผนที่ในเกม (M)",
+        guideStep2: "2. ใช้ไม้บรรทัดวัดจากขีดสเกลด้านล่าง",
+        guideStep3: "3. ดูพิกัด X (เขียว) และ Y (แดง) ที่มุมล่างขวา",
+        guideStep4: "4. ในรูปตัวอย่าง: X04730, Y06970",
+        guideStep5: "5. กรอกพิกัดลงในช่อง Grid X และ Grid Y"
     },
     en: {
         title: "Mortar Calculator",
@@ -112,7 +120,15 @@ const LANGUAGE_DATA = {
         outOfRange: "Out of Range",
         noRingsAvailable: "No rings available for this range",
         numpadReference: "🎯 Numpad Reference",
-        numpadInstructions: "Press 1-9 to adjust coordinates according to Numpad position (requires at least 3 digits in coordinates)"
+        numpadInstructions: "Press 1-9 to adjust coordinates according to Numpad position (requires at least 3 digits in coordinates)",
+        coordinateErrorMessage: "⚠️ Please enter Grid X and Grid Y coordinates with 5 digits (e.g., 10000-99999)",
+        coordinateGuide: "📍 Basic Coordinate Finding Guide (click)",
+        guideScale: "🔍 Scale: 1mm = 10",
+        guideStep1: "1. Open the map in-game (M)",
+        guideStep2: "2. Use a ruler to measure from the scale at the bottom",
+        guideStep3: "3. Check X (green) and Y (red) coordinates at bottom right",
+        guideStep4: "4. In the example: X04730, Y06970",
+        guideStep5: "5. Enter coordinates into Grid X and Grid Y fields"
     },
     ja: {
         title: "迫撃砲計算機",
@@ -169,7 +185,15 @@ const LANGUAGE_DATA = {
         outOfRange: "射程外",
         noRingsAvailable: "この射程では利用可能なリングがありません",
         numpadReference: "🎯 テンキー参照",
-        numpadInstructions: "1-9を押してテンキー位置に従って座標を調整します（座標に3桁以上の数字が必要）"
+        numpadInstructions: "1-9を押してテンキー位置に従って座標を調整します（座標に3桁以上の数字が必要）",
+        coordinateErrorMessage: "⚠️ グリッドXとグリッドYを5桁で入力してください（例：10000-99999）",
+        coordinateGuide: "📍 基本的な座標の見つけ方 (click)",
+        guideScale: "🔍 スケール: 1mm = 10",
+        guideStep1: "1. ゲーム内でマップを開く (M)",
+        guideStep2: "2. 定規を使って下部のスケールから測定",
+        guideStep3: "3. 右下のX（緑）とY（赤）座標を確認",
+        guideStep4: "4. 例では: X04730, Y06970",
+        guideStep5: "5. Grid XとGrid Yフィールドに座標を入力"
     },
     zh: {
         title: "迫击炮计算器",
@@ -226,7 +250,15 @@ const LANGUAGE_DATA = {
         outOfRange: "超出射程",
         noRingsAvailable: "此射程没有可用的环形",
         numpadReference: "🎯 小键盘参考",
-        numpadInstructions: "按1-9键根据小键盘位置调整坐标（坐标需要至少3位数字）"
+        numpadInstructions: "按1-9键根据小键盘位置调整坐标（坐标需要至少3位数字）",
+        coordinateErrorMessage: "⚠️ 请输入5位数的网格X和网格Y坐标（例如：10000-99999）",
+        coordinateGuide: "📍 基础坐标查找指南 (click)",
+        guideScale: "🔍 比例尺: 1mm = 10",
+        guideStep1: "1. 在游戏中打开地图 (M)",
+        guideStep2: "2. 使用尺子从底部刻度测量",
+        guideStep3: "3. 查看右下角的X（绿色）和Y（红色）坐标",
+        guideStep4: "4. 示例中: X04730, Y06970",
+        guideStep5: "5. 将坐标输入到网格X和网格Y字段中"
     },
     id: {
         title: "Kalkulator Mortar",
@@ -283,7 +315,15 @@ const LANGUAGE_DATA = {
         outOfRange: "Di Luar Jangkauan",
         noRingsAvailable: "Tidak ada ring yang tersedia untuk jangkauan ini",
         numpadReference: "🎯 Referensi Numpad",
-        numpadInstructions: "Tekan 1-9 untuk menyesuaikan koordinat sesuai posisi numpad (memerlukan setidaknya 3 digit dalam koordinat)"
+        numpadInstructions: "Tekan 1-9 untuk menyesuaikan koordinat sesuai posisi numpad (memerlukan setidaknya 3 digit dalam koordinat)",
+        coordinateErrorMessage: "⚠️ Harap masukkan koordinat Grid X dan Grid Y dengan 5 digit (contoh: 10000-99999)",
+        coordinateGuide: "📍 Panduan Dasar Mencari Koordinat (click)",
+        guideScale: "🔍 Skala: 1mm = 10",
+        guideStep1: "1. Buka peta dalam game (M)",
+        guideStep2: "2. Gunakan penggaris untuk mengukur dari skala di bawah",
+        guideStep3: "3. Lihat koordinat X (hijau) dan Y (merah) di kanan bawah",
+        guideStep4: "4. Dalam contoh: X04730, Y06970",
+        guideStep5: "5. Masukkan koordinat ke dalam field Grid X dan Grid Y"
     }
 };
 
@@ -1747,6 +1787,15 @@ class MortarCalculator {
                 this.applyNumpadReference(numpadValue);
             });
         });
+
+        // Coordinate Guide Toggle
+        const guideToggle = document.querySelector('.guide-toggle');
+        const guideContent = document.getElementById('guide-content');
+        if (guideToggle && guideContent) {
+            guideToggle.addEventListener('click', () => {
+                guideContent.classList.toggle('show');
+            });
+        }
     }
 
     loadInitialData() {
@@ -1934,23 +1983,43 @@ class MortarCalculator {
                        this.targetX, this.targetY, this.targetAlt];
         
         let isValid = true;
+        let coordinateError = false;
+        
         inputs.forEach(input => {
             input.classList.remove('error', 'success');
             if (!input.value || isNaN(input.value)) {
                 input.classList.add('error');
                 isValid = false;
             } else {
-                // Validate grid coordinates are within 5-digit maximum (0-99999)
-                if ((input === this.weaponX || input === this.targetX || 
-                     input === this.weaponY || input === this.targetY) && 
-                    (parseInt(input.value) < 0 || parseInt(input.value) > 99999 || input.value.length > 5)) {
-                    input.classList.add('error');
-                    isValid = false;
+                // Validate grid coordinates
+                if (input === this.weaponX || input === this.targetX || 
+                    input === this.weaponY || input === this.targetY) {
+                    const value = parseInt(input.value);
+                    const valueString = input.value.toString();
+                    
+                    // Check if coordinates are within valid range (0-99999)
+                    if (value < 0 || value > 99999 || valueString.length > 5) {
+                        input.classList.add('error');
+                        isValid = false;
+                    }
+                    // Check if coordinates have exactly 5 digits (including leading zeros)
+                    else if (valueString.length < 5) {
+                        input.classList.add('error');
+                        isValid = false;
+                        coordinateError = true;
+                    } else {
+                        input.classList.add('success');
+                    }
                 } else {
                     input.classList.add('success');
                 }
             }
         });
+        
+        // Show coordinate error message if coordinates are less than 5 digits
+        if (coordinateError) {
+            this.showCoordinateError();
+        }
         
         return isValid;
     }
@@ -2965,6 +3034,12 @@ class MortarCalculator {
                 break; // Only highlight the first match
             }
         }
+    }
+
+    showCoordinateError() {
+        const texts = LANGUAGE_DATA[currentLanguage];
+        const message = texts.coordinateErrorMessage || "⚠️ Please enter Grid X and Grid Y coordinates with 5 digits (e.g., 10000-99999)";
+        this.showMessage(message, 'warning');
     }
 
     showMessage(message, type = 'info') {

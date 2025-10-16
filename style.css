@@ -971,6 +971,107 @@ footer {
     color: #6e7681;
 }
 
+/* Coordinate Guide Section */
+.coordinate-guide {
+    margin-top: 15px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 2px solid rgba(34, 197, 94, 0.3);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.coordinate-guide h4 {
+    color: #22c55e;
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.guide-toggle {
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.guide-toggle:hover {
+    background: rgba(34, 197, 94, 0.2);
+    transform: translateY(-1px);
+}
+
+.guide-content {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.guide-content.show {
+    display: flex;
+}
+
+.guide-image {
+    width: 100%;
+    max-width: none;
+}
+
+.guide-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid rgba(34, 197, 94, 0.3);
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.guide-text {
+    width: 100%;
+}
+
+.guide-text p {
+    color: #22c55e;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.guide-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.guide-steps li {
+    color: #c9d1d9;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    padding-left: 10px;
+}
+
+/* Mobile adjustments for coordinate guide */
+@media (max-width: 768px) {
+    .guide-content {
+        gap: 10px;
+    }
+    
+    .guide-img {
+        max-height: 300px;
+    }
+    
+    .guide-steps li {
+        font-size: 0.8rem;
+    }
+    
+    .guide-text p {
+        font-size: 0.85rem;
+    }
+}
+
 /* YouTube Tutorial Section */
 .youtube-tutorial {
     margin-top: 15px;
