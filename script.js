@@ -67,7 +67,13 @@ const LANGUAGE_DATA = {
         visitorStats: "📊 สถิติผู้เข้าชม",
         totalVisits: "เข้าชมทั้งหมด:",
         todayVisits: "วันนี้:",
-        onlineNow: "ออนไลน์:"
+        onlineNow: "ออนไลน์:",
+        elevationOffset: "⚙️ ชดเชยมุมยกปืน",
+        offsetInstructions: "ปรับมุมยกปืนเมื่อกระสุนไปไม่ถึงเป้าหมาย (-) หรือไกลเกินเป้าหมาย (+)",
+        clearOffset: "ล้าง",
+        currentOffset: "ค่าออฟเซ็ต:",
+        offsetApplied: "ปรับค่าออฟเซ็ตเรียบร้อยแล้ว:",
+        offsetCleared: "ล้างค่าออฟเซ็ตเรียบร้อยแล้ว"
     },
     en: {
         title: "Mortar Calculator",
@@ -136,7 +142,13 @@ const LANGUAGE_DATA = {
         visitorStats: "📊 Visitor Statistics",
         totalVisits: "Total Visits:",
         todayVisits: "Today:",
-        onlineNow: "Online Now:"
+        onlineNow: "Online Now:",
+        elevationOffset: "⚙️ Elevation Offset",
+        offsetInstructions: "Adjust elevation when shells fall short (-) or overshoot (+) the target",
+        clearOffset: "Clear",
+        currentOffset: "Current Offset:",
+        offsetApplied: "Offset applied successfully:",
+        offsetCleared: "Offset cleared successfully"
     },
     ja: {
         title: "迫撃砲計算機",
@@ -205,7 +217,13 @@ const LANGUAGE_DATA = {
         visitorStats: "📊 訪問者統計",
         totalVisits: "総訪問数:",
         todayVisits: "今日:",
-        onlineNow: "現在オンライン:"
+        onlineNow: "現在オンライン:",
+        elevationOffset: "⚙️ 仰角オフセット",
+        offsetInstructions: "砲弾が目標に届かない(-)または超過する(+)場合に仰角を調整",
+        clearOffset: "クリア",
+        currentOffset: "現在のオフセット:",
+        offsetApplied: "オフセットが正常に適用されました:",
+        offsetCleared: "オフセットが正常にクリアされました"
     },
     zh: {
         title: "迫击炮计算器",
@@ -274,7 +292,13 @@ const LANGUAGE_DATA = {
         visitorStats: "📊 访客统计",
         totalVisits: "总访问量:",
         todayVisits: "今日:",
-        onlineNow: "在线:"
+        onlineNow: "在线:",
+        elevationOffset: "⚙️ 仰角偏移",
+        offsetInstructions: "当炮弹未达到(-)或超过(+)目标时调整仰角",
+        clearOffset: "清除",
+        currentOffset: "当前偏移:",
+        offsetApplied: "偏移成功应用:",
+        offsetCleared: "偏移成功清除"
     },
     id: {
         title: "Kalkulator Mortar",
@@ -343,7 +367,13 @@ const LANGUAGE_DATA = {
         visitorStats: "📊 Statistik Pengunjung",
         totalVisits: "Total Kunjungan:",
         todayVisits: "Hari Ini:",
-        onlineNow: "Online Sekarang:"
+        onlineNow: "Online Sekarang:",
+        elevationOffset: "⚙️ Offset Elevasi",
+        offsetInstructions: "Sesuaikan elevasi ketika peluru tidak mencapai (-) atau melewati (+) target",
+        clearOffset: "Hapus",
+        currentOffset: "Offset Saat Ini:",
+        offsetApplied: "Offset berhasil diterapkan:",
+        offsetCleared: "Offset berhasil dihapus"
     }
 };
 
@@ -1595,6 +1625,7 @@ class MortarCalculator {
         this.currentShell = 'M821';           // ประเภทกระสุน
         this.currentCharge = 0;               // ระดับประจุ (Charge)
         this.targetPresets = {};              // เก็บข้อมูลเป้าหมายที่บันทึกไว้
+        this.elevationOffset = 0;             // ค่าออฟเซ็ตมุมยกปืน (mils)
         this.initializeElements();
         this.bindEvents();
         this.loadInitialData();
@@ -1642,6 +1673,10 @@ class MortarCalculator {
         
         // Numpad elements
         this.numpadButtons = document.querySelectorAll('.numpad-btn');
+        
+        // Offset elements
+        this.offsetButtons = document.querySelectorAll('.offset-btn');
+        this.currentOffsetValue = document.getElementById('current-offset-value');
         
         // Apply 5-digit restriction to coordinate inputs
         this.restrictToFiveDigits(this.weaponX);
@@ -1808,6 +1843,15 @@ class MortarCalculator {
             });
         });
 
+        // Elevation Offset buttons
+        this.offsetButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const offsetValue = btn.dataset.offset;
+                this.applyElevationOffset(offsetValue);
+            });
+        });
+
         // Coordinate Guide Toggle
         const guideToggle = document.querySelector('.guide-toggle');
         const guideContent = document.getElementById('guide-content');
@@ -1824,6 +1868,7 @@ class MortarCalculator {
         this.loadBallisticData();
         this.updateGridReferences();
         this.updateNumpadHighlight(); // Initialize numpad highlighting
+        this.updateOffsetDisplay(); // Initialize offset display
         this.setupDeviceSpecificUI();
     }
 
@@ -2730,7 +2775,7 @@ class MortarCalculator {
         // ใช้ข้อมูลจากตารางโดยตรงโดยไม่ปรับค่า (วิธีมาตรฐานของเครื่องคำนวณมอร์ต้าร์)
         // ข้อมูลในตารางถูกปรับเทียบสำหรับ ARMA แล้ว
         const adjustedBaseElevation = Math.round(ballisticData.elevation * 1.00); 
-        const finalElevation = adjustedBaseElevation + elevationCorrection;
+        const finalElevation = adjustedBaseElevation + elevationCorrection + this.elevationOffset;
 
         // Display results (simplified like arma-mortar.com)
         this.displayResults({
@@ -2741,6 +2786,7 @@ class MortarCalculator {
             elevation: finalElevation,
             originalElevation: ballisticData.elevation,
             elevationCorrection: elevationCorrection,
+            elevationOffset: this.elevationOffset,
             charge: this.currentCharge,
             timeOfFlight: ballisticData.timeOfFlight,
             heightDiff: heightDiff,
@@ -2841,7 +2887,15 @@ class MortarCalculator {
                 <strong>${currentLanguage === 'th' ? 'ค่าชดเชยมุมยก:' : 'Elevation Correction:'}</strong> ${results.elevationCorrection > 0 ? '+' : ''}${results.elevationCorrection} mils
             </div>
             <div class="info-item">
+                <strong>${currentLanguage === 'th' ? 'ค่าออฟเซ็ตผู้ใช้:' : 'User Offset:'}</strong> ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset} mils
+            </div>
+            <div class="info-item">
                 <strong>${currentLanguage === 'th' ? 'มุมยกปืนสุดท้าย:' : 'Final Elevation:'}</strong> ${results.elevation} mils
+                ${results.elevationOffset !== 0 ? 
+                    `<span class="offset-indicator" style="color: ${results.elevationOffset > 0 ? '#10b981' : '#ef4444'}; font-weight: bold;">
+                        (${results.originalElevation} ${results.elevationCorrection > 0 ? '+' : ''}${results.elevationCorrection} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset})
+                    </span>` : ''
+                }
             </div>
             ${showWarning ? `
             <div class="accuracy-warning">
@@ -3060,6 +3114,63 @@ class MortarCalculator {
         const texts = LANGUAGE_DATA[currentLanguage];
         const message = texts.coordinateErrorMessage || "⚠️ Please enter Grid X and Grid Y coordinates with 5 digits (e.g., 10000-99999)";
         this.showMessage(message, 'warning');
+    }
+
+    // Apply Elevation Offset to current calculation
+    applyElevationOffset(offsetValue) {
+        const texts = LANGUAGE_DATA[currentLanguage];
+        
+        if (offsetValue === 'clear') {
+            // Clear offset
+            this.elevationOffset = 0;
+            this.updateOffsetDisplay();
+            
+            // Recalculate if inputs are valid
+            if (this.validateInputs()) {
+                this.calculate();
+            }
+            
+            this.showMessage(texts.offsetCleared, 'success');
+        } else {
+            // Apply offset
+            const offsetNum = parseInt(offsetValue);
+            this.elevationOffset += offsetNum;
+            this.updateOffsetDisplay();
+            
+            // Recalculate if inputs are valid
+            if (this.validateInputs()) {
+                this.calculate();
+            }
+            
+            this.showMessage(`${texts.offsetApplied} ${offsetValue} mils`, 'success');
+        }
+    }
+
+    // Update offset display
+    updateOffsetDisplay() {
+        if (this.currentOffsetValue) {
+            this.currentOffsetValue.textContent = this.elevationOffset > 0 ? 
+                `+${this.elevationOffset}` : 
+                this.elevationOffset.toString();
+        }
+        
+        // Update offset button states
+        this.updateOffsetButtonStates();
+    }
+
+    // Update offset button visual states
+    updateOffsetButtonStates() {
+        this.offsetButtons.forEach(btn => {
+            btn.classList.remove('offset-active');
+        });
+        
+        // Highlight clear button if offset is non-zero
+        if (this.elevationOffset !== 0) {
+            const clearBtn = document.querySelector('.offset-btn[data-offset="clear"]');
+            if (clearBtn) {
+                clearBtn.classList.add('offset-active');
+            }
+        }
     }
 
     showMessage(message, type = 'info') {

@@ -267,6 +267,31 @@
                         <div class="numpad-instructions">
                             <small data-lang-key="numpadInstructions">กดเลข 1-9 เพื่อปรับพิกัดตามตำแหน่ง Numpad (ต้องมีเลขในพิกัด 3 ตัวขึ้นไป)</small>
                         </div>
+
+                        <!-- Elevation Offset -->
+                        <div class="elevation-offset-section">
+                            <h4 data-lang-key="elevationOffset">⚙️ ชดเชยมุมยกปืน</h4>
+                            <div class="offset-instructions">
+                                <small data-lang-key="offsetInstructions">ปรับมุมยกปืนเมื่อกระสุนไปไม่ถึงเป้าหมาย (-) หรือไกลเกินเป้าหมาย (+)</small>
+                            </div>
+                            <div class="offset-buttons">
+                                <button class="offset-btn offset-negative" data-offset="-20">-20</button>
+                                <button class="offset-btn offset-negative" data-offset="-10">-10</button>
+                                <button class="offset-btn offset-negative" data-offset="-5">-5</button>
+                                <button class="offset-btn offset-negative" data-offset="-1">-1</button>
+                                <button class="offset-btn offset-clear" data-offset="clear" data-lang-key="clearOffset">ล้าง</button>
+                                <button class="offset-btn offset-positive" data-offset="+1">+1</button>
+                                <button class="offset-btn offset-positive" data-offset="+5">+5</button>
+                                <button class="offset-btn offset-positive" data-offset="+10">+10</button>
+                                <button class="offset-btn offset-positive" data-offset="+20">+20</button>
+                            </div>
+                            <div class="offset-status">
+                                <small>
+                                    <span data-lang-key="currentOffset">ค่าออฟเซ็ต:</span>
+                                    <span id="current-offset-value">0</span> mils
+                                </small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
