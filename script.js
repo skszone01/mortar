@@ -2296,11 +2296,13 @@ class MortarCalculator {
             return 0;
         }
         
-        // สูตรการคำนวณ: (dispersion ÷ 100) × ความต่างระดับความสูง
-        // ค่าที่ได้จะเป็น mils สำหรับการปรับมุมยกปืน
-        const correction = (dispersionValue / 100) * heightDiff;
+        // สูตรการคำนวณปรับปรุงใหม่:
+        // เมื่อเป้าหมายสูงกว่า (heightDiff > 0): ลดมุมยกปืน (-)
+        // เมื่อเป้าหมายต่ำกว่า (heightDiff < 0): เพิ่มมุมยกปืน (+)
+        const correction = (dispersionValue / 100) * Math.abs(heightDiff);
         
-        return Math.round(correction);
+        // ใช้ค่าติดลบเมื่อเป้าหมายสูงกว่า และค่าบวกเมื่อเป้าหมายต่ำกว่า
+        return heightDiff > 0 ? -Math.round(correction) : Math.round(correction);
     }
 
     // Advanced ballistic trajectory calculation using physics
@@ -2850,7 +2852,7 @@ class MortarCalculator {
         const additionalInfo = document.getElementById('additional-info');
         // คำนวณค่า dispersion ที่ใช้ในการคำนวณ elevation correction
         const dispersionValue = parseFloat(results.dispersion.replace('m', ''));
-        const correctionFormula = `(${dispersionValue} ÷ 100) × ${results.adjustedHeightDiff || results.heightDiff} = ${results.elevationCorrection}`;
+        const correctionFormula = `(${dispersionValue} ÷ 100) × |${results.adjustedHeightDiff || results.heightDiff}| = ${Math.abs(results.elevationCorrection)} mils ${(results.adjustedHeightDiff || results.heightDiff) < 0 ? '(+)' : '(-)'}`;
         
         // Check if calculation was adjusted
         const originalHeightCompensation = Math.abs(results.heightDiff);
@@ -2904,7 +2906,7 @@ class MortarCalculator {
                 <strong>${currentLanguage === 'th' ? 'ค่า Dispersion:' : 'Dispersion:'}</strong> ${results.dispersion}
             </div>
             <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'สูตรการชดเชยมุมยก:' : 'Elevation Correction Formula:'}</strong> ${correctionFormula} mils
+                <strong>${currentLanguage === 'th' ? 'สูตรการชดเชยมุมยก:' : 'Elevation Correction Formula:'}</strong> ${correctionFormula}
             </div>
             <div class="info-item">
                 <strong>${currentLanguage === 'th' ? 'ค่าชดเชยมุมยก:' : 'Elevation Correction:'}</strong> ${results.elevationCorrection > 0 ? '+' : ''}${results.elevationCorrection} mils
