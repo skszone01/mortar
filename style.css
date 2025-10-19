@@ -656,7 +656,11 @@ header {
 .azimuth-result span { color: #ff6b6b; }
 
 .elevation-result { border-left-color: #4ecdc4; }
-.elevation-result span { color: #4ecdc4; }
+.elevation-result span { 
+    color: #4ecdc4;
+    white-space: pre-line;
+    line-height: 1.4;
+}
 
 .charge-result { border-left-color: #238636; }
 .charge-result span { color: #238636; }

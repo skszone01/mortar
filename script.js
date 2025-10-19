@@ -73,7 +73,10 @@ const LANGUAGE_DATA = {
         clearOffset: "ล้าง",
         currentOffset: "ค่าออฟเซ็ต:",
         offsetApplied: "ปรับค่าออฟเซ็ตเรียบร้อยแล้ว:",
-        offsetCleared: "ล้างค่าออฟเซ็ตเรียบร้อยแล้ว"
+        offsetCleared: "ล้างค่าออฟเซ็ตเรียบร้อยแล้ว",
+        presetWithOffset: "บันทึกพร้อมค่าออฟเซ็ต:",
+        presetLoadedWithOffset: "โหลดพร้อมค่าออฟเซ็ต:",
+        offsetLabel: "ชดเชย"
     },
     en: {
         title: "Mortar Calculator",
@@ -148,7 +151,10 @@ const LANGUAGE_DATA = {
         clearOffset: "Clear",
         currentOffset: "Current Offset:",
         offsetApplied: "Offset applied successfully:",
-        offsetCleared: "Offset cleared successfully"
+        offsetCleared: "Offset cleared successfully",
+        presetWithOffset: "Saved with offset:",
+        presetLoadedWithOffset: "Loaded with offset:",
+        offsetLabel: "Offset"
     },
     ja: {
         title: "迫撃砲計算機",
@@ -223,7 +229,10 @@ const LANGUAGE_DATA = {
         clearOffset: "クリア",
         currentOffset: "現在のオフセット:",
         offsetApplied: "オフセットが正常に適用されました:",
-        offsetCleared: "オフセットが正常にクリアされました"
+        offsetCleared: "オフセットが正常にクリアされました",
+        presetWithOffset: "オフセット付きで保存:",
+        presetLoadedWithOffset: "オフセット付きで読込:",
+        offsetLabel: "補正"
     },
     zh: {
         title: "迫击炮计算器",
@@ -298,7 +307,10 @@ const LANGUAGE_DATA = {
         clearOffset: "清除",
         currentOffset: "当前偏移:",
         offsetApplied: "偏移成功应用:",
-        offsetCleared: "偏移成功清除"
+        offsetCleared: "偏移成功清除",
+        presetWithOffset: "保存时包含偏移:",
+        presetLoadedWithOffset: "加载时包含偏移:",
+        offsetLabel: "补偿"
     },
     id: {
         title: "Kalkulator Mortar",
@@ -373,7 +385,10 @@ const LANGUAGE_DATA = {
         clearOffset: "Hapus",
         currentOffset: "Offset Saat Ini:",
         offsetApplied: "Offset berhasil diterapkan:",
-        offsetCleared: "Offset berhasil dihapus"
+        offsetCleared: "Offset berhasil dihapus",
+        presetWithOffset: "Disimpan dengan offset:",
+        presetLoadedWithOffset: "Dimuat dengan offset:",
+        offsetLabel: "Koreksi"
     }
 };
 
@@ -2805,7 +2820,15 @@ class MortarCalculator {
     displayResults(results) {
         this.distanceEl.textContent = `${results.distance} m`;
         this.azimuthEl.textContent = `${results.azimuthMils} mils (${results.azimuthDegrees}°)`;
-        this.elevationEl.textContent = `${results.elevation} mils`;
+        
+        // Display elevation with offset info if offset is not zero
+        let elevationText = `${results.elevation} mils`;
+        if (results.elevationOffset && results.elevationOffset !== 0) {
+            const texts = LANGUAGE_DATA[currentLanguage];
+            elevationText += `\n(${texts.offsetLabel} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset} mils)`;
+        }
+        this.elevationEl.textContent = elevationText;
+        
         this.chargeEl.textContent = `${results.charge}`;
         this.timeFlightEl.textContent = `${results.timeOfFlight} sec`;
         this.heightDiffEl.textContent = `${results.heightDiff > 0 ? '+' : ''}${results.heightDiff.toFixed(1)} m`;
@@ -2941,11 +2964,12 @@ class MortarCalculator {
 
     // Target Preset Management Functions
     saveTargetPreset(presetNumber) {
-        // Get current target values
+        // Get current target values including elevation offset
         const targetData = {
             x: this.targetX.value,
             y: this.targetY.value,
             alt: this.targetAlt.value,
+            elevationOffset: this.elevationOffset || 0,
             timestamp: new Date().getTime()
         };
 
@@ -2965,8 +2989,13 @@ class MortarCalculator {
         // Update active preset status
         this.updateActivePresetStatus();
 
-        // Show success message
-        this.showMessage(LANGUAGE_DATA[currentLanguage].presetSavedMessage.replace('{0}', presetNumber), 'success');
+        // Show success message with offset info
+        const texts = LANGUAGE_DATA[currentLanguage];
+        let message = texts.presetSavedMessage.replace('{0}', presetNumber);
+        if (this.elevationOffset !== 0) {
+            message += ` (${texts.presetWithOffset} ${this.elevationOffset > 0 ? '+' : ''}${this.elevationOffset} mils)`;
+        }
+        this.showMessage(message, 'success');
     }
 
     loadTargetPreset(presetNumber) {
@@ -2981,6 +3010,10 @@ class MortarCalculator {
         this.targetX.value = preset.x;
         this.targetY.value = preset.y;
         this.targetAlt.value = preset.alt;
+        
+        // Load elevation offset if available (backward compatibility)
+        this.elevationOffset = preset.elevationOffset || 0;
+        this.updateOffsetDisplay();
 
         // Update grid reference display
         this.updateGridReferences();
@@ -2996,8 +3029,13 @@ class MortarCalculator {
             this.calculate();
         }
 
-        // Show success message
-        this.showMessage(LANGUAGE_DATA[currentLanguage].presetLoadedMessage.replace('{0}', presetNumber), 'success');
+        // Show success message with offset info
+        const texts = LANGUAGE_DATA[currentLanguage];
+        let message = texts.presetLoadedMessage.replace('{0}', presetNumber);
+        if (this.elevationOffset !== 0) {
+            message += ` (${texts.presetLoadedWithOffset} ${this.elevationOffset > 0 ? '+' : ''}${this.elevationOffset} mils)`;
+        }
+        this.showMessage(message, 'success');
     }
 
     loadTargetPresets() {
@@ -3033,7 +3071,11 @@ class MortarCalculator {
                 minute: '2-digit' 
             });
             statusSpan.textContent = currentLanguage === 'th' ? 'มีข้อมูล' : 'Saved';
-            button.title = `Grid: ${preset.x}, ${preset.y} Alt: ${preset.alt}m (${timeStr})`;
+            
+            // Create tooltip with elevation offset info
+            const offsetInfo = preset.elevationOffset ? 
+                ` | Offset: ${preset.elevationOffset > 0 ? '+' : ''}${preset.elevationOffset} mils` : '';
+            button.title = `Grid: ${preset.x}, ${preset.y} Alt: ${preset.alt}m${offsetInfo} (${timeStr})`;
         } else {
             button.classList.remove('has-data');
             statusSpan.textContent = LANGUAGE_DATA[currentLanguage].presetEmpty;
@@ -3092,13 +3134,16 @@ class MortarCalculator {
             return;
         }
         
-        // Check each preset for matching values
+        // Check each preset for matching values (including elevation offset)
         for (let i = 1; i <= 9; i++) {
             const preset = this.targetPresets[i];
+            const presetOffset = preset ? (preset.elevationOffset || 0) : 0;
+            
             if (preset && 
                 preset.x === currentX && 
                 preset.y === currentY && 
-                preset.alt === currentAlt) {
+                preset.alt === currentAlt &&
+                presetOffset === this.elevationOffset) {
                 
                 // Found matching preset - highlight it
                 const button = document.querySelector(`.preset-btn[data-preset="${i}"]`);
