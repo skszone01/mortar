@@ -433,6 +433,10 @@ function updateLanguageDisplay() {
         if (window.mortarCalculator.ringSection && window.mortarCalculator.ringSection.classList.contains('show')) {
             window.mortarCalculator.calculateAvailableRings();
         }
+        // Refresh ACE Weather UI language if available
+        if (window.mortarCalculator.updateAceWeatherUILanguage) {
+            window.mortarCalculator.updateAceWeatherUILanguage();
+        }
     }
 }
 
@@ -1641,6 +1645,20 @@ class MortarCalculator {
         this.currentCharge = 0;               // ระดับประจุ (Charge)
         this.targetPresets = {};              // เก็บข้อมูลเป้าหมายที่บันทึกไว้
         this.elevationOffset = 0;             // ค่าออฟเซ็ตมุมยกปืน (mils)
+
+        // ACE Weather: state & defaults (persisted)
+        const savedAce = localStorage.getItem('enableAceWeather');
+        this.enableAceWeather = savedAce === '1' ? true : false; // default OFF
+
+        // Weather inputs (defaults with persistence)
+        this.weather = {
+            windSpeed: parseFloat(localStorage.getItem('aceWindSpeed') || '0'), // m/s
+            windDirFrom: parseFloat(localStorage.getItem('aceWindDirFrom') || '0'), // deg (from North)
+            temperatureC: parseFloat(localStorage.getItem('aceTempC') || '15'),
+            pressureHpa: parseFloat(localStorage.getItem('acePressure') || '1013'),
+            humidity: parseFloat(localStorage.getItem('aceHumidity') || '50') // %
+        };
+
         this.initializeElements();
         this.bindEvents();
         this.loadInitialData();
@@ -1885,6 +1903,293 @@ class MortarCalculator {
         this.updateNumpadHighlight(); // Initialize numpad highlighting
         this.updateOffsetDisplay(); // Initialize offset display
         this.setupDeviceSpecificUI();
+
+        // Initialize ACE Weather UI (toggle default OFF)
+        this.createAceWeatherUI();
+    }
+
+    // =============== ACE Weather UI ==================
+    createAceWeatherUI() {
+        // Avoid duplicate rendering
+        if (document.getElementById('ace-weather-panel')) {
+            this.updateAceWeatherUILanguage();
+            this.syncAceWeatherInputs();
+            return;
+        }
+
+    // Anchor: BELOW Input Section, RIGHT ABOVE the Calculate button
+    const mainEl = document.querySelector('main');
+    let anchor = mainEl || document.body;
+    const calcBtn = this.calculateBtn;
+
+        const panel = document.createElement('div');
+        panel.id = 'ace-weather-panel';
+        Object.assign(panel.style, {
+            marginTop: '10px',
+            padding: '12px',
+            background: 'rgba(48,54,61,0.25)',
+            border: '1px solid rgba(99, 102, 241, 0.2)',
+            borderRadius: '8px'
+        });
+
+        // Header with toggle
+        const header = document.createElement('div');
+        Object.assign(header.style, {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '12px',
+            marginBottom: '8px'
+        });
+
+        const title = document.createElement('div');
+        title.id = 'ace-weather-title';
+        title.textContent = '🌦️ ACE Weather';
+        Object.assign(title.style, { fontWeight: '700' });
+
+        const toggleLabel = document.createElement('label');
+        Object.assign(toggleLabel.style, { display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' });
+        const toggle = document.createElement('input');
+        toggle.type = 'checkbox';
+        toggle.id = 'ace-weather-toggle';
+        toggle.checked = !!this.enableAceWeather;
+        const toggleText = document.createElement('span');
+        toggleText.id = 'ace-weather-toggle-text';
+        toggleLabel.appendChild(toggle);
+        toggleLabel.appendChild(toggleText);
+
+        header.appendChild(title);
+        header.appendChild(toggleLabel);
+
+        // Inputs grid
+        const grid = document.createElement('div');
+        Object.assign(grid.style, {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+            gap: '8px',
+            width: '100%'
+        });
+
+        const makeGroup = (id, labelText, type='number', attrs={}) => {
+            const wrap = document.createElement('div');
+            const lab = document.createElement('label');
+            lab.id = `${id}-label`;
+            lab.textContent = labelText;
+            lab.style.display = 'block';
+            lab.style.fontSize = '12px';
+            lab.style.opacity = '0.9';
+            const input = document.createElement('input');
+            input.type = type;
+            input.id = id;
+            Object.assign(input, attrs);
+            Object.assign(input.style, { width: '100%', padding: '6px 8px', borderRadius: '6px', border: '1px solid #444', background: '#111', color: '#eee' });
+            wrap.appendChild(lab);
+            wrap.appendChild(input);
+            return {wrap, input};
+        };
+
+        const g1 = makeGroup('ace-wind-speed', 'Wind Speed (m/s)', 'number', { step: '0.1', min: '0' });
+        const g2 = makeGroup('ace-wind-dir', 'Wind Dir FROM (°)', 'number', { step: '1', min: '0', max: '360' });
+        const g3 = makeGroup('ace-temp', 'Temperature (°C)', 'number', { step: '0.1' });
+        const g4 = makeGroup('ace-pressure', 'Pressure (hPa)', 'number', { step: '1', min: '800', max: '1100' });
+        const g5 = makeGroup('ace-humidity', 'Humidity (%)', 'number', { step: '1', min: '0', max: '100' });
+
+        grid.appendChild(g1.wrap);
+        grid.appendChild(g2.wrap);
+        grid.appendChild(g3.wrap);
+        grid.appendChild(g4.wrap);
+        grid.appendChild(g5.wrap);
+
+        // Info line
+        const info = document.createElement('div');
+        info.id = 'ace-weather-info';
+        Object.assign(info.style, { marginTop: '6px', fontSize: '12px', opacity: '0.85' });
+
+        panel.appendChild(header);
+        panel.appendChild(grid);
+        panel.appendChild(info);
+        // Insert the panel right BEFORE the Calculate button so it's below target card
+        if (calcBtn && calcBtn.parentNode === anchor) {
+            anchor.insertBefore(panel, calcBtn);
+        } else {
+            anchor.appendChild(panel);
+        }
+
+        // Save refs
+        this.aceInputs = {
+            windSpeed: g1.input,
+            windDirFrom: g2.input,
+            temp: g3.input,
+            pressure: g4.input,
+            humidity: g5.input,
+            toggle,
+            info
+        };
+
+        // Seed values
+        this.syncAceWeatherInputs();
+        this.updateAceWeatherUILanguage();
+        this.setAceInputsEnabled(this.enableAceWeather);
+        // Initial responsive columns
+        this.setAceGridColumns(grid);
+
+        // Events
+        toggle.addEventListener('change', () => {
+            this.enableAceWeather = toggle.checked;
+            localStorage.setItem('enableAceWeather', this.enableAceWeather ? '1' : '0');
+            this.updateAceWeatherUILanguage();
+            this.setAceInputsEnabled(this.enableAceWeather);
+            if (this.validateInputs()) this.calculate();
+            const status = this.enableAceWeather ? this._tOn() : this._tOff();
+            this.showMessage(`${this._tAceWeather()}: ${status}`, 'success');
+        });
+
+        const onInputChange = () => {
+            this.weather.windSpeed = parseFloat(this.aceInputs.windSpeed.value || '0');
+            this.weather.windDirFrom = parseFloat(this.aceInputs.windDirFrom.value || '0');
+            this.weather.temperatureC = parseFloat(this.aceInputs.temp.value || '15');
+            this.weather.pressureHpa = parseFloat(this.aceInputs.pressure.value || '1013');
+            this.weather.humidity = parseFloat(this.aceInputs.humidity.value || '50');
+            // persist
+            localStorage.setItem('aceWindSpeed', String(this.weather.windSpeed));
+            localStorage.setItem('aceWindDirFrom', String(this.weather.windDirFrom));
+            localStorage.setItem('aceTempC', String(this.weather.temperatureC));
+            localStorage.setItem('acePressure', String(this.weather.pressureHpa));
+            localStorage.setItem('aceHumidity', String(this.weather.humidity));
+            if (this.enableAceWeather && this.validateInputs()) this.calculate();
+        };
+
+        [g1.input, g2.input, g3.input, g4.input, g5.input].forEach(inp => {
+            inp.addEventListener('input', onInputChange);
+            inp.addEventListener('change', onInputChange);
+        });
+
+        // Handle responsive on resize/orientation change
+        const resizeHandler = () => this.setAceGridColumns(grid);
+        window.addEventListener('resize', resizeHandler);
+        window.addEventListener('orientationchange', resizeHandler);
+    }
+
+    // Responsive columns for ACE grid (mobile-friendly)
+    setAceGridColumns(gridEl) {
+        if (!gridEl) return;
+        const w = window.innerWidth || document.documentElement.clientWidth;
+        if (w <= 420) {
+            gridEl.style.gridTemplateColumns = 'repeat(1, minmax(0, 1fr))';
+        } else if (w <= 640) {
+            gridEl.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+        } else if (w <= 900) {
+            gridEl.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
+        } else if (w <= 1200) {
+            gridEl.style.gridTemplateColumns = 'repeat(4, minmax(0, 1fr))';
+        } else {
+            gridEl.style.gridTemplateColumns = 'repeat(5, minmax(0, 1fr))';
+        }
+    }
+
+    setAceInputsEnabled(enabled) {
+        if (!this.aceInputs) return;
+        const fields = [this.aceInputs.windSpeed, this.aceInputs.windDirFrom, this.aceInputs.temp, this.aceInputs.pressure, this.aceInputs.humidity];
+        fields.forEach(el => { el.disabled = !enabled; el.style.opacity = enabled ? '1' : '0.6'; });
+        this.aceInputs.info.style.display = enabled ? 'block' : 'none';
+    }
+
+    syncAceWeatherInputs() {
+        if (!this.aceInputs) return;
+        this.aceInputs.windSpeed.value = isFinite(this.weather.windSpeed) ? this.weather.windSpeed : 0;
+        this.aceInputs.windDirFrom.value = isFinite(this.weather.windDirFrom) ? this.weather.windDirFrom : 0;
+        this.aceInputs.temp.value = isFinite(this.weather.temperatureC) ? this.weather.temperatureC : 15;
+        this.aceInputs.pressure.value = isFinite(this.weather.pressureHpa) ? this.weather.pressureHpa : 1013;
+        this.aceInputs.humidity.value = isFinite(this.weather.humidity) ? this.weather.humidity : 50;
+        this.aceInputs.toggle.checked = !!this.enableAceWeather;
+    }
+
+    updateAceWeatherUILanguage() {
+        if (!this.aceInputs) return;
+        const title = document.getElementById('ace-weather-title');
+        const toggleText = document.getElementById('ace-weather-toggle-text');
+        const windSpeedLabel = document.getElementById('ace-wind-speed-label');
+        const windDirLabel = document.getElementById('ace-wind-dir-label');
+        const tempLabel = document.getElementById('ace-temp-label');
+        const pressureLabel = document.getElementById('ace-pressure-label');
+        const humidityLabel = document.getElementById('ace-humidity-label');
+
+        // Fallback: get from inputs' previous sibling
+        const setLabel = (id, text) => {
+            const lab = document.getElementById(id);
+            if (lab) lab.textContent = text;
+        };
+
+        if (title) title.textContent = this._tAceWeather();
+        if (toggleText) toggleText.textContent = `${this.enableAceWeather ? this._tOn() : this._tOff()}`;
+        setLabel('ace-wind-speed-label', this._t('windSpeed'));
+        setLabel('ace-wind-dir-label', this._t('windFrom'));
+        setLabel('ace-temp-label', this._t('temperature'));
+        setLabel('ace-pressure-label', this._t('pressure'));
+        setLabel('ace-humidity-label', this._t('humidity'));
+    }
+
+    // Small i18n helpers
+    _tAceWeather() { return currentLanguage === 'th' ? '🌦️ ACE Weather' : '🌦️ ACE Weather'; }
+    _tOn() { return currentLanguage === 'th' ? 'เปิด' : 'On'; }
+    _tOff() { return currentLanguage === 'th' ? 'ปิด' : 'Off'; }
+    _t(key) {
+        const map = {
+            windSpeed: currentLanguage === 'th' ? 'ความเร็วลม (ม./วิ)' : 'Wind Speed (m/s)',
+            windFrom: currentLanguage === 'th' ? 'ทิศลมพัดมาจาก (°)' : 'Wind Dir FROM (°)',
+            temperature: currentLanguage === 'th' ? 'อุณหภูมิ (°C)' : 'Temperature (°C)',
+            pressure: currentLanguage === 'th' ? 'ความกดอากาศ (hPa)' : 'Pressure (hPa)',
+            humidity: currentLanguage === 'th' ? 'ความชื้น (%)' : 'Humidity (%)'
+        };
+        return map[key] || key;
+    }
+
+    // =============== ACE Weather math ==================
+    // Compute air density (kg/m^3) using simplified moist air formula
+    computeAirDensity(tempC, pressureHpa, humidityPct) {
+        const T = tempC + 273.15; // K
+        const p = pressureHpa * 100; // Pa
+        const RH = Math.max(0, Math.min(100, humidityPct)) / 100; // 0..1
+        // Tetens saturation vapor pressure (hPa)
+        const es = 6.112 * Math.exp((17.67 * tempC) / (tempC + 243.5)); // hPa
+        const pv = RH * es * 100; // Pa
+        const pd = p - pv; // dry air partial pressure
+        const Rd = 287.058; // J/(kg·K)
+        const Rv = 461.495; // J/(kg·K)
+        const rho = pd / (Rd * T) + pv / (Rv * T);
+        return rho; // ~1.2 kg/m^3 at standard
+    }
+
+    // Calculate weather-based adjustments given range & azimuth (deg)
+    applyAceWeatherAdjustments(rangeMeters, azimuthDeg) {
+        const ws = Math.max(0, this.weather.windSpeed || 0); // m/s
+        const fromDeg = ((this.weather.windDirFrom || 0) % 360 + 360) % 360;
+        // Convert wind FROM to TO direction
+        const windTo = (fromDeg + 180) % 360;
+        const delta = (windTo - azimuthDeg + 540) % 360 - 180; // -180..180
+        const rad = delta * Math.PI / 180;
+        const headwind = ws * Math.cos(rad);   // +ve tail-to-target direction
+        const crosswind = ws * Math.sin(rad);  // +ve -> push to the right of shot line
+
+        // Simple coefficients per km
+        const distKm = rangeMeters / 1000;
+        const kRange = 5; // meters per (m/s * km)
+        const kDeflect = 1.0; // mils per (m/s * km)
+
+        // Air density effect (relative to ISA 1.225)
+        const rho = this.computeAirDensity(this.weather.temperatureC || 15, this.weather.pressureHpa || 1013, this.weather.humidity || 50);
+        const rho0 = 1.225;
+        const densityRatioDelta = (rho - rho0) / rho0; // typically small
+        const kElev = 8; // mils per (unit ratio * km)
+
+        const deltaRange = -kRange * headwind * distKm; // headwind reduces range
+        const deflectionMils = kDeflect * crosswind * distKm; // +mils => right
+        const deltaElevMils = kElev * densityRatioDelta * distKm; // + => higher density -> more drag -> need more elevation
+
+        return {
+            headwind, crosswind, deltaRange, deflectionMils, deltaElevMils,
+            rho, densityRatioDelta
+        };
     }
 
     setupDeviceSpecificUI() {
@@ -2740,15 +3045,15 @@ class MortarCalculator {
         };
 
         // คำนวณระยะทางและทิศทางโดยใช้พิกัดตาราง (Grid Coordinates)
-        const distance = this.calculateDistance(weapon.x, weapon.y, target.x, target.y);
-        const azimuthDegrees = this.calculateAzimuth(weapon.x, weapon.y, target.x, target.y);
-        const azimuthMils = this.degreesToMils(azimuthDegrees);
+    const distance = this.calculateDistance(weapon.x, weapon.y, target.x, target.y);
+    const azimuthDegrees = this.calculateAzimuth(weapon.x, weapon.y, target.x, target.y);
+    const azimuthMils = this.degreesToMils(azimuthDegrees);
 
         // คำนวณความแตกต่างของระดับความสูงระหว่างปืนกับเป้าหมาย
         const heightDiff = target.alt - weapon.alt;
         
         // สูตรการปรับปรุงระยะทางและความสูงเมื่อความต่างความสูงเกิน 100 เมตร
-        let adjustedDistance = distance;
+    let adjustedDistance = distance;
         let adjustedHeightDiff = heightDiff;
         let calculationNote = '';
 
@@ -2767,6 +3072,13 @@ class MortarCalculator {
             // ความต่างความสูงที่ใช้คำนวณ = 100 หรือ -100 เท่านั้น
             adjustedHeightDiff = heightDiff > 0 ? 100 : -100;
             calculationNote = `สูตรปรับแล้ว: ระยะทาง ${distance}m ${sign} ${rangeAdjustment}m = ${adjustedDistance}m, ความสูง ${adjustedHeightDiff}m (ตัดไว้ 100m)`;
+        }
+
+        // Apply ACE Weather adjustments (range, azimuth, elevation tweak)
+        let weatherAdjust = null;
+        if (this.enableAceWeather) {
+            weatherAdjust = this.applyAceWeatherAdjustments(adjustedDistance, azimuthDegrees);
+            adjustedDistance = adjustedDistance + weatherAdjust.deltaRange; // may be +/-
         }
         
         // เลือกประจุที่เหมาะสมตามระยะทางที่ปรับแล้ว (เว้นแต่ผู้ใช้เลือกเอง)
@@ -2791,19 +3103,28 @@ class MortarCalculator {
         
         // ใช้ข้อมูลจากตารางโดยตรงโดยไม่ปรับค่า (วิธีมาตรฐานของเครื่องคำนวณมอร์ต้าร์)
         // ข้อมูลในตารางถูกปรับเทียบสำหรับ ARMA แล้ว
-        const adjustedBaseElevation = Math.round(ballisticData.elevation * 1.00); 
-        const finalElevation = adjustedBaseElevation + elevationCorrection + this.elevationOffset;
+    const adjustedBaseElevation = Math.round(ballisticData.elevation * 1.00); 
+    // Add small elevation tweak from air density (if enabled)
+    const weatherElev = this.enableAceWeather && weatherAdjust ? Math.round(weatherAdjust.deltaElevMils) : 0;
+    const finalElevation = adjustedBaseElevation + elevationCorrection + this.elevationOffset + weatherElev;
 
         // Display results (simplified like arma-mortar.com)
+        // Azimuth with crosswind deflection (mils -> degrees)
+        const deflectMils = this.enableAceWeather && weatherAdjust ? weatherAdjust.deflectionMils : 0;
+        const finalAzimuthMils = Math.round(azimuthMils + deflectMils);
+        const finalAzimuthDeg = (azimuthDegrees + this.milsToDegrees(deflectMils)).toFixed(1);
+
         this.displayResults({
             distance: Math.round(distance),
             adjustedDistance: Math.round(adjustedDistance),
-            azimuthDegrees: azimuthDegrees.toFixed(1),
-            azimuthMils: Math.round(azimuthMils),
+            azimuthDegrees: finalAzimuthDeg,
+            azimuthMils: finalAzimuthMils,
+            baseAzimuthMils: Math.round(azimuthMils),
             elevation: finalElevation,
             originalElevation: ballisticData.elevation,
             elevationCorrection: elevationCorrection,
             elevationOffset: this.elevationOffset,
+            weatherElevation: weatherElev,
             charge: this.currentCharge,
             timeOfFlight: ballisticData.timeOfFlight,
             heightDiff: heightDiff,
@@ -2812,7 +3133,17 @@ class MortarCalculator {
             muzzleVelocity: ballisticData.muzzleVelocity || 150,
             trajectory: ballisticData.trajectory || [],
             calculationNote: calculationNote,
-            isAdjusted: adjustedDistance !== distance || adjustedHeightDiff !== heightDiff
+            isAdjusted: adjustedDistance !== distance || adjustedHeightDiff !== heightDiff || !!weatherAdjust,
+            aceWeather: this.enableAceWeather ? {
+                enabled: true,
+                headwind: weatherAdjust ? weatherAdjust.headwind : 0,
+                crosswind: weatherAdjust ? weatherAdjust.crosswind : 0,
+                deltaRange: weatherAdjust ? weatherAdjust.deltaRange : 0,
+                deflectionMils: weatherAdjust ? weatherAdjust.deflectionMils : 0,
+                deltaElevMils: weatherAdjust ? weatherAdjust.deltaElevMils : 0,
+                rho: weatherAdjust ? weatherAdjust.rho : null,
+                densityRatioDelta: weatherAdjust ? weatherAdjust.densityRatioDelta : null
+            } : { enabled: false }
         });
 
         // Highlight table row
@@ -2836,7 +3167,7 @@ class MortarCalculator {
         this.heightDiffEl.textContent = `${results.heightDiff > 0 ? '+' : ''}${results.heightDiff.toFixed(1)} m`;
 
         // Add additional info
-        this.updateAdditionalInfo(results);
+    this.updateAdditionalInfo(results);
 
         this.resultsSection.classList.add('show');
         
@@ -2876,6 +3207,26 @@ class MortarCalculator {
                     `NATO (6400 mils = 360°)`
                 }
             </div>
+            ${results.aceWeather && results.aceWeather.enabled ? `
+            <div class="info-item">
+                <strong>🌦️ ACE Weather:</strong> ${currentLanguage === 'th' ? 'เปิด' : 'On'}
+            </div>
+            <div class="info-item">
+                <strong>${currentLanguage === 'th' ? 'ชดเชยจากลม:' : 'Wind Adjustments:'}</strong>
+                ${currentLanguage === 'th' ? 'เฮดวินด์' : 'Headwind'}: ${results.aceWeather.headwind.toFixed(1)} m/s,
+                ${currentLanguage === 'th' ? 'ครอสวินด์' : 'Crosswind'}: ${results.aceWeather.crosswind.toFixed(1)} m/s,
+                ΔRange: ${Math.round(results.aceWeather.deltaRange)} m,
+                ΔAzimuth: ${results.aceWeather.deflectionMils.toFixed(1)} mils
+            </div>
+            <div class="info-item">
+                <strong>${currentLanguage === 'th' ? 'ชดเชยความหนาแน่นอากาศ:' : 'Air Density Adjustment:'}</strong>
+                ρ: ${(results.aceWeather.rho || 0).toFixed(3)} kg/m³, ΔElev: ${Math.round(results.aceWeather.deltaElevMils)} mils
+            </div>
+            ` : `
+            <div class="info-item">
+                <strong>🌦️ ACE Weather:</strong> ${currentLanguage === 'th' ? 'ปิด' : 'Off'}
+            </div>
+            `}
             ${wasAdjusted ? `
             <div class="info-item calculation-adjustment">
                 <strong>🔧 ${currentLanguage === 'th' ? 'การปรับปรุงการคำนวณ:' : 'Calculation Adjustment:'}</strong>
