@@ -3166,6 +3166,9 @@ class MortarCalculator {
         this.timeFlightEl.textContent = `${results.timeOfFlight} sec`;
         this.heightDiffEl.textContent = `${results.heightDiff > 0 ? '+' : ''}${results.heightDiff.toFixed(1)} m`;
 
+        // Update fixed bottom firing solution bar
+        this.updateFixedFiringSolution(results);
+
         // Add additional info
     this.updateAdditionalInfo(results);
 
@@ -3177,6 +3180,29 @@ class MortarCalculator {
             // Auto-calculate rings for convenience
             setTimeout(() => this.calculateAvailableRings(), 100);
         }
+    }
+
+    updateFixedFiringSolution(results) {
+        const fixedBar = document.getElementById('fixed-firing-solution');
+        if (!fixedBar) return;
+
+        // Update values
+        document.getElementById('fs-distance').textContent = `${results.distance} m`;
+        document.getElementById('fs-azimuth').textContent = `${results.azimuthMils} mils (${results.azimuthDegrees}°)`;
+        
+        let elevationText = `${results.elevation} mils`;
+        if (results.elevationOffset && results.elevationOffset !== 0) {
+            const texts = LANGUAGE_DATA[currentLanguage];
+            elevationText += `\n(${texts.offsetLabel} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset})`;
+        }
+        document.getElementById('fs-elevation').textContent = elevationText;
+        
+        document.getElementById('fs-charge').textContent = `${results.charge}`;
+        document.getElementById('fs-time').textContent = `${results.timeOfFlight} sec`;
+        document.getElementById('fs-height').textContent = `${results.heightDiff > 0 ? '+' : ''}${results.heightDiff.toFixed(1)} m`;
+
+        // Show the bar with animation
+        fixedBar.classList.add('active');
     }
 
     updateAdditionalInfo(results) {
