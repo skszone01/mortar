@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  
+  <!-- Main Page -->
+  <url>
+    <loc>https://skszone01.github.io/mortar/</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    
+    <!-- Images -->
+    <image:image>
+      <image:loc>https://skszone01.github.io/mortar/image/mortar-tutor.png</image:loc>
+      <image:title>ARMA REFORGER Mortar Calculator Coordinate Guide</image:title>
+      <image:caption>Tutorial for finding coordinates in ARMA REFORGER</image:caption>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://skszone01.github.io/mortar/image/th.png</image:loc>
+      <image:title>Thai Language Flag</image:title>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://skszone01.github.io/mortar/image/eng.png</image:loc>
+      <image:title>English Language Flag</image:title>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://skszone01.github.io/mortar/image/japan.png</image:loc>
+      <image:title>Japanese Language Flag</image:title>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://skszone01.github.io/mortar/image/china.png</image:loc>
+      <image:title>Chinese Language Flag</image:title>
+    </image:image>
+    
+    <image:image>
+      <image:loc>https://skszone01.github.io/mortar/image/indo.png</image:loc>
+      <image:title>Indonesian Language Flag</image:title>
+    </image:image>
+    
+    <!-- Video -->
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/2SOM4WFleM0/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>ARMA REFORGER Mortar Calculator Tutorial</video:title>
+      <video:description>Complete tutorial on how to use the ARMA REFORGER Mortar Calculator for accurate artillery strikes</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=2SOM4WFleM0</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/2SOM4WFleM0</video:player_loc>
+      <video:duration>300</video:duration>
+      <video:publication_date>2024-01-01T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video>
+  </url>
+  
+</urlset>

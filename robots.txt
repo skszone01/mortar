@@ -1,0 +1,17 @@
+# robots.txt for ARMA REFORGER Mortar Calculator
+# https://skszone01.github.io/mortar/
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /style.css
+Allow: /script.js
+Allow: /image/
+
+# Sitemaps
+Sitemap: https://skszone01.github.io/mortar/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow specific files if needed (none currently)
