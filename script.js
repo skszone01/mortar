@@ -7,14 +7,14 @@ const LANGUAGE_DATA = {
         modMortars: "[MOD] Adult Mortars",
         shellType: "💥 ประเภทกระสุน",
         heShell: "กระสุนระเบิด",
-        smokeShell: "กระสุนควัน", 
+        smokeShell: "กระสุนควัน",
         illuminationShell: "กระสุนส่องสว่าง",
         "0832AyShell": "กระสุนระเบิด 0-832Ay",
         "A832AYShell": "กระสุนควัน A-832AY",
         "C832CShell": "กระสุนส่องสว่าง C-832C",
         weaponPosition: "📍 ตำแหน่งอาวุธ",
         weapon: "อาวุธ",
-        targetPosition: "🎯 ตำแหน่งเป้าหมาย", 
+        targetPosition: "🎯 ตำแหน่งเป้าหมาย",
         target: "เป้าหมาย",
         gridX: "Grid X (0-99999):",
         gridY: "Grid Y (0-99999):",
@@ -89,11 +89,11 @@ const LANGUAGE_DATA = {
         illuminationShell: "Illumination shell",
         "0832AyShell": "0-832Ay HE shell",
         "A832AYShell": "A-832AY Smoke shell",
-        "C832CShell": "C-832C Illumination shell", 
+        "C832CShell": "C-832C Illumination shell",
         weaponPosition: "📍 Weapon Position",
         weapon: "WEAPON",
         targetPosition: "🎯 Target Position",
-        target: "TARGET", 
+        target: "TARGET",
         gridX: "Grid X (0-99999):",
         gridY: "Grid Y (0-99999):",
         gridReference: "Grid Reference:",
@@ -398,7 +398,7 @@ let currentLanguage = 'en'; // Default to English
 function switchLanguage(lang) {
     currentLanguage = lang;
     updateLanguageDisplay();
-    
+
     // Update active language button
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
@@ -406,14 +406,14 @@ function switchLanguage(lang) {
             btn.classList.add('active');
         }
     });
-    
+
     // Save preference to localStorage
     localStorage.setItem('preferredLanguage', lang);
 }
 
 function updateLanguageDisplay() {
     const texts = LANGUAGE_DATA[currentLanguage];
-    
+
     // Update all elements with data-lang-key attribute
     document.querySelectorAll('[data-lang-key]').forEach(element => {
         const key = element.dataset.langKey;
@@ -421,7 +421,7 @@ function updateLanguageDisplay() {
             element.textContent = texts[key];
         }
     });
-    
+
     // Update shell info if calculator is initialized
     if (window.mortarCalculator && window.mortarCalculator.updateShellInfo) {
         window.mortarCalculator.updateShellInfo();
@@ -445,7 +445,7 @@ function initializeLanguage() {
     // Get saved preference or default to English
     const savedLang = localStorage.getItem('preferredLanguage') || 'en';
     switchLanguage(savedLang);
-    
+
     // Add event listeners to language buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -782,8 +782,8 @@ const BALLISTIC_DATA = {
             ]
         },
         "A-832AY": {
-            // 1 Ring - Original (Dispersion: 7m ตามภาพที่ 1)
-            1: [
+            // 0 Ring - Original (Dispersion: 7m ตามภาพที่ 1)
+            0: [
                 { range: 50, elevation: 1450, timeOfFlight: 14.1, dispersion: "51m" },
                 { range: 100, elevation: 1399, timeOfFlight: 14, dispersion: "52m" },
                 { range: 150, elevation: 1347, timeOfFlight: 13.9, dispersion: "55m" },
@@ -794,18 +794,18 @@ const BALLISTIC_DATA = {
                 { range: 400, elevation: 1020, timeOfFlight: 12.4, dispersion: "122m" },
                 { range: 450, elevation: 898, timeOfFlight: 11.4, dispersion: "0m" }
             ],
-            // 2 Ring - Original (Dispersion: 12m ตามภาพที่ 2)  
-            2: [
+            // 1 Ring - Original (Dispersion: 12m ตามภาพที่ 2)  
+            1: [
                 { range: 200, elevation: 1381, timeOfFlight: 18.4, dispersion: "31m" },
-                { range: 250, elevation: 1319, timeOfFlight: 18.2, dispersion: "33m" },
-                { range: 300, elevation: 1252, timeOfFlight: 17.9, dispersion: "34m" },
-                { range: 350, elevation: 1179, timeOfFlight: 17.5, dispersion: "38m" },
-                { range: 400, elevation: 1097, timeOfFlight: 16.9, dispersion: "57m" },
-                { range: 450, elevation: 993, timeOfFlight: 16, dispersion: "67m" },
-                { range: 500, elevation: 805, timeOfFlight: 13.8, dispersion: "0m" }
+                { range: 300, elevation: 1319, timeOfFlight: 18.2, dispersion: "33m" },
+                { range: 400, elevation: 1252, timeOfFlight: 17.9, dispersion: "34m" },
+                { range: 500, elevation: 1179, timeOfFlight: 17.5, dispersion: "38m" },
+                { range: 600, elevation: 1097, timeOfFlight: 16.9, dispersion: "47m" },
+                { range: 700, elevation: 993, timeOfFlight: 16.0, dispersion: "67m" },
+                { range: 800, elevation: 805, timeOfFlight: 13.9, dispersion: "0m" }
             ],
-            // 3 Ring - Original (Dispersion: 18m ตามภาพที่ 3)
-            3: [
+            // 2 Ring - Original (Dispersion: 18m ตามภาพที่ 3)
+            2: [
                 { range: 300, elevation: 1387, timeOfFlight: 23.5, dispersion: "19m" },
                 { range: 400, elevation: 1348, timeOfFlight: 23.8, dispersion: "20m" },
                 { range: 500, elevation: 1308, timeOfFlight: 23.2, dispersion: "21m" },
@@ -817,8 +817,8 @@ const BALLISTIC_DATA = {
                 { range: 1100, elevation: 994, timeOfFlight: 20.4, dispersion: "40m" },
                 { range: 1200, elevation: 902, timeOfFlight: 19.2, dispersion: "64m" }
             ],
-            // 4 Ring - Original (Dispersion: 24m ตามภาพที่ 4)
-            4: [
+            // 3 Ring - Original (Dispersion: 24m ตามภาพที่ 4)
+            3: [
                 { range: 400, elevation: 1387, timeOfFlight: 27.3, dispersion: "15m" },
                 { range: 500, elevation: 1357, timeOfFlight: 27.2, dispersion: "15m" },
                 { range: 600, elevation: 1327, timeOfFlight: 27.1, dispersion: "15m" },
@@ -1673,17 +1673,17 @@ class MortarCalculator {
         this.targetX = document.getElementById('target-x');
         this.targetY = document.getElementById('target-y');
         this.targetAlt = document.getElementById('target-alt');
-        
+
         // Grid display elements
         this.weaponGridRef = document.getElementById('weapon-grid-ref');
         this.targetGridRef = document.getElementById('target-grid-ref');
-        
+
         // Control elements
         this.calculateBtn = document.getElementById('calculate-btn');
         this.resultsSection = document.getElementById('results-section');
         this.mortarTypeInputs = document.querySelectorAll('input[name="mortar-type"]');
         this.shellButtons = document.querySelectorAll('.shell-btn');
-        
+
         // Results elements
         this.distanceEl = document.getElementById('distance');
         this.azimuthEl = document.getElementById('azimuth');
@@ -1691,26 +1691,26 @@ class MortarCalculator {
         this.chargeEl = document.getElementById('charge');
         this.timeFlightEl = document.getElementById('time-flight');
         this.heightDiffEl = document.getElementById('height-diff');
-        
+
         // Table elements
         this.chargeTabsEl = document.getElementById('charge-tabs');
         this.ballisticTbody = document.getElementById('ballistic-tbody');
-        
+
         // RING elements
         this.ringSection = document.getElementById('ring-section');
         this.calculateRingsBtn = document.getElementById('calculate-rings-btn');
         this.ringResults = document.getElementById('ring-results');
-        
+
         // Preset elements
         this.presetButtons = document.querySelectorAll('.preset-btn');
-        
+
         // Numpad elements
         this.numpadButtons = document.querySelectorAll('.numpad-btn');
-        
+
         // Offset elements
         this.offsetButtons = document.querySelectorAll('.offset-btn');
         this.currentOffsetValue = document.getElementById('current-offset-value');
-        
+
         // Apply 5-digit restriction to coordinate inputs
         this.restrictToFiveDigits(this.weaponX);
         this.restrictToFiveDigits(this.weaponY);
@@ -1721,17 +1721,17 @@ class MortarCalculator {
     bindEvents() {
         // Calculate button
         this.calculateBtn.addEventListener('click', () => this.calculate());
-        
+
         // RING calculate button
         this.calculateRingsBtn.addEventListener('click', () => this.calculateAvailableRings());
-        
+
         // Real-time calculation and grid display update
-        [this.weaponX, this.weaponY, this.weaponAlt, 
-         this.targetX, this.targetY, this.targetAlt].forEach(input => {
+        [this.weaponX, this.weaponY, this.weaponAlt,
+        this.targetX, this.targetY, this.targetAlt].forEach(input => {
             input.addEventListener('input', () => {
                 // Reset manual ring selection when inputs change
                 this.manualRingSelected = false;
-                
+
                 this.updateGridReferences();
                 // Check and update active preset status for target inputs only
                 if (input === this.targetX || input === this.targetY || input === this.targetAlt) {
@@ -1785,21 +1785,21 @@ class MortarCalculator {
             } else {
                 // Regular preset buttons
                 const presetNumber = parseInt(btn.dataset.preset);
-                
+
                 // Touch/Mobile support variables
                 let touchStartTime = 0;
                 let touchTimer = null;
                 let isLongPress = false;
-                
+
                 // Touch start (mobile)
                 btn.addEventListener('touchstart', (e) => {
                     e.preventDefault();
                     touchStartTime = Date.now();
                     isLongPress = false;
-                    
+
                     // Add visual feedback for touch
                     btn.style.transform = 'scale(0.95)';
-                    
+
                     // Set timer for long press (500ms)
                     touchTimer = setTimeout(() => {
                         isLongPress = true;
@@ -1810,32 +1810,32 @@ class MortarCalculator {
                         // Visual feedback for long press
                         btn.style.background = 'rgba(34, 197, 94, 0.4)';
                         btn.style.borderColor = '#22c55e';
-                        
+
                         // Save preset
                         this.saveTargetPreset(presetNumber);
                     }, 500);
                 });
-                
+
                 // Touch end (mobile)
                 btn.addEventListener('touchend', (e) => {
                     e.preventDefault();
-                    
+
                     // Reset visual feedback
                     btn.style.transform = '';
                     btn.style.background = '';
                     btn.style.borderColor = '';
-                    
+
                     // Clear timer
                     if (touchTimer) {
                         clearTimeout(touchTimer);
                     }
-                    
+
                     // If it was a short tap (not long press), load preset
                     if (!isLongPress && (Date.now() - touchStartTime < 500)) {
                         this.loadTargetPreset(presetNumber);
                     }
                 });
-                
+
                 // Touch cancel (mobile)
                 btn.addEventListener('touchcancel', (e) => {
                     // Reset everything if touch is cancelled
@@ -1846,7 +1846,7 @@ class MortarCalculator {
                         clearTimeout(touchTimer);
                     }
                 });
-                
+
                 // Desktop support (existing functionality)
                 // Left click: Load preset
                 btn.addEventListener('click', (e) => {
@@ -1917,10 +1917,10 @@ class MortarCalculator {
             return;
         }
 
-    // Anchor: BELOW Input Section, RIGHT ABOVE the Calculate button
-    const mainEl = document.querySelector('main');
-    let anchor = mainEl || document.body;
-    const calcBtn = this.calculateBtn;
+        // Anchor: BELOW Input Section, RIGHT ABOVE the Calculate button
+        const mainEl = document.querySelector('main');
+        let anchor = mainEl || document.body;
+        const calcBtn = this.calculateBtn;
 
         const panel = document.createElement('div');
         panel.id = 'ace-weather-panel';
@@ -1970,7 +1970,7 @@ class MortarCalculator {
             width: '100%'
         });
 
-        const makeGroup = (id, labelText, type='number', attrs={}) => {
+        const makeGroup = (id, labelText, type = 'number', attrs = {}) => {
             const wrap = document.createElement('div');
             const lab = document.createElement('label');
             lab.id = `${id}-label`;
@@ -1985,7 +1985,7 @@ class MortarCalculator {
             Object.assign(input.style, { width: '100%', padding: '6px 8px', borderRadius: '6px', border: '1px solid #444', background: '#111', color: '#eee' });
             wrap.appendChild(lab);
             wrap.appendChild(input);
-            return {wrap, input};
+            return { wrap, input };
         };
 
         const g1 = makeGroup('ace-wind-speed', 'Wind Speed (m/s)', 'number', { step: '0.1', min: '0' });
@@ -2194,15 +2194,15 @@ class MortarCalculator {
 
     setupDeviceSpecificUI() {
         // Detect if device supports touch
-        const isTouchDevice = ('ontouchstart' in window) || 
-                             (navigator.maxTouchPoints > 0) || 
-                             (navigator.msMaxTouchPoints > 0);
-        
+        const isTouchDevice = ('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0);
+
         if (isTouchDevice) {
             // Show mobile instructions
             document.querySelectorAll('.desktop-instructions').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.mobile-instructions').forEach(el => el.style.display = 'inline');
-            
+
             // Add mobile-friendly class to body
             document.body.classList.add('touch-device');
         } else {
@@ -2217,8 +2217,8 @@ class MortarCalculator {
         if (shellTypeEl) {
             const texts = LANGUAGE_DATA[currentLanguage];
             let shellText = '';
-            
-            switch(this.currentShell) {
+
+            switch (this.currentShell) {
                 case 'M821':
                     shellText = texts.heShell;
                     break;
@@ -2240,7 +2240,7 @@ class MortarCalculator {
                 default:
                     shellText = texts.heShell;
             }
-            
+
             shellTypeEl.textContent = shellText;
         }
     }
@@ -2248,18 +2248,18 @@ class MortarCalculator {
     createChargeTabs() {
         const charges = this.getAvailableCharges();
         this.chargeTabsEl.innerHTML = '';
-        
+
         // Reset current charge to first available charge
         if (charges.length > 0) {
             this.currentCharge = charges[0];
         }
-        
+
         charges.forEach((charge, index) => {
             const tab = document.createElement('button');
             tab.className = `charge-tab ${charge === this.currentCharge ? 'active' : ''}`;
             tab.textContent = `Charge ${charge}`;
             tab.dataset.charge = charge;
-            
+
             tab.addEventListener('click', (e) => {
                 document.querySelectorAll('.charge-tab').forEach(t => t.classList.remove('active'));
                 e.target.classList.add('active');
@@ -2269,7 +2269,7 @@ class MortarCalculator {
                     this.calculate();
                 }
             });
-            
+
             this.chargeTabsEl.appendChild(tab);
         });
     }
@@ -2283,12 +2283,12 @@ class MortarCalculator {
     loadBallisticData() {
         const data = this.getCurrentBallisticData();
         this.ballisticTbody.innerHTML = '';
-        
+
         if (!data || data.length === 0) {
             this.ballisticTbody.innerHTML = '<tr><td colspan="4">No data available</td></tr>';
             return;
         }
-        
+
         data.forEach(item => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -2364,12 +2364,12 @@ class MortarCalculator {
     }
 
     validateInputs() {
-        const inputs = [this.weaponX, this.weaponY, this.weaponAlt, 
-                       this.targetX, this.targetY, this.targetAlt];
-        
+        const inputs = [this.weaponX, this.weaponY, this.weaponAlt,
+        this.targetX, this.targetY, this.targetAlt];
+
         let isValid = true;
         let coordinateError = false;
-        
+
         inputs.forEach(input => {
             input.classList.remove('error', 'success');
             if (!input.value || isNaN(input.value)) {
@@ -2377,11 +2377,11 @@ class MortarCalculator {
                 isValid = false;
             } else {
                 // Validate grid coordinates
-                if (input === this.weaponX || input === this.targetX || 
+                if (input === this.weaponX || input === this.targetX ||
                     input === this.weaponY || input === this.targetY) {
                     const value = parseInt(input.value);
                     const valueString = input.value.toString();
-                    
+
                     // Check if coordinates are within valid range (0-99999)
                     if (value < 0 || value > 99999 || valueString.length > 5) {
                         input.classList.add('error');
@@ -2400,12 +2400,12 @@ class MortarCalculator {
                 }
             }
         });
-        
+
         // Show coordinate error message if coordinates are less than 5 digits
         if (coordinateError) {
             this.showCoordinateError();
         }
-        
+
         return isValid;
     }
 
@@ -2421,7 +2421,7 @@ class MortarCalculator {
             }
             e.target.value = value;
         });
-        
+
         // Also handle paste events
         input.addEventListener('paste', (e) => {
             setTimeout(() => {
@@ -2470,15 +2470,15 @@ class MortarCalculator {
     calculateAzimuth(x1, y1, x2, y2) {
         const dx = x2 - x1;
         const dy = y2 - y1;
-        
+
         // Calculate angle in radians, then convert to degrees
         let angle = Math.atan2(dx, dy) * 180 / Math.PI;
-        
+
         // Convert to 0-360 degree bearing (North = 0°, East = 90°)
         if (angle < 0) {
             angle += 360;
         }
-        
+
         return angle;
 
         let bearing = Math.atan2(y, x) * 180 / Math.PI;
@@ -2489,13 +2489,13 @@ class MortarCalculator {
     getShellMilliradianSystem() {
         const russianShells = ['0-832Ay', 'A-832AY', 'C-832C'];
         const natoShells = ['M821', 'M819', 'M853A1'];
-        
+
         if (russianShells.includes(this.currentShell)) {
             return 'russian'; // 6000 mils = 360°
         } else if (natoShells.includes(this.currentShell)) {
             return 'nato'; // 6400 mils = 360°
         }
-        
+
         // Default to NATO system
         return 'nato';
     }
@@ -2503,7 +2503,7 @@ class MortarCalculator {
     // Convert degrees to mils based on shell type
     degreesToMils(degrees) {
         const system = this.getShellMilliradianSystem();
-        
+
         if (system === 'russian') {
             // รัสเซีย: 6000 mils = 360°, ดังนั้น 1° = 16.6667 mils
             return degrees * 16.666666666667;
@@ -2516,7 +2516,7 @@ class MortarCalculator {
     // Convert mils to degrees based on shell type
     milsToDegrees(mils) {
         const system = this.getShellMilliradianSystem();
-        
+
         if (system === 'russian') {
             // รัสเซีย: 6000 mils = 360°
             return mils * 0.06; // 1 mil = 0.06°
@@ -2534,7 +2534,7 @@ class MortarCalculator {
 
         // กรองข้อมูลที่มี dispersion = "0m" ออก เพราะไม่ควรใช้ในการคำนวณ
         const validData = data.filter(item => item.dispersion !== "0m");
-        
+
         // หากไม่มีข้อมูลที่ใช้ได้ ให้ใช้ข้อมูลเดิมทั้งหมด
         const dataToUse = validData.length > 0 ? validData : data;
 
@@ -2552,11 +2552,11 @@ class MortarCalculator {
 
         // การประมาณค่าแบบ Linear interpolation ระหว่างจุดที่ใกล้เคียง (เหมือน arma-mortar.com)
         const sortedData = dataToUse.sort((a, b) => a.range - b.range);
-        
+
         // หาจุดข้อมูลที่อยู่ก่อนและหลังระยะเป้าหมาย
         let lower = null;
         let upper = null;
-        
+
         for (let i = 0; i < sortedData.length - 1; i++) {
             if (distance >= sortedData[i].range && distance <= sortedData[i + 1].range) {
                 lower = sortedData[i];
@@ -2568,7 +2568,7 @@ class MortarCalculator {
         // หากมีจุดข้อมูลครอบคลุม ให้ทำการประมาณค่าระหว่างจุด
         if (lower && upper && lower.range !== upper.range) {
             const ratio = (distance - lower.range) / (upper.range - lower.range);
-            
+
             return {
                 range: distance,
                 elevation: Math.round(lower.elevation + (upper.elevation - lower.elevation) * ratio),
@@ -2592,20 +2592,20 @@ class MortarCalculator {
         if (!ballisticData || !ballisticData.dispersion) {
             return 0;
         }
-        
+
         // แปลงค่า dispersion จากรูปแบบ "xxm" เป็นตัวเลข
         const dispersionValue = parseFloat(ballisticData.dispersion.replace('m', ''));
-        
+
         // ตรวจสอบว่าค่า dispersion เป็น 0 หรือไม่ถูกต้องหรือไม่
         if (isNaN(dispersionValue) || dispersionValue <= 0) {
             return 0;
         }
-        
+
         // สูตรการคำนวณปรับปรุงใหม่:
         // เมื่อเป้าหมายสูงกว่า (heightDiff > 0): ลดมุมยกปืน (-)
         // เมื่อเป้าหมายต่ำกว่า (heightDiff < 0): เพิ่มมุมยกปืน (+)
         const correction = (dispersionValue / 100) * Math.abs(heightDiff);
-        
+
         // ใช้ค่าติดลบเมื่อเป้าหมายสูงกว่า และค่าบวกเมื่อเป้าหมายต่ำกว่า
         return heightDiff > 0 ? -Math.round(correction) : Math.round(correction);
     }
@@ -2615,16 +2615,16 @@ class MortarCalculator {
         const g = 9.81; // gravity (m/s²)
         const R = distance; // horizontal range (m)
         const h = heightDiff; // height difference (m)
-        
+
         // Calculate required launch angle using ballistic trajectory formula
         // R = (v²/g) * sin(2θ) * (1 + √(1 + 2gh/(v²sin²θ)))
         // Simplified approximation for launch angle
         let launchAngle;
-        
+
         try {
             // First approximation using standard projectile motion
             const discriminant = Math.pow(muzzleVelocity, 4) - g * (g * R * R + 2 * h * muzzleVelocity * muzzleVelocity);
-            
+
             if (discriminant < 0) {
                 // Target too far, use maximum range angle (45°) as fallback
                 launchAngle = Math.PI / 4;
@@ -2634,28 +2634,28 @@ class MortarCalculator {
                 const denominator = g * R;
                 launchAngle = Math.atan(numerator / denominator);
             }
-            
+
             // Ensure angle is within realistic mortar range (45° to 85°)
             const minAngle = 45 * Math.PI / 180; // 45 degrees
             const maxAngle = 85 * Math.PI / 180; // 85 degrees
             launchAngle = Math.max(minAngle, Math.min(maxAngle, launchAngle));
-            
+
         } catch (error) {
             // Fallback to standard high angle
             launchAngle = 60 * Math.PI / 180; // 60 degrees default
         }
-        
+
         // Convert radians to degrees, then to mils
         const angleDegrees = launchAngle * 180 / Math.PI;
         const angleMils = angleDegrees * 17.777777777778;
-        
+
         // Calculate time of flight using trajectory physics
         const vY = muzzleVelocity * Math.sin(launchAngle);
         const vX = muzzleVelocity * Math.cos(launchAngle);
-        
+
         // Time to reach target (accounting for height difference)
         const timeOfFlight = (vY + Math.sqrt(vY * vY + 2 * g * h)) / g;
-        
+
         return {
             elevationMils: Math.round(angleMils),
             elevationDegrees: angleDegrees,
@@ -2671,7 +2671,7 @@ class MortarCalculator {
         const vX = muzzleVelocity * Math.cos(launchAngle);
         const vY = muzzleVelocity * Math.sin(launchAngle);
         const totalTime = (vY + Math.sqrt(vY * vY + 2 * g * heightDiff)) / g;
-        
+
         const points = [];
         for (let i = 0; i <= numPoints; i++) {
             const t = (i / numPoints) * totalTime;
@@ -2679,18 +2679,18 @@ class MortarCalculator {
             const y = vY * t - 0.5 * g * t * t;
             points.push({ x: x, y: y, time: t });
         }
-        
+
         return points;
     }
 
     // Enhanced ballistic data finder with physics integration
     findEnhancedBallisticData(distance, heightDiff) {
         const tableData = this.findBallisticData(distance);
-        
+
         if (!tableData) {
             return null;
         }
-        
+
         // Get muzzle velocity from charge level (estimated)
         const chargeVelocities = {
             0: 70,   // Charge 0: ~70 m/s
@@ -2699,12 +2699,12 @@ class MortarCalculator {
             3: 190,  // Charge 3: ~190 m/s
             4: 225   // Charge 4: ~225 m/s
         };
-        
+
         const muzzleVelocity = chargeVelocities[this.currentCharge] || 150;
-        
+
         // Calculate physics-based trajectory for reference only
         const physicsResult = this.calculateBallisticTrajectory(distance, heightDiff, muzzleVelocity);
-        
+
         // Use table data as primary, physics as supplementary info only
         return {
             ...tableData,
@@ -2739,7 +2739,7 @@ class MortarCalculator {
 
         const distance = this.calculateDistance(weapon.x, weapon.y, target.x, target.y);
         const heightDiff = target.alt - weapon.alt;
-        
+
         // Apply the same height adjustment formula as in calculate()
         let adjustedDistance = distance;
         const absoluteHeightDiff = Math.abs(heightDiff);
@@ -2792,7 +2792,7 @@ class MortarCalculator {
     // Display RING calculation results
     displayRingResults(rings, targetDistance, wasAdjusted) {
         const texts = LANGUAGE_DATA[currentLanguage];
-        
+
         if (rings.length === 0) {
             this.ringResults.innerHTML = `
                 <div class="ring-no-data">
@@ -2806,7 +2806,7 @@ class MortarCalculator {
         let availableCount = 0;
 
         const currentRing = this.getCurrentRing();
-        
+
         rings.forEach(ring => {
             if (ring.canReach) {
                 availableCount++;
@@ -2831,7 +2831,7 @@ class MortarCalculator {
         });
 
         // Add summary information
-        const summaryText = wasAdjusted ? 
+        const summaryText = wasAdjusted ?
             `${texts.availableRings} ${availableCount}/${rings.length} (${currentLanguage === 'th' ? 'ระยะปรับแล้ว' : 'Adjusted range'}: ${Math.round(targetDistance)}m)` :
             `${texts.availableRings} ${availableCount}/${rings.length} (${Math.round(targetDistance)}m)`;
 
@@ -2864,7 +2864,7 @@ class MortarCalculator {
         this.manualRingSelected = true; // Flag to indicate manual selection
         this.updateChargeTabsDisplay();
         this.loadBallisticData();
-        
+
         // Recalculate with selected ring
         if (this.validateInputs()) {
             this.calculate();
@@ -2879,8 +2879,8 @@ class MortarCalculator {
     applyNumpadReference(numpadValue) {
         // Check if target coordinates have at least 3 digits
         if (!this.targetX.value || !this.targetY.value) {
-            this.showError(currentLanguage === 'th' ? 
-                'กรุณากรอกพิกัดเป้าหมาย X และ Y ก่อน' : 
+            this.showError(currentLanguage === 'th' ?
+                'กรุณากรอกพิกัดเป้าหมาย X และ Y ก่อน' :
                 'Please enter target X and Y coordinates first');
             return;
         }
@@ -2890,8 +2890,8 @@ class MortarCalculator {
 
         // Check minimum 3 digits requirement
         if (currentX.length < 3 || currentY.length < 3) {
-            this.showError(currentLanguage === 'th' ? 
-                'พิกัดต้องมีตัวเลขอย่างน้อย 3 ตัวขึ้นไป' : 
+            this.showError(currentLanguage === 'th' ?
+                'พิกัดต้องมีตัวเลขอย่างน้อย 3 ตัวขึ้นไป' :
                 'Coordinates must have at least 3 digits');
             return;
         }
@@ -2947,11 +2947,11 @@ class MortarCalculator {
         // Ensure we don't exceed 5 digits (99999 maximum) but preserve leading zeros
         const maxX = Math.min(parseInt(newX), 99999);
         const maxY = Math.min(parseInt(newY), 99999);
-        
+
         // Pad with zeros to maintain original length or minimum required length
         const targetLengthX = Math.max(currentX.length, newX.length);
         const targetLengthY = Math.max(currentY.length, newY.length);
-        
+
         newX = maxX.toString().padStart(Math.min(targetLengthX, 5), '0');
         newY = maxY.toString().padStart(Math.min(targetLengthY, 5), '0');
 
@@ -2972,8 +2972,8 @@ class MortarCalculator {
         this.updateNumpadHighlight();
 
         // Show success message
-        this.showMessage(currentLanguage === 'th' ? 
-            `ปรับพิกัดตาม Numpad ${numpadValue} เรียบร้อยแล้ว` : 
+        this.showMessage(currentLanguage === 'th' ?
+            `ปรับพิกัดตาม Numpad ${numpadValue} เรียบร้อยแล้ว` :
             `Applied Numpad ${numpadValue} reference successfully`, 'success');
     }
 
@@ -3045,15 +3045,15 @@ class MortarCalculator {
         };
 
         // คำนวณระยะทางและทิศทางโดยใช้พิกัดตาราง (Grid Coordinates)
-    const distance = this.calculateDistance(weapon.x, weapon.y, target.x, target.y);
-    const azimuthDegrees = this.calculateAzimuth(weapon.x, weapon.y, target.x, target.y);
-    const azimuthMils = this.degreesToMils(azimuthDegrees);
+        const distance = this.calculateDistance(weapon.x, weapon.y, target.x, target.y);
+        const azimuthDegrees = this.calculateAzimuth(weapon.x, weapon.y, target.x, target.y);
+        const azimuthMils = this.degreesToMils(azimuthDegrees);
 
         // คำนวณความแตกต่างของระดับความสูงระหว่างปืนกับเป้าหมาย
         const heightDiff = target.alt - weapon.alt;
-        
+
         // สูตรการปรับปรุงระยะทางและความสูงเมื่อความต่างความสูงเกิน 100 เมตร
-    let adjustedDistance = distance;
+        let adjustedDistance = distance;
         let adjustedHeightDiff = heightDiff;
         let calculationNote = '';
 
@@ -3080,7 +3080,7 @@ class MortarCalculator {
             weatherAdjust = this.applyAceWeatherAdjustments(adjustedDistance, azimuthDegrees);
             adjustedDistance = adjustedDistance + weatherAdjust.deltaRange; // may be +/-
         }
-        
+
         // เลือกประจุที่เหมาะสมตามระยะทางที่ปรับแล้ว (เว้นแต่ผู้ใช้เลือกเอง)
         if (!this.manualRingSelected) {
             const optimalCharge = this.selectOptimalCharge(adjustedDistance);
@@ -3089,7 +3089,7 @@ class MortarCalculator {
                 this.updateChargeTabsDisplay();
             }
         }
-        
+
         // ค้นหาข้อมูลการยิงจากตาราง BALLISTIC_DATA ใช้ระยะทางที่ปรับแล้ว
         const ballisticData = this.findBallisticData(adjustedDistance);
         if (!ballisticData) {
@@ -3100,13 +3100,13 @@ class MortarCalculator {
         // คำนวณค่าชดเชยมุมยกปืนจากความต่างระดับความสูงที่ปรับแล้ว
         // ใช้สูตร: (dispersion ÷ 100) × ความต่างระดับความสูงที่ปรับแล้ว
         const elevationCorrection = this.calculateElevationCorrection(adjustedHeightDiff, ballisticData);
-        
+
         // ใช้ข้อมูลจากตารางโดยตรงโดยไม่ปรับค่า (วิธีมาตรฐานของเครื่องคำนวณมอร์ต้าร์)
         // ข้อมูลในตารางถูกปรับเทียบสำหรับ ARMA แล้ว
-    const adjustedBaseElevation = Math.round(ballisticData.elevation * 1.00); 
-    // Add small elevation tweak from air density (if enabled)
-    const weatherElev = this.enableAceWeather && weatherAdjust ? Math.round(weatherAdjust.deltaElevMils) : 0;
-    const finalElevation = adjustedBaseElevation + elevationCorrection + this.elevationOffset + weatherElev;
+        const adjustedBaseElevation = Math.round(ballisticData.elevation * 1.00);
+        // Add small elevation tweak from air density (if enabled)
+        const weatherElev = this.enableAceWeather && weatherAdjust ? Math.round(weatherAdjust.deltaElevMils) : 0;
+        const finalElevation = adjustedBaseElevation + elevationCorrection + this.elevationOffset + weatherElev;
 
         // Display results (simplified like arma-mortar.com)
         // Azimuth with crosswind deflection (mils -> degrees)
@@ -3153,7 +3153,7 @@ class MortarCalculator {
     displayResults(results) {
         this.distanceEl.textContent = `${results.distance} m`;
         this.azimuthEl.textContent = `${results.azimuthMils} mils (${results.azimuthDegrees}°)`;
-        
+
         // Display elevation with offset info if offset is not zero
         let elevationText = `${results.elevation} mils`;
         if (results.elevationOffset && results.elevationOffset !== 0) {
@@ -3161,7 +3161,7 @@ class MortarCalculator {
             elevationText += `\n(${texts.offsetLabel} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset} mils)`;
         }
         this.elevationEl.textContent = elevationText;
-        
+
         this.chargeEl.textContent = `${results.charge}`;
         this.timeFlightEl.textContent = `${results.timeOfFlight} sec`;
         this.heightDiffEl.textContent = `${results.heightDiff > 0 ? '+' : ''}${results.heightDiff.toFixed(1)} m`;
@@ -3170,10 +3170,10 @@ class MortarCalculator {
         this.updateFixedFiringSolution(results);
 
         // Add additional info
-    this.updateAdditionalInfo(results);
+        this.updateAdditionalInfo(results);
 
         this.resultsSection.classList.add('show');
-        
+
         // Auto-show RING section when results are displayed
         if (this.ringSection) {
             this.ringSection.classList.add('show');
@@ -3189,14 +3189,14 @@ class MortarCalculator {
         // Update values
         document.getElementById('fs-distance').textContent = `${results.distance} m`;
         document.getElementById('fs-azimuth').textContent = `${results.azimuthMils} mils (${results.azimuthDegrees}°)`;
-        
+
         let elevationText = `${results.elevation} mils`;
         if (results.elevationOffset && results.elevationOffset !== 0) {
             const texts = LANGUAGE_DATA[currentLanguage];
             elevationText += `\n(${texts.offsetLabel} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset})`;
         }
         document.getElementById('fs-elevation').textContent = elevationText;
-        
+
         document.getElementById('fs-charge').textContent = `${results.charge}`;
         document.getElementById('fs-time').textContent = `${results.timeOfFlight} sec`;
         document.getElementById('fs-height').textContent = `${results.heightDiff > 0 ? '+' : ''}${results.heightDiff.toFixed(1)} m`;
@@ -3210,15 +3210,15 @@ class MortarCalculator {
         // คำนวณค่า dispersion ที่ใช้ในการคำนวณ elevation correction
         const dispersionValue = parseFloat(results.dispersion.replace('m', ''));
         const correctionFormula = `(${dispersionValue} ÷ 100) × |${results.adjustedHeightDiff || results.heightDiff}| = ${Math.abs(results.elevationCorrection)} mils ${(results.adjustedHeightDiff || results.heightDiff) < 0 ? '(+)' : '(-)'}`;
-        
+
         // Check if calculation was adjusted
         const originalHeightCompensation = Math.abs(results.heightDiff);
         const showWarning = originalHeightCompensation > 100;
         const wasAdjusted = results.isAdjusted;
-        
+
         // Get text from current language
         const texts = LANGUAGE_DATA[currentLanguage];
-        
+
         additionalInfo.innerHTML = `
             <div class="info-item">
                 <strong>${currentLanguage === 'th' ? 'กระสุน:' : 'Shell:'}</strong> ${this.currentShell}
@@ -3228,10 +3228,10 @@ class MortarCalculator {
             </div>
             <div class="info-item mil-system-info">
                 <strong>🧭 ${currentLanguage === 'th' ? 'ระบบ Mils:' : 'Mils System:'}</strong> 
-                ${this.getShellMilliradianSystem() === 'russian' ? 
-                    `${currentLanguage === 'th' ? 'รัสเซีย' : 'Russian'} (6000 mils = 360°)` : 
-                    `NATO (6400 mils = 360°)`
-                }
+                ${this.getShellMilliradianSystem() === 'russian' ?
+                `${currentLanguage === 'th' ? 'รัสเซีย' : 'Russian'} (6000 mils = 360°)` :
+                `NATO (6400 mils = 360°)`
+            }
             </div>
             ${results.aceWeather && results.aceWeather.enabled ? `
             <div class="info-item">
@@ -3293,11 +3293,11 @@ class MortarCalculator {
             </div>
             <div class="info-item">
                 <strong>${currentLanguage === 'th' ? 'มุมยกปืนสุดท้าย:' : 'Final Elevation:'}</strong> ${results.elevation} mils
-                ${results.elevationOffset !== 0 ? 
-                    `<span class="offset-indicator" style="color: ${results.elevationOffset > 0 ? '#10b981' : '#ef4444'}; font-weight: bold;">
+                ${results.elevationOffset !== 0 ?
+                `<span class="offset-indicator" style="color: ${results.elevationOffset > 0 ? '#10b981' : '#ef4444'}; font-weight: bold;">
                         (${results.originalElevation} ${results.elevationCorrection > 0 ? '+' : ''}${results.elevationCorrection} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset})
                     </span>` : ''
-                }
+            }
             </div>
             ${showWarning ? `
             <div class="accuracy-warning">
@@ -3306,18 +3306,18 @@ class MortarCalculator {
                     <strong>${currentLanguage === 'th' ? 'การปรับปรุงความแม่นยำ' : 'Accuracy Improvement'}</strong>
                 </div>
                 <div class="warning-text">
-                    ${currentLanguage === 'th' ? 
-                        'ใช้สูตรพิเศษเมื่อความต่างความสูง > 100m เพื่อลดความคลาดเคลื่อน' : 
-                        'Using special formula when height difference > 100m to reduce deviation'
-                    }
+                    ${currentLanguage === 'th' ?
+                    'ใช้สูตรพิเศษเมื่อความต่างความสูง > 100m เพื่อลดความคลาดเคลื่อน' :
+                    'Using special formula when height difference > 100m to reduce deviation'
+                }
                 </div>
             </div>
             ` : ''}
             <div class="trajectory-hint">
-                🎯 ${currentLanguage === 'th' ? 
-                    (wasAdjusted ? 'ใช้สูตรปรับปรุงสำหรับความแม่นยำสูง' : 'ใช้ข้อมูลจาก BALLISTIC_DATA เป็นหลัก พร้อมค่าชดเชยจากความสูง') : 
-                    (wasAdjusted ? 'Using improved formula for high accuracy' : 'Using BALLISTIC_DATA with height compensation')
-                }
+                🎯 ${currentLanguage === 'th' ?
+                (wasAdjusted ? 'ใช้สูตรปรับปรุงสำหรับความแม่นยำสูง' : 'ใช้ข้อมูลจาก BALLISTIC_DATA เป็นหลัก พร้อมค่าชดเชยจากความสูง') :
+                (wasAdjusted ? 'Using improved formula for high accuracy' : 'Using BALLISTIC_DATA with height compensation')
+            }
             </div>
         `;
     }
@@ -3364,7 +3364,7 @@ class MortarCalculator {
 
         // Update button appearance
         this.updatePresetButtonStatus(presetNumber);
-        
+
         // Update active preset status
         this.updateActivePresetStatus();
 
@@ -3379,7 +3379,7 @@ class MortarCalculator {
 
     loadTargetPreset(presetNumber) {
         const preset = this.targetPresets[presetNumber];
-        
+
         if (!preset) {
             this.showMessage(`เป้าหมาย ${presetNumber} ยังไม่มีข้อมูล`, 'warning');
             return;
@@ -3389,14 +3389,14 @@ class MortarCalculator {
         this.targetX.value = preset.x;
         this.targetY.value = preset.y;
         this.targetAlt.value = preset.alt;
-        
+
         // Load elevation offset if available (backward compatibility)
         this.elevationOffset = preset.elevationOffset || 0;
         this.updateOffsetDisplay();
 
         // Update grid reference display
         this.updateGridReferences();
-        
+
         // Update active preset status
         this.updateActivePresetStatus();
 
@@ -3445,21 +3445,21 @@ class MortarCalculator {
         if (preset) {
             button.classList.add('has-data');
             const date = new Date(preset.timestamp);
-            const timeStr = date.toLocaleTimeString('th-TH', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
+            const timeStr = date.toLocaleTimeString('th-TH', {
+                hour: '2-digit',
+                minute: '2-digit'
             });
             statusSpan.textContent = currentLanguage === 'th' ? 'มีข้อมูล' : 'Saved';
-            
+
             // Create tooltip with elevation offset info
-            const offsetInfo = preset.elevationOffset ? 
+            const offsetInfo = preset.elevationOffset ?
                 ` | Offset: ${preset.elevationOffset > 0 ? '+' : ''}${preset.elevationOffset} mils` : '';
             button.title = `Grid: ${preset.x}, ${preset.y} Alt: ${preset.alt}m${offsetInfo} (${timeStr})`;
         } else {
             button.classList.remove('has-data');
             statusSpan.textContent = LANGUAGE_DATA[currentLanguage].presetEmpty;
-            button.title = currentLanguage === 'th' ? 
-                'คลิกซ้าย: โหลด • คลิกขวา: บันทึก' : 
+            button.title = currentLanguage === 'th' ?
+                'คลิกซ้าย: โหลด • คลิกขวา: บันทึก' :
                 'Left-click: Load • Right-click: Save';
         }
     }
@@ -3489,7 +3489,7 @@ class MortarCalculator {
         for (let i = 1; i <= 9; i++) {
             this.updatePresetButtonStatus(i);
         }
-        
+
         // Update active preset status (will remove all highlights)
         this.updateActivePresetStatus();
 
@@ -3502,28 +3502,28 @@ class MortarCalculator {
         const currentX = this.targetX.value;
         const currentY = this.targetY.value;
         const currentAlt = this.targetAlt.value;
-        
+
         // Remove active-preset class from all buttons first
         document.querySelectorAll('.preset-btn').forEach(btn => {
             btn.classList.remove('active-preset');
         });
-        
+
         // If any field is empty, don't highlight any preset
         if (!currentX || !currentY || !currentAlt) {
             return;
         }
-        
+
         // Check each preset for matching values (including elevation offset)
         for (let i = 1; i <= 9; i++) {
             const preset = this.targetPresets[i];
             const presetOffset = preset ? (preset.elevationOffset || 0) : 0;
-            
-            if (preset && 
-                preset.x === currentX && 
-                preset.y === currentY && 
+
+            if (preset &&
+                preset.x === currentX &&
+                preset.y === currentY &&
                 preset.alt === currentAlt &&
                 presetOffset === this.elevationOffset) {
-                
+
                 // Found matching preset - highlight it
                 const button = document.querySelector(`.preset-btn[data-preset="${i}"]`);
                 if (button) {
@@ -3543,29 +3543,29 @@ class MortarCalculator {
     // Apply Elevation Offset to current calculation
     applyElevationOffset(offsetValue) {
         const texts = LANGUAGE_DATA[currentLanguage];
-        
+
         if (offsetValue === 'clear') {
             // Clear offset
             this.elevationOffset = 0;
             this.updateOffsetDisplay();
-            
+
             // Recalculate if inputs are valid
             if (this.validateInputs()) {
                 this.calculate();
             }
-            
+
             this.showMessage(texts.offsetCleared, 'success');
         } else {
             // Apply offset
             const offsetNum = parseInt(offsetValue);
             this.elevationOffset += offsetNum;
             this.updateOffsetDisplay();
-            
+
             // Recalculate if inputs are valid
             if (this.validateInputs()) {
                 this.calculate();
             }
-            
+
             this.showMessage(`${texts.offsetApplied} ${offsetValue} mils`, 'success');
         }
     }
@@ -3573,11 +3573,11 @@ class MortarCalculator {
     // Update offset display
     updateOffsetDisplay() {
         if (this.currentOffsetValue) {
-            this.currentOffsetValue.textContent = this.elevationOffset > 0 ? 
-                `+${this.elevationOffset}` : 
+            this.currentOffsetValue.textContent = this.elevationOffset > 0 ?
+                `+${this.elevationOffset}` :
                 this.elevationOffset.toString();
         }
-        
+
         // Update offset button states
         this.updateOffsetButtonStates();
     }
@@ -3587,7 +3587,7 @@ class MortarCalculator {
         this.offsetButtons.forEach(btn => {
             btn.classList.remove('offset-active');
         });
-        
+
         // Highlight clear button if offset is non-zero
         if (this.elevationOffset !== 0) {
             const clearBtn = document.querySelector('.offset-btn[data-offset="clear"]');
@@ -3602,7 +3602,7 @@ class MortarCalculator {
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
         toast.textContent = message;
-        
+
         // Style the toast
         Object.assign(toast.style, {
             position: 'fixed',
@@ -3659,14 +3659,14 @@ class MortarCalculator {
 // Visitor Counter Functions
 function initializeVisitorCounter() {
     const today = new Date().toDateString();
-    
+
     // Get or initialize total visits
     let totalVisits = parseInt(localStorage.getItem('totalVisits') || '0');
-    
+
     // Get or initialize today's visits
     let todayVisits = 0;
     const lastVisitDate = localStorage.getItem('lastVisitDate');
-    
+
     if (lastVisitDate === today) {
         todayVisits = parseInt(localStorage.getItem('todayVisits') || '0');
     } else {
@@ -3674,20 +3674,20 @@ function initializeVisitorCounter() {
         localStorage.setItem('lastVisitDate', today);
         localStorage.setItem('todayVisits', '0');
     }
-    
+
     // Check if this is a new session (not a page refresh)
     const sessionVisited = sessionStorage.getItem('sessionVisited');
     if (!sessionVisited) {
         // New session - increment counters
         totalVisits++;
         todayVisits++;
-        
+
         // Save to storage
         localStorage.setItem('totalVisits', totalVisits.toString());
         localStorage.setItem('todayVisits', todayVisits.toString());
         sessionStorage.setItem('sessionVisited', 'true');
     }
-    
+
     // Update display
     updateVisitorDisplay(totalVisits, todayVisits);
 }
@@ -3696,7 +3696,7 @@ function updateVisitorDisplay(total, today) {
     const totalElement = document.getElementById('total-visits');
     const todayElement = document.getElementById('today-visits');
     const onlineElement = document.getElementById('online-now');
-    
+
     if (totalElement) totalElement.textContent = total.toLocaleString();
     if (todayElement) todayElement.textContent = today.toLocaleString();
     if (onlineElement) onlineElement.textContent = '1'; // Always show 1 for current user
@@ -3706,10 +3706,10 @@ function updateVisitorDisplay(total, today) {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize language system first
     initializeLanguage();
-    
+
     // Initialize visitor counter
     initializeVisitorCounter();
-    
+
     // Then initialize the calculator and store reference
     window.mortarCalculator = new MortarCalculator();
 });
