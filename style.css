@@ -2086,12 +2086,12 @@ footer {
 }
 
 .firing-solution-container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 20px;
+    flex-wrap: nowrap;
 }
 
 .firing-solution-title {
@@ -2106,10 +2106,11 @@ footer {
 
 .firing-solution-data {
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 12px;
+    flex-wrap: nowrap;
     flex: 1;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .fs-item {
