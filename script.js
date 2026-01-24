@@ -76,7 +76,9 @@ const LANGUAGE_DATA = {
         offsetCleared: "ล้างค่าออฟเซ็ตเรียบร้อยแล้ว",
         presetWithOffset: "บันทึกพร้อมค่าออฟเซ็ต:",
         presetLoadedWithOffset: "โหลดพร้อมค่าออฟเซ็ต:",
-        offsetLabel: "ชดเชย"
+        offsetLabel: "ชดเชย",
+        usageTerms: "ไม่อนุญาตให้นำไปใช้เพื่อแสวงหาผลกำไรใดๆทั้งสิ้น",
+        creditRequest: "หากนำไปใช้งานในส่วนอื่น ใส่เครดิต <strong>Youtube : Sitt Chanel</strong> ให้ด้วย"
     },
     en: {
         title: "Mortar Calculator",
@@ -154,7 +156,9 @@ const LANGUAGE_DATA = {
         offsetCleared: "Offset cleared successfully",
         presetWithOffset: "Saved with offset:",
         presetLoadedWithOffset: "Loaded with offset:",
-        offsetLabel: "Offset"
+        offsetLabel: "Offset",
+        usageTerms: "Not allowed to be used for any commercial purposes.",
+        creditRequest: "If used in other projects, please credit <strong>Youtube : Sitt Chanel</strong>"
     },
     ja: {
         title: "迫撃砲計算機",
@@ -232,7 +236,9 @@ const LANGUAGE_DATA = {
         offsetCleared: "オフセットが正常にクリアされました",
         presetWithOffset: "オフセット付きで保存:",
         presetLoadedWithOffset: "オフセット付きで読込:",
-        offsetLabel: "補正"
+        offsetLabel: "補正",
+        usageTerms: "いかなる営利目的での使用も禁止されています。",
+        creditRequest: "他のプロジェクトで使用する場合は、<strong>YouTube：Sitt Chanel</strong> をクレジットしてください。"
     },
     zh: {
         title: "迫击炮计算器",
@@ -310,7 +316,9 @@ const LANGUAGE_DATA = {
         offsetCleared: "偏移成功清除",
         presetWithOffset: "保存时包含偏移:",
         presetLoadedWithOffset: "加载时包含偏移:",
-        offsetLabel: "补偿"
+        offsetLabel: "补偿",
+        usageTerms: "不允许用于任何商业用途。",
+        creditRequest: "如果在其他项目中使用，请注明 <strong>Youtube : Sitt Chanel</strong>"
     },
     id: {
         title: "Kalkulator Mortar",
@@ -388,7 +396,9 @@ const LANGUAGE_DATA = {
         offsetCleared: "Offset berhasil dihapus",
         presetWithOffset: "Disimpan dengan offset:",
         presetLoadedWithOffset: "Dimuat dengan offset:",
-        offsetLabel: "Koreksi"
+        offsetLabel: "Koreksi",
+        usageTerms: "Tidak diizinkan untuk digunakan untuk tujuan komersial apa pun.",
+        creditRequest: "Jika digunakan dalam proyek lain, harap sertakan kredit <strong>Youtube : Sitt Chanel</strong>"
     },
     ru: {
         title: "Минометный калькулятор",
@@ -466,8 +476,91 @@ const LANGUAGE_DATA = {
         offsetCleared: "Правка успешно сброшена",
         presetWithOffset: "Сохранено с правкой:",
         presetLoadedWithOffset: "Загружено с правкой:",
-        offsetLabel: "Правка"
-    }
+        offsetLabel: "Правка",
+        usageTerms: "Не допускается использование в каких-либо коммерческих целях.",
+        creditRequest: "При использовании в других проектах, пожалуйста, укажите автора: <strong>Youtube : Sitt Chanel</strong>"
+    },
+    uk: {
+        title: "Мінометний калькулятор",
+        mortarType: "🎯 Тип міномета",
+        originalGame: "Оригінальна гра",
+        modMortars: "[MOD] Adult Mortars",
+        shellType: "💥 Тип снаряда",
+        heShell: "Осколочно-фугасний",
+        smokeShell: "Димовий",
+        illuminationShell: "Освітлювальний",
+        "0832AyShell": "0-832Ay Осколочно-фугасний",
+        "A832AYShell": "A-832AY Димовий",
+        "C832CShell": "C-832C Освітлювальний",
+        weaponPosition: "📍 Позиція зброї",
+        weapon: "ЗБРОЯ",
+        targetPosition: "🎯 Позиція цілі",
+        target: "ЦІЛЬ",
+        gridX: "Сітка X (0-99999):",
+        gridY: "Сітка Y (0-99999):",
+        gridReference: "Координати (Grid):",
+        gridWarning: "Формат координат відповідає ігровому відображенню карти",
+        altitude: "Висота (м):",
+        calculate: "🧮 РОЗРАХУВАТИ",
+        firingSolution: "📊 РІШЕННЯ ДЛЯ СТРІЛЬБИ",
+        distance: "Дистанція:",
+        azimuth: "Азимут ⭤ :",
+        elevation: "Приціл (тисячні) ⭥ :",
+        charge: "Заряд:",
+        timeOfFlight: "Час польоту:",
+        heightDifference: "Різниця висот:",
+        accuracyWarning: "⚠️ Попередження про точність",
+        accuracyWarningText: "Якщо різниця висот більше 100 метрів, відхилення може становити 50-200 метрів",
+        ballisticData: "📋 Балістичні дані",
+        range: "Дистанція (м)",
+        elevationMil: "Приціл (mil)",
+        timeSec: "Час (сек)",
+        dispersion: "Розсіювання",
+        footer: "Мінометний калькулятор ARMA REFORGER v1.0 | На основі ігрових даних",
+        createdBy: "Створено:",
+        targetPresets: "🎯 Збережені цілі",
+        presetInstructions: "ПК: ЛКМ (Завантажити) • ПКМ (Зберегти) | Мобільні: Натиснути (Завантажити) • Утримати (Зберегти) | ✗: Очистити все",
+        presetSaved: "Збережено",
+        presetLoaded: "Завантажено",
+        presetEmpty: "Порожньо",
+        presetSavedMessage: "Ціль {0} успішно збережена",
+        presetLoadedMessage: "Ціль {0} успішно завантажена",
+        clearTarget: "Очистити все",
+        clearTargetMessage: "Всі дані цілей та збережені пресети успішно очищені",
+        videoTutorial: "📺 Відео-гайд",
+        ringCalculation: "🎯 КІЛЬЦЕ",
+        ringTitle: "Доступні кільця",
+        calculateRings: "Розрахувати КІЛЬЦЕ",
+        availableRings: "Доступні кільця:",
+        outOfRange: "Поза зоною досяжності",
+        noRingsAvailable: "Немає доступних кілець для цієї дистанції",
+        numpadReference: "🎯 Numpad Reference",
+        numpadInstructions: "Натискайте 1-9 для налаштування координат за позицією Numpad (потрібно мінімум 3 цифри)",
+        coordinateErrorMessage: "⚠️ Будь ласка, введіть Grid X та Grid Y (5 цифр, наприклад, 10000-99999)",
+        coordinateGuide: "📍 Короткий гайд з пошуку координат (клік)",
+        guideScale: "🔍 Масштаб: 1мм = 10",
+        guideStep1: "1. Відкрийте карту в грі (M)",
+        guideStep2: "2. Використовуйте лінійку для вимірювання за шкалою знизу",
+        guideStep3: "3. Перевірте координати X (зелений) та Y (червоний) праворуч знизу",
+        guideStep4: "4. У прикладі: X04730, Y06970",
+        guideStep5: "5. Введіть координати в поля Grid X та Grid Y",
+        visitorStats: "📊 Статистика відвідувань",
+        totalVisits: "Всього відвідувань:",
+        todayVisits: "Сьогодні:",
+        onlineNow: "Зараз на сайті:",
+        elevationOffset: "⚙️ Коригування прицілу",
+        offsetInstructions: "Налаштуйте приціл, якщо снаряди не долітають (-) або перелітають (+) ціль",
+        clearOffset: "Скидання",
+        currentOffset: "Поточна правка:",
+        offsetApplied: "Правка успішно застосована:",
+        offsetCleared: "Правка успішно скинута",
+        presetWithOffset: "Збережено з правкою:",
+        presetLoadedWithOffset: "Завантажено з правкою:",
+        offsetLabel: "Правка",
+        usageTerms: "Не допускається використання в будь-яких комерційних цілях.",
+        creditRequest: "При використанні в інших проєктах, будь ласка, вкажіть автора: <strong>Youtube : Sitt Chanel</strong>"
+    },
+
 };
 
 let currentLanguage = 'en'; // Default to English
@@ -496,7 +589,7 @@ function updateLanguageDisplay() {
     document.querySelectorAll('[data-lang-key]').forEach(element => {
         const key = element.dataset.langKey;
         if (texts[key]) {
-            element.textContent = texts[key];
+            element.innerHTML = texts[key];
         }
     });
 
