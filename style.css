@@ -2086,12 +2086,14 @@ footer {
 }
 
 .firing-solution-container {
-    max-width: 1600px;
+    max-width: 1800px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 20px;
-    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    /* Prevent overlap on any screen size */
 }
 
 .firing-solution-title {
@@ -2106,11 +2108,12 @@ footer {
 
 .firing-solution-data {
     display: flex;
-    gap: 12px;
-    flex-wrap: nowrap;
+    gap: 10px;
+    flex-wrap: wrap;
+    /* Prevent items from squishing and overlapping */
     flex: 1;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .fs-item {
@@ -2203,6 +2206,8 @@ footer {
     .firing-solution-data {
         gap: 8px;
         width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .fs-item {
@@ -2227,14 +2232,12 @@ footer {
     }
 
     .firing-solution-container {
-        flex-direction: row;
+        flex-direction: column;
+        /* Stack header and data vertically */
         flex-wrap: nowrap;
-        gap: 8px;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        scrollbar-color: #238636 rgba(0, 0, 0, 0.3);
-        padding-bottom: 4px;
+        gap: 12px;
+        justify-content: center;
+        padding: 5px 0;
     }
 
     .firing-solution-container::-webkit-scrollbar {
@@ -2259,17 +2262,23 @@ footer {
 
     .firing-solution-data {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        /* Stack data items vertically into a single column */
         flex-wrap: nowrap;
         gap: 6px;
-        width: auto;
+        width: 100%;
+        justify-content: center;
     }
 
     .fs-item {
+        width: 100%;
+        /* Force items to take full width of column */
+        justify-content: space-between;
+        max-width: 320px;
+        /* Prevent it from being too wide on landscape phone */
         flex: 0 0 auto;
-        min-width: 130px;
-        padding: 4px 8px;
-        flex-shrink: 0;
+        padding: 5px 12px;
+        min-height: 36px;
     }
 
     .fs-label {
@@ -2294,7 +2303,8 @@ body {
 
 @media (max-width: 640px) {
     body {
-        padding-bottom: 70px;
+        padding-bottom: 300px;
+        /* More padding for vertical bar on mobile */
     }
 }
 
