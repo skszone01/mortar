@@ -1881,6 +1881,8 @@ class MortarCalculator {
         // Offset elements
         this.offsetButtons = document.querySelectorAll('.offset-btn');
         this.currentOffsetValue = document.getElementById('current-offset-value');
+        this.mortarTypeBadge = document.getElementById('mortar-type-badge');
+        this.fixedMortarTypeBadge = document.getElementById('fixed-mortar-type-badge');
 
         // Apply 5-digit restriction to coordinate inputs
         this.restrictToFiveDigits(this.weaponX);
@@ -1922,6 +1924,7 @@ class MortarCalculator {
         this.mortarTypeInputs.forEach(input => {
             input.addEventListener('change', (e) => {
                 this.currentMortarType = e.target.value;
+                this.updateMortarTypeBadge();
                 this.createChargeTabs(); // Recreate charge tabs (this will reset currentCharge)
                 this.loadBallisticData();
                 if (this.validateInputs()) {
@@ -2068,6 +2071,7 @@ class MortarCalculator {
 
     loadInitialData() {
         this.updateShellInfo(); // Initialize shell info
+        this.updateMortarTypeBadge(); // Initialize mortar type badge
         this.createChargeTabs();
         this.loadBallisticData();
         this.updateGridReferences();
@@ -3824,6 +3828,32 @@ class MortarCalculator {
                 }
             }, 300);
         }, 3000);
+    }
+
+    // Update the mortar type badge in results section
+    updateMortarTypeBadge() {
+        const typeLabel = this.currentMortarType === 'mod' ? 'MOD' : 'ORIGINAL';
+
+        if (this.mortarTypeBadge) {
+            this.mortarTypeBadge.textContent = typeLabel;
+            // Add different colors for different types if desired
+            if (this.currentMortarType === 'mod') {
+                this.mortarTypeBadge.style.background = 'linear-gradient(135deg, #a855f7, #c084fc)';
+                this.mortarTypeBadge.style.boxShadow = '0 0 10px rgba(168, 85, 247, 0.4)';
+            } else {
+                this.mortarTypeBadge.style.background = 'linear-gradient(135deg, #1f6feb, #58a6ff)';
+                this.mortarTypeBadge.style.boxShadow = '0 0 10px rgba(88, 166, 255, 0.4)';
+            }
+        }
+
+        if (this.fixedMortarTypeBadge) {
+            this.fixedMortarTypeBadge.textContent = typeLabel;
+            if (this.currentMortarType === 'mod') {
+                this.fixedMortarTypeBadge.style.background = 'linear-gradient(135deg, #a855f7, #c084fc)';
+            } else {
+                this.fixedMortarTypeBadge.style.background = 'linear-gradient(135deg, #1f6feb, #58a6ff)';
+            }
+        }
     }
 }
 
