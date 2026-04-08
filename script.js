@@ -721,6 +721,111 @@ const BALLISTIC_DATA = {
                 { range: 2900, elevation: 870, timeOfFlight: 27.7, dispersion: "64m" }
             ]
         },
+        M107: {
+            1: [
+                { range: 950, elevation: 1245, timeOfFlight: 24.4, dispersion: "24m" },
+                { range: 1000, elevation: 1221, timeOfFlight: 24.2, dispersion: "24m" },
+                { range: 1050, elevation: 1197, timeOfFlight: 24.0, dispersion: "26m" },
+                { range: 1100, elevation: 1171, timeOfFlight: 23.7, dispersion: "27m" },
+                { range: 1150, elevation: 1144, timeOfFlight: 23.4, dispersion: "29m" },
+                { range: 1200, elevation: 1115, timeOfFlight: 23.1, dispersion: "31m" },
+                { range: 1250, elevation: 1084, timeOfFlight: 22.7, dispersion: "34m" },
+                { range: 1300, elevation: 1050, timeOfFlight: 22.3, dispersion: "39m" },
+                { range: 1350, elevation: 1011, timeOfFlight: 21.8, dispersion: "46m" },
+                { range: 1400, elevation: 965, timeOfFlight: 21.2, dispersion: "58m" },
+                { range: 1450, elevation: 907, timeOfFlight: 20.3, dispersion: "107m" },
+                { range: 1500, elevation: 800, timeOfFlight: 18.6, dispersion: "0m" }
+            ],
+            2: [
+                { range: 1500, elevation: 1270, timeOfFlight: 33.1, dispersion: "13m" },
+                { range: 1550, elevation: 1257, timeOfFlight: 33.0, dispersion: "14m" },
+                { range: 1600, elevation: 1243, timeOfFlight: 32.9, dispersion: "14m" },
+                { range: 1650, elevation: 1229, timeOfFlight: 32.7, dispersion: "15m" },
+                { range: 1700, elevation: 1214, timeOfFlight: 32.5, dispersion: "14m" },
+                { range: 1750, elevation: 1200, timeOfFlight: 32.4, dispersion: "15m" },
+                { range: 1800, elevation: 1185, timeOfFlight: 32.1, dispersion: "16m" },
+                { range: 1850, elevation: 1169, timeOfFlight: 31.9, dispersion: "16m" },
+                { range: 1900, elevation: 1153, timeOfFlight: 31.7, dispersion: "17m" },
+                { range: 1950, elevation: 1136, timeOfFlight: 31.5, dispersion: "17m" },
+                { range: 2000, elevation: 1119, timeOfFlight: 31.2, dispersion: "18m" },
+                { range: 2050, elevation: 1101, timeOfFlight: 31.0, dispersion: "19m" },
+                { range: 2100, elevation: 1082, timeOfFlight: 30.7, dispersion: "20m" },
+                { range: 2150, elevation: 1062, timeOfFlight: 30.3, dispersion: "21m" },
+                { range: 2200, elevation: 1041, timeOfFlight: 30.0, dispersion: "23m" },
+                { range: 2250, elevation: 1018, timeOfFlight: 29.6, dispersion: "23m" },
+                { range: 2300, elevation: 995, timeOfFlight: 29.2, dispersion: "28m" },
+                { range: 2350, elevation: 967, timeOfFlight: 28.7, dispersion: "29m" },
+                { range: 2400, elevation: 938, timeOfFlight: 28.1, dispersion: "34m" },
+                { range: 2450, elevation: 904, timeOfFlight: 27.5, dispersion: "44m" },
+                { range: 2500, elevation: 860, timeOfFlight: 26.5, dispersion: "0m" }
+            ],
+            3: [
+                { range: 2100, elevation: 1272, timeOfFlight: 41.0, dispersion: "10m" },
+                { range: 2200, elevation: 1253, timeOfFlight: 40.8, dispersion: "10m" },
+                { range: 2300, elevation: 1233, timeOfFlight: 40.5, dispersion: "10m" },
+                { range: 2400, elevation: 1213, timeOfFlight: 40.2, dispersion: "11m" },
+                { range: 2500, elevation: 1192, timeOfFlight: 39.9, dispersion: "11m" },
+                { range: 2600, elevation: 1170, timeOfFlight: 39.5, dispersion: "12m" },
+                { range: 2700, elevation: 1147, timeOfFlight: 39.1, dispersion: "12m" },
+                { range: 2800, elevation: 1123, timeOfFlight: 38.7, dispersion: "13m" },
+                { range: 2900, elevation: 1098, timeOfFlight: 38.3, dispersion: "14m" },
+                { range: 3000, elevation: 1070, timeOfFlight: 37.7, dispersion: "14m" },
+                { range: 3100, elevation: 1042, timeOfFlight: 37.2, dispersion: "16m" },
+                { range: 3200, elevation: 1010, timeOfFlight: 36.5, dispersion: "16m" },
+                { range: 3300, elevation: 975, timeOfFlight: 35.7, dispersion: "18m" },
+                { range: 3400, elevation: 936, timeOfFlight: 34.9, dispersion: "22m" },
+                { range: 3500, elevation: 890, timeOfFlight: 33.7, dispersion: "28m" },
+                { range: 3600, elevation: 828, timeOfFlight: 32.1, dispersion: "0m" }
+            ],
+            4: [
+                { range: 2600, elevation: 1271, timeOfFlight: 47.2, dispersion: "8m" },
+                { range: 2700, elevation: 1255, timeOfFlight: 47.0, dispersion: "7m" },
+                { range: 2800, elevation: 1240, timeOfFlight: 46.7, dispersion: "8m" },
+                { range: 2900, elevation: 1224, timeOfFlight: 46.5, dispersion: "9m" },
+                { range: 3000, elevation: 1207, timeOfFlight: 46.2, dispersion: "9m" },
+                { range: 3100, elevation: 1190, timeOfFlight: 45.9, dispersion: "9m" },
+                { range: 3200, elevation: 1172, timeOfFlight: 45.6, dispersion: "9m" },
+                { range: 3300, elevation: 1154, timeOfFlight: 45.2, dispersion: "9m" },
+                { range: 3400, elevation: 1135, timeOfFlight: 44.9, dispersion: "9m" },
+                { range: 3500, elevation: 1116, timeOfFlight: 44.5, dispersion: "10m" },
+                { range: 3600, elevation: 1095, timeOfFlight: 44.0, dispersion: "10m" },
+                { range: 3700, elevation: 1074, timeOfFlight: 43.6, dispersion: "11m" },
+                { range: 3800, elevation: 1052, timeOfFlight: 43.1, dispersion: "12m" },
+                { range: 3900, elevation: 1028, timeOfFlight: 42.5, dispersion: "12m" },
+                { range: 4000, elevation: 1003, timeOfFlight: 41.9, dispersion: "14m" },
+                { range: 4100, elevation: 976, timeOfFlight: 41.3, dispersion: "15m" },
+                { range: 4200, elevation: 946, timeOfFlight: 40.5, dispersion: "17m" },
+                { range: 4300, elevation: 912, timeOfFlight: 39.6, dispersion: "17m" },
+                { range: 4400, elevation: 874, timeOfFlight: 38.5, dispersion: "20m" },
+                { range: 4500, elevation: 828, timeOfFlight: 37.2, dispersion: "26m" }
+            ],
+            5: [
+                { range: 3000, elevation: 1271, timeOfFlight: 52.2, dispersion: "7m" },
+                { range: 3100, elevation: 1258, timeOfFlight: 52.0, dispersion: "7m" },
+                { range: 3200, elevation: 1244, timeOfFlight: 51.8, dispersion: "7m" },
+                { range: 3300, elevation: 1230, timeOfFlight: 51.5, dispersion: "7m" },
+                { range: 3400, elevation: 1216, timeOfFlight: 51.3, dispersion: "7m" },
+                { range: 3500, elevation: 1202, timeOfFlight: 51.0, dispersion: "7m" },
+                { range: 3600, elevation: 1187, timeOfFlight: 50.7, dispersion: "7m" },
+                { range: 3700, elevation: 1172, timeOfFlight: 50.4, dispersion: "8m" },
+                { range: 3800, elevation: 1156, timeOfFlight: 50.1, dispersion: "7m" },
+                { range: 3900, elevation: 1140, timeOfFlight: 49.8, dispersion: "8m" },
+                { range: 4000, elevation: 1124, timeOfFlight: 49.4, dispersion: "9m" },
+                { range: 4100, elevation: 1107, timeOfFlight: 49.0, dispersion: "9m" },
+                { range: 4200, elevation: 1089, timeOfFlight: 48.6, dispersion: "9m" },
+                { range: 4300, elevation: 1071, timeOfFlight: 48.2, dispersion: "9m" },
+                { range: 4400, elevation: 1052, timeOfFlight: 47.7, dispersion: "10m" },
+                { range: 4500, elevation: 1032, timeOfFlight: 47.2, dispersion: "10m" },
+                { range: 4600, elevation: 1011, timeOfFlight: 46.7, dispersion: "10m" },
+                { range: 4700, elevation: 989, timeOfFlight: 46.1, dispersion: "11m" },
+                { range: 4800, elevation: 966, timeOfFlight: 45.5, dispersion: "12m" },
+                { range: 4900, elevation: 941, timeOfFlight: 44.7, dispersion: "13m" },
+                { range: 5000, elevation: 913, timeOfFlight: 44.0, dispersion: "14m" },
+                { range: 5100, elevation: 883, timeOfFlight: 43.1, dispersion: "16m" },
+                { range: 5200, elevation: 850, timeOfFlight: 42.0, dispersion: "20m" },
+                { range: 5300, elevation: 809, timeOfFlight: 40.7, dispersion: "0m" }
+            ]
+        },
         M819: {
             1: [
                 { range: 200, elevation: 1463, timeOfFlight: 17.7, dispersion: "36m" },
@@ -1924,6 +2029,32 @@ class MortarCalculator {
         this.mortarTypeInputs.forEach(input => {
             input.addEventListener('change', (e) => {
                 this.currentMortarType = e.target.value;
+                
+                // Handle M107 visibility and selection fallback
+                this.shellButtons.forEach(btn => {
+                    if (btn.dataset.shell === 'M107') {
+                        if (this.currentMortarType === 'mod') {
+                            btn.style.display = 'none';
+                            // Fallback to M821 if M107 was selected
+                            if (this.currentShell === 'M107') {
+                                this.currentShell = 'M821';
+                                this.updateShellInfo();
+                            }
+                        } else {
+                            btn.style.display = '';
+                        }
+                    }
+                });
+
+                // Update active class for shell buttons if changed
+                this.shellButtons.forEach(btn => {
+                    if (btn.dataset.shell === this.currentShell) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
                 this.updateMortarTypeBadge();
                 this.createChargeTabs(); // Recreate charge tabs (this will reset currentCharge)
                 this.loadBallisticData();
