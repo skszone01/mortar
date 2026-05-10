@@ -1632,7 +1632,7 @@ const BALLISTIC_DATA = {
             ],
             // 2 Ring - MOD (Dispersion: 33m ตามภาพที่ 2)
             2: [
-                { range: 300, elevation: 1459, timeOfFlight: 32.9, dispersion: "11m" },
+                { range: 300, elevation: 1439, timeOfFlight: 32.9, dispersion: "11m" },
                 { range: 400, elevation: 1418, timeOfFlight: 32.8, dispersion: "11m" },
                 { range: 500, elevation: 1397, timeOfFlight: 32.7, dispersion: "11m" },
                 { range: 600, elevation: 1375, timeOfFlight: 32.6, dispersion: "10m" },
