@@ -1688,6 +1688,54 @@ footer > p {
     animation: pulse 2s infinite;
 }
 
+/* Report Issue Link (Facebook) */
+.report-link {
+    color: #4f8bff;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all var(--transition-base);
+    background: rgba(79, 139, 255, 0.12);
+    border: 1px solid rgba(79, 139, 255, 0.3);
+    margin-left: 6px;
+    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    white-space: nowrap;
+}
+
+.report-link:hover {
+    background: rgba(79, 139, 255, 0.25);
+    border-color: #4f8bff;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 139, 255, 0.35);
+}
+
+.report-icon {
+    font-size: 1rem;
+    display: inline-block;
+}
+
+@media (max-width: 480px) {
+    .header-credits p {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+        align-items: center;
+    }
+
+    .report-link {
+        margin-left: 0;
+        font-size: 0.8rem;
+        padding: 4px 9px;
+    }
+}
+
 @keyframes pulse {
 
     0%,
