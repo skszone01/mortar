@@ -4346,14 +4346,16 @@ class MortarCalculator {
     getRingsForPicker() {
         const rings = this.getAvailableRingsForDistance(this.lastAdjustedDistance || 0);
         const sim = this.lastReachableRings;
+
+        // เปิดโหมดขั้นสูงอยู่ -> ใช้ผลจากการจำลองเป็นตัวตัดสินอย่างเดียว
+        // เพราะค่าที่แสดงทั้งหน้ามาจากวิธีนั้น ถ้าเอาเกณฑ์ของตารางมาปนจะขัดกันเอง
+        // (เช่นตารางบอกประจุนี้ใช้ไม่ได้ ทั้งที่โหมดจำลองกำลังใช้ประจุนั้นอยู่)
+        if (sim) return rings.map(r => Object.assign({}, r, { canReach: sim.indexOf(r.number) !== -1 }));
+
+        // ปิดโหมดขั้นสูง -> ตรวจด้วยเกณฑ์ของวิธีตาราง (ช่วงระยะ + ขีดจำกัดมุมยก)
         const d = this.lastShotDistance, h = this.lastShotHeightDiff, az = this.lastShotAzimuth;
         if (d === undefined) return rings;
-
-        return rings.map(r => {
-            let ok = this.isRingUsable(r.number, d, h, az);
-            if (ok && sim) ok = sim.indexOf(r.number) !== -1;
-            return Object.assign({}, r, { canReach: ok });
-        });
+        return rings.map(r => Object.assign({}, r, { canReach: this.isRingUsable(r.number, d, h, az) }));
     }
 
     // จำลองสิ่งที่วิธีตารางจะทำถ้าใช้ประจุนี้ แล้วดูว่าผลออกมาใช้ได้ไหม
@@ -4597,6 +4599,20 @@ class MortarCalculator {
         // คำนวณความแตกต่างของระดับความสูงระหว่างปืนกับเป้าหมาย
         const heightDiff = target.alt - weapon.alt;
 
+        // โหมดขั้นสูงต้องคำนวณก่อนเลือกประจุ เพราะถ้าเปิดอยู่ มันคือตัวกำหนดประจุของทั้งหน้า
+        // (ไม่งั้นตัวเลือก RING กับช่อง "ประจุ" จะไม่ตรงกัน — คนละวิธีเลือกคนละประจุ)
+        let advResult = null;
+        if (this.enableAdvanced) {
+            advResult = this.computeAdvancedSolution(distance, heightDiff, azimuthDegrees);
+            if (advResult.available && !this.manualRingSelected && advResult.ring !== this.currentCharge) {
+                this.currentCharge = advResult.ring;
+                this.updateChargeTabsDisplay();
+                this.loadBallisticData();
+            }
+        }
+        // ประจุถูกกำหนดแล้ว (โดยผู้ใช้ หรือโดยโหมดขั้นสูง) วิธีตารางจึงไม่ต้องเลือกเองอีก
+        const chargeLocked = this.manualRingSelected || !!(advResult && advResult.available);
+
         // สูตรการปรับปรุงระยะทางและความสูงเมื่อความต่างความสูงเกิน 100 เมตร
         let adjustedDistance = distance;
         let adjustedHeightDiff = heightDiff;
@@ -4636,11 +4652,11 @@ class MortarCalculator {
         let windAdjust = null;
         if (windActive) {
             // หา ring ที่จะใช้เปิดตารางลม (ตาม ring ที่เลือกไว้ หรือ ring อัตโนมัติจากระยะ)
-            let ringForWind = this.manualRingSelected ? this.currentCharge : this.selectOptimalCharge(adjustedDistance);
+            let ringForWind = chargeLocked ? this.currentCharge : this.selectOptimalCharge(adjustedDistance);
             windAdjust = this.computeWindAdjustment(adjustedDistance, azimuthDegrees, ringForWind);
 
             // ถ้าระยะหลังชดเชยลมทำให้ ring อัตโนมัติเปลี่ยน ให้คำนวณใหม่ด้วย ring นั้น
-            if (windAdjust && !this.manualRingSelected) {
+            if (windAdjust && !chargeLocked) {
                 const ringAfterWind = this.selectOptimalCharge(adjustedDistance + windAdjust.deltaRange);
                 if (ringAfterWind !== ringForWind) {
                     windAdjust = this.computeWindAdjustment(adjustedDistance, azimuthDegrees, ringAfterWind);
@@ -4652,8 +4668,8 @@ class MortarCalculator {
         }
         this.lastWindAdjust = windAdjust;
 
-        // เลือกประจุที่เหมาะสมตามระยะทางที่ปรับแล้ว (เว้นแต่ผู้ใช้เลือกเอง)
-        if (!this.manualRingSelected) {
+        // เลือกประจุที่เหมาะสมตามระยะทางที่ปรับแล้ว (เว้นแต่ถูกกำหนดไว้แล้ว)
+        if (!chargeLocked) {
             const optimalCharge = this.selectOptimalCharge(adjustedDistance);
             if (optimalCharge !== this.currentCharge) {
                 this.currentCharge = optimalCharge;
@@ -4703,14 +4719,7 @@ class MortarCalculator {
         const finalAzimuthMils = Math.round(azimuthMils + deflectMils);
         const finalAzimuthDeg = (azimuthDegrees + this.milsToDegrees(deflectMils)).toFixed(1);
 
-        // คำนวณโหมดขั้นสูงก่อนแสดงผล เพราะถ้าเปิดอยู่ ค่าหลักในช่อง FIRING SOLUTION
-        // ต้องใช้ผลจากการจำลองวิถีจริง ไม่ใช่ค่าจากตาราง
         const tableCharge = this.currentCharge;
-        let advResult = null;
-        if (this.enableAdvanced) {
-            advResult = this.computeAdvancedSolution(distance, heightDiff, azimuthDegrees);
-        }
-
         this.displayResults({
             distance: Math.round(distance),
             adjustedDistance: Math.round(adjustedDistance),
