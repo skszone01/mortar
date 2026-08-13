@@ -38,7 +38,6 @@ const LANGUAGE_DATA = {
         windSpeedLabel: "ความเร็วลม (m/s)",
         windHint: "ตั้งค่าตามเข็มวัดลมบนศูนย์เล็งในเกม (ทิศที่ลมพัดมาจาก + ความเร็วลม) — ตั้งความเร็ว 0 เพื่อปิดการชดเชยลม",
         advancedTitle: "🧪 คำนวณขั้นสูง (จำลองวิถีกระสุน)",
-        advancedToggle: "เปิดใช้งาน",
         advancedIntro: "จำลองวิถีกระสุนด้วยสมการและค่าคงที่จากไฟล์เกมโดยตรง (แรงต้านอากาศจริงต่อกระสุนแต่ละชนิด) แก้ความสูงและลมแบบเต็มรูปแบบ ไม่ใช้ค่าประมาณเชิงเส้น — ผลลัพธ์แสดงในส่วน FIRING SOLUTION",
         range: "ระยะ (m)",
         elevationMil: "มุมยกปืน (mil)",
@@ -127,7 +126,6 @@ const LANGUAGE_DATA = {
         windSpeedLabel: "Wind Speed (m/s)",
         windHint: "Match the in-game wind gauge on the mortar sight (direction the wind blows FROM + speed) — set speed to 0 to disable wind correction",
         advancedTitle: "🧪 Advanced (Trajectory Simulation)",
-        advancedToggle: "Enabled",
         advancedIntro: "Simulates the projectile using the equation and constants taken straight from the game files (real per-shell air drag), solving height and wind exactly instead of with a linear approximation — results appear in the FIRING SOLUTION panel.",
         range: "Range (m)",
         elevationMil: "Elevation (mil)",
@@ -216,7 +214,6 @@ const LANGUAGE_DATA = {
         windSpeedLabel: "風速 (m/s)",
         windHint: "ゲーム内照準器の風向計に合わせて設定（風が吹いてくる方向 + 風速）— 風速0で風補正オフ",
         advancedTitle: "🧪 高度計算（弾道シミュレーション）",
-        advancedToggle: "有効",
         advancedIntro: "ゲームファイルから直接取得した式と定数（弾種ごとの実際の空気抵抗）で弾道をシミュレートし、高低差と風を線形近似せず厳密に解きます — 結果は FIRING SOLUTION に表示されます。",
         range: "射程 (m)",
         elevationMil: "仰角 (mil)",
@@ -305,7 +302,6 @@ const LANGUAGE_DATA = {
         windSpeedLabel: "风速 (m/s)",
         windHint: "按照游戏内瞄具上的风向仪设置（风的来向 + 风速）— 风速设为0关闭风力修正",
         advancedTitle: "🧪 高级计算（弹道模拟）",
-        advancedToggle: "启用",
         advancedIntro: "使用直接从游戏文件提取的方程和常数（每种炮弹的真实空气阻力）模拟弹道，精确求解高差与风力，而非线性近似 — 结果显示在 FIRING SOLUTION 面板中。",
         range: "射程 (m)",
         elevationMil: "仰角 (mil)",
@@ -394,7 +390,6 @@ const LANGUAGE_DATA = {
         windSpeedLabel: "Kecepatan Angin (m/s)",
         windHint: "Samakan dengan indikator angin pada bidikan mortir di game (arah asal angin + kecepatan) — atur kecepatan 0 untuk menonaktifkan koreksi angin",
         advancedTitle: "🧪 Lanjutan (Simulasi Lintasan)",
-        advancedToggle: "Aktif",
         advancedIntro: "Mensimulasikan lintasan peluru memakai persamaan dan konstanta langsung dari file game (hambatan udara asli tiap peluru), menyelesaikan beda tinggi dan angin secara eksak, bukan pendekatan linear — hasilnya tampil di panel FIRING SOLUTION.",
         range: "Jangkauan (m)",
         elevationMil: "Elevasi (mil)",
@@ -483,7 +478,6 @@ const LANGUAGE_DATA = {
         windSpeedLabel: "Скорость ветра (м/с)",
         windHint: "Установите по указателю ветра на прицеле в игре (направление, откуда дует ветер + скорость) — скорость 0 отключает поправку на ветер",
         advancedTitle: "🧪 Расширенный расчёт (симуляция траектории)",
-        advancedToggle: "Включено",
         advancedIntro: "Моделирует полёт снаряда по уравнению и константам, взятым напрямую из файлов игры (реальное сопротивление воздуха для каждого снаряда), точно решая превышение и ветер вместо линейного приближения — результат показан в панели FIRING SOLUTION.",
         range: "Дистанция (м)",
         elevationMil: "Прицел (mil)",
@@ -572,7 +566,6 @@ const LANGUAGE_DATA = {
         windSpeedLabel: "Швидкість вітру (м/с)",
         windHint: "Встановіть за покажчиком вітру на прицілі у грі (напрямок, звідки дме вітер + швидкість) — швидкість 0 вимикає поправку на вітер",
         advancedTitle: "🧪 Розширений розрахунок (симуляція траєкторії)",
-        advancedToggle: "Увімкнено",
         advancedIntro: "Моделює політ снаряда за рівнянням і константами, взятими прямо з файлів гри (реальний опір повітря для кожного снаряда), точно розв'язуючи перевищення та вітер замість лінійного наближення — результат показано в панелі FIRING SOLUTION.",
         range: "Дистанція (м)",
         elevationMil: "Приціл (mil)",
@@ -2370,6 +2363,8 @@ class MortarCalculator {
 
         // เปิดโหมดคำนวณขั้นสูงทุกครั้งที่เข้าหน้าเว็บ (ไม่จำสถานะที่ปิดไว้)
         // เพราะเป็นโหมดที่แม่นกว่า คนที่เคยปิดไว้ไม่ควรติดค่าเก่าข้ามวัน
+        // โหมดคำนวณขั้นสูง (จำลองวิถีกระสุน) เปิดถาวร ไม่มีสวิตช์ให้ปิด
+        // ตัวแปรนี้เก็บไว้เพื่อให้โค้ดส่วนที่เช็คมันทำงานต่อได้โดยไม่ต้องแก้ทุกจุด
         this.enableAdvanced = true;
 
         this.initializeElements();
@@ -3164,96 +3159,15 @@ class MortarCalculator {
 
     // =============== โหมดคำนวณขั้นสูง (จำลองวิถีกระสุน) ==================
     initAdvancedPanel() {
+        // โหมดคำนวณขั้นสูงเปิดถาวร ไม่มีสวิตช์ให้ปิดแล้ว
         this.advSection = document.getElementById('advanced-section');
-        this.advToggle = document.getElementById('advanced-toggle');
-        if (!this.advToggle) return;
-
-        this.advToggle.checked = this.enableAdvanced;
         this.applyAdvancedVisibility();
-
-        this.advToggle.addEventListener('change', () => {
-            const wantOff = !this.advToggle.checked;
-            if (wantOff) {
-                // เตือนก่อนปิด เพราะจะเหลือแค่วิธีตารางซึ่งเพี้ยนเมื่อความสูงต่างกันมาก
-                this.advToggle.checked = true;          // ยังไม่ปิดจนกว่าจะยืนยัน
-                this.showAdvancedWarning(
-                    () => {                              // ยืนยันปิด
-                        this.advToggle.checked = false;
-                        this.setAdvancedEnabled(false);
-                    },
-                    () => { this.advToggle.checked = true; }  // ยกเลิก
-                );
-                return;
-            }
-            this.setAdvancedEnabled(true);
-            this.showMessage(
-                currentLanguage === 'th'
-                    ? 'เปิดโหมดคำนวณขั้นสูงแล้ว — ค่าแก้ความสูงและลมจะคำนวณจากวิถีกระสุนจริง'
-                    : 'Advanced mode on — height and wind are solved from the real trajectory',
-                'success'
-            );
-        });
-    }
-
-    setAdvancedEnabled(on) {
-        this.enableAdvanced = on;
-        this.applyAdvancedVisibility();
-        // ต้องคำนวณใหม่ทั้งตอนเปิดและตอนปิด เพราะค่าหลักที่แสดงเปลี่ยนแหล่งที่มา
-        // (ปิดแล้วต้องกลับไปใช้ค่าจากตาราง ไม่ใช่ค้างค่าจำลองไว้)
-        if (this.validateInputs()) this.calculate();
-    }
-
-    // Popup เตือนผลของการปิดโหมดขั้นสูง
-    showAdvancedWarning(onConfirm, onCancel) {
-        const th = currentLanguage === 'th';
-        document.getElementById('adv-warning-modal')?.remove();
-
-        const overlay = document.createElement('div');
-        overlay.id = 'adv-warning-modal';
-        overlay.className = 'adv-modal-overlay';
-        overlay.innerHTML = `
-            <div class="adv-modal" role="alertdialog" aria-modal="true" aria-labelledby="adv-modal-title">
-                <div class="adv-modal-icon">⚠️</div>
-                <h3 id="adv-modal-title">${th ? 'ปิดโหมดคำนวณขั้นสูง?' : 'Turn off Advanced mode?'}</h3>
-                <p>${th
-                ? 'ถ้าปิด <strong>Advanced (Trajectory Simulation)</strong> เครื่องคำนวณจะใช้ข้อมูลจากตารางแบบปกติเท่านั้น'
-                : 'If you turn off <strong>Advanced (Trajectory Simulation)</strong>, the calculator will use the standard table data only.'}</p>
-                <p class="adv-modal-warn">${th
-                ? 'และเมื่อความสูงระหว่างปืนกับเป้าหมายต่างกันมาก ๆ ค่าที่ได้จะเพี้ยนสูง'
-                : 'When the height difference between the mortar and the target is large, the result will be significantly off.'}</p>
-                <div class="adv-modal-actions">
-                    <button type="button" class="adv-modal-btn adv-modal-cancel">${th ? 'ยกเลิก (เปิดต่อไป)' : 'Cancel (keep it on)'}</button>
-                    <button type="button" class="adv-modal-btn adv-modal-confirm">${th ? 'ปิดโหมดขั้นสูง' : 'Turn it off'}</button>
-                </div>
-            </div>
-        `;
-
-        const close = (cb) => {
-            document.removeEventListener('keydown', onKey);
-            overlay.remove();
-            if (cb) cb();
-        };
-        const onKey = (e) => { if (e.key === 'Escape') close(onCancel); };
-
-        overlay.querySelector('.adv-modal-cancel').addEventListener('click', () => close(onCancel));
-        overlay.querySelector('.adv-modal-confirm').addEventListener('click', () => close(onConfirm));
-        overlay.addEventListener('click', (e) => { if (e.target === overlay) close(onCancel); });
-        document.addEventListener('keydown', onKey);
-
-        document.body.appendChild(overlay);
-        overlay.querySelector('.adv-modal-cancel').focus();
     }
 
     applyAdvancedVisibility() {
-        // ผลลัพธ์ของโหมดขั้นสูงแสดงในส่วน FIRING SOLUTION — ปิดโหมดแล้วต้องซ่อนและล้างค่าเก่าทิ้ง
+        // ผลลัพธ์ของโหมดขั้นสูงแสดงอยู่ในส่วน FIRING SOLUTION
         const box = document.getElementById('advanced-results');
-        if (!box) return;
-        if (this.enableAdvanced) {
-            box.style.display = 'block';
-        } else {
-            box.style.display = 'none';
-            box.innerHTML = '';
-        }
+        if (box) box.style.display = 'block';
     }
 
     // ขีดจำกัดมุมยกของฐานปืนที่เลือกอยู่
@@ -4802,25 +4716,32 @@ class MortarCalculator {
     }
 
     displayResults(results) {
-        // เปิดโหมดขั้นสูงและคำนวณสำเร็จ -> ค่าหลักใช้ผลจากการจำลองวิถีจริง
-        // (แม่นกว่าเมื่อความสูงต่างกันมาก ส่วนค่าจากตารางยังดูได้ในตารางเทียบด้านล่าง)
+        // ใช้ผลจากการจำลองวิถีจริงเท่านั้น ไม่ถอยไปใช้ค่าจากตาราง
+        // ถ้ายิงไม่ได้ (ไกลเกิน / ใกล้เกิน / ยกไม่ถึง) ให้แสดง 0 ทุกช่อง
+        // เพื่อไม่ให้ผู้เล่นหยิบตัวเลขที่ใช้ไม่ได้จริงไปยิง
         const adv = (results.advanced && results.advanced.available) ? results.advanced : null;
         const shown = adv ? {
+            distance: results.distance,
             elevation: adv.elevationMils,
             azimuthMils: adv.azimuthMils,
             azimuthDegrees: this.milsToDegrees(adv.azimuthMils).toFixed(1),
             charge: adv.ring,
-            timeOfFlight: adv.timeOfFlight.toFixed(1)
-        } : results;
+            timeOfFlight: adv.timeOfFlight.toFixed(1),
+            heightDiff: results.heightDiff
+        } : {
+            distance: 0, elevation: 0, azimuthMils: 0, azimuthDegrees: '0.0',
+            charge: 0, timeOfFlight: '0.0', heightDiff: 0
+        };
         results.shown = shown;
-        this.updateCalcMethodBadge(!!adv);
+        results.noSolution = !adv;
+        this.resultsSection.classList.toggle('no-solution', !adv);
 
-        this.distanceEl.textContent = `${results.distance} m`;
+        this.distanceEl.textContent = `${shown.distance} m`;
         this.azimuthEl.textContent = `${shown.azimuthMils} mils (${shown.azimuthDegrees}°)`;
 
         // Display elevation with offset info if offset is not zero
         let elevationText = `${shown.elevation} mils`;
-        if (results.elevationOffset && results.elevationOffset !== 0) {
+        if (adv && results.elevationOffset && results.elevationOffset !== 0) {
             const texts = LANGUAGE_DATA[currentLanguage];
             elevationText += `\n(${texts.offsetLabel} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset} mils)`;
         }
@@ -4828,7 +4749,9 @@ class MortarCalculator {
 
         this.chargeEl.textContent = `${shown.charge}`;
         this.timeFlightEl.textContent = `${shown.timeOfFlight} sec`;
-        this.heightDiffEl.textContent = `${results.heightDiff > 0 ? '+' : ''}${results.heightDiff.toFixed(1)} m`;
+        this.heightDiffEl.textContent = adv
+            ? `${shown.heightDiff > 0 ? '+' : ''}${shown.heightDiff.toFixed(1)} m`
+            : '0 m';
 
         // Update fixed bottom firing solution bar
         this.updateFixedFiringSolution(results);
@@ -4846,27 +4769,20 @@ class MortarCalculator {
         }
     }
 
-    // ป้ายบอกว่าค่าหลักที่แสดงมาจากวิธีไหน
-    updateCalcMethodBadge(useSim) {
-        const el = document.getElementById('calc-method-badge');
-        if (!el) return;
-        const th = currentLanguage === 'th';
-        el.textContent = useSim ? (th ? '🧪 จำลองวิถี' : '🧪 SIMULATED') : (th ? '📋 ตาราง' : '📋 TABLE');
-        el.className = 'mortar-badge method-badge' + (useSim ? ' method-sim' : '');
-    }
-
     updateFixedFiringSolution(results) {
         const fixedBar = document.getElementById('fixed-firing-solution');
         if (!fixedBar) return;
 
-        // ใช้ชุดค่าเดียวกับส่วน FIRING SOLUTION ด้านบน (จำลองถ้าเปิดโหมดขั้นสูง)
+        // ใช้ชุดค่าเดียวกับส่วน FIRING SOLUTION ด้านบน (0 ทุกช่องถ้ายิงไม่ได้)
         const shown = results.shown || results;
+        const ok = !results.noSolution;
+        fixedBar.classList.toggle('no-solution', !ok);
 
-        document.getElementById('fs-distance').textContent = `${results.distance} m`;
+        document.getElementById('fs-distance').textContent = `${shown.distance} m`;
         document.getElementById('fs-azimuth').textContent = `${shown.azimuthMils} mils (${shown.azimuthDegrees}°)`;
 
         let elevationText = `${shown.elevation} mils`;
-        if (results.elevationOffset && results.elevationOffset !== 0) {
+        if (ok && results.elevationOffset && results.elevationOffset !== 0) {
             const texts = LANGUAGE_DATA[currentLanguage];
             elevationText += `\n(${texts.offsetLabel} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset})`;
         }
@@ -4874,7 +4790,9 @@ class MortarCalculator {
 
         document.getElementById('fs-charge').textContent = `${shown.charge}`;
         document.getElementById('fs-time').textContent = `${shown.timeOfFlight} sec`;
-        document.getElementById('fs-height').textContent = `${results.heightDiff > 0 ? '+' : ''}${results.heightDiff.toFixed(1)} m`;
+        document.getElementById('fs-height').textContent = ok
+            ? `${shown.heightDiff > 0 ? '+' : ''}${shown.heightDiff.toFixed(1)} m`
+            : '0 m';
 
         // Show the bar with animation
         fixedBar.classList.add('active');
