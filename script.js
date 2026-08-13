@@ -32,6 +32,10 @@ const LANGUAGE_DATA = {
         accuracyWarning: "⚠️ คำเตือนความแม่นยำ",
         accuracyWarningText: "หากระยะชดเชยความสูงมากกว่า 100 เมตร จะมีความคลาดเคลื่อนของระยะกระสุนตก 50-200 เมตร",
         ballisticData: "📋 ข้อมูลลิสติก",
+        windTitle: "🌬️ ลม (Wind)",
+        windDirection: "ทิศลม — พัดมาจาก (°)",
+        windSpeedLabel: "ความเร็วลม (m/s)",
+        windHint: "ตั้งค่าตามเข็มวัดลมบนศูนย์เล็งในเกม (ทิศที่ลมพัดมาจาก + ความเร็วลม) — ตั้งความเร็ว 0 เพื่อปิดการชดเชยลม",
         range: "ระยะ (m)",
         elevationMil: "มุมยกปืน (mil)",
         timeSec: "เวลา (วิ)",
@@ -112,6 +116,10 @@ const LANGUAGE_DATA = {
         accuracyWarning: "⚠️ Accuracy Warning",
         accuracyWarningText: "If height compensation distance is greater than 100 meters, there will be impact deviation of 50-200 meters",
         ballisticData: "📋 Ballistic Data",
+        windTitle: "🌬️ Wind",
+        windDirection: "Wind FROM (°)",
+        windSpeedLabel: "Wind Speed (m/s)",
+        windHint: "Match the in-game wind gauge on the mortar sight (direction the wind blows FROM + speed) — set speed to 0 to disable wind correction",
         range: "Range (m)",
         elevationMil: "Elevation (mil)",
         timeSec: "Time (sec)",
@@ -192,6 +200,10 @@ const LANGUAGE_DATA = {
         accuracyWarning: "⚠️ 精度警告",
         accuracyWarningText: "高度補正距離が100メートルを超える場合、50-200メートルの着弾偏差が発生します",
         ballisticData: "📋 弾道データ",
+        windTitle: "🌬️ 風 (Wind)",
+        windDirection: "風向 — 風上 (°)",
+        windSpeedLabel: "風速 (m/s)",
+        windHint: "ゲーム内照準器の風向計に合わせて設定（風が吹いてくる方向 + 風速）— 風速0で風補正オフ",
         range: "射程 (m)",
         elevationMil: "仰角 (mil)",
         timeSec: "時間 (秒)",
@@ -272,6 +284,10 @@ const LANGUAGE_DATA = {
         accuracyWarning: "⚠️ 精度警告",
         accuracyWarningText: "如果高度补偿距离超过100米，将会产生50-200米的着弹偏差",
         ballisticData: "📋 弹道数据",
+        windTitle: "🌬️ 风 (Wind)",
+        windDirection: "风向 — 来自 (°)",
+        windSpeedLabel: "风速 (m/s)",
+        windHint: "按照游戏内瞄具上的风向仪设置（风的来向 + 风速）— 风速设为0关闭风力修正",
         range: "射程 (m)",
         elevationMil: "仰角 (mil)",
         timeSec: "时间 (秒)",
@@ -352,6 +368,10 @@ const LANGUAGE_DATA = {
         accuracyWarning: "⚠️ Peringatan Akurasi",
         accuracyWarningText: "Jika jarak kompensasi ketinggian lebih dari 100 meter, akan terjadi penyimpangan dampak 50-200 meter",
         ballisticData: "📋 Data Balistik",
+        windTitle: "🌬️ Angin (Wind)",
+        windDirection: "Arah Angin — DARI (°)",
+        windSpeedLabel: "Kecepatan Angin (m/s)",
+        windHint: "Samakan dengan indikator angin pada bidikan mortir di game (arah asal angin + kecepatan) — atur kecepatan 0 untuk menonaktifkan koreksi angin",
         range: "Jangkauan (m)",
         elevationMil: "Elevasi (mil)",
         timeSec: "Waktu (dtk)",
@@ -432,6 +452,10 @@ const LANGUAGE_DATA = {
         accuracyWarning: "⚠️ Предупреждение о точности",
         accuracyWarningText: "Если разница высот более 100 метров, отклонение может составить 50-200 метров",
         ballisticData: "📋 Баллистические данные",
+        windTitle: "🌬️ Ветер",
+        windDirection: "Ветер — откуда (°)",
+        windSpeedLabel: "Скорость ветра (м/с)",
+        windHint: "Установите по указателю ветра на прицеле в игре (направление, откуда дует ветер + скорость) — скорость 0 отключает поправку на ветер",
         range: "Дистанция (м)",
         elevationMil: "Прицел (mil)",
         timeSec: "Время (сек)",
@@ -512,6 +536,10 @@ const LANGUAGE_DATA = {
         accuracyWarning: "⚠️ Попередження про точність",
         accuracyWarningText: "Якщо різниця висот більше 100 метрів, відхилення може становити 50-200 метрів",
         ballisticData: "📋 Балістичні дані",
+        windTitle: "🌬️ Вітер",
+        windDirection: "Вітер — звідки (°)",
+        windSpeedLabel: "Швидкість вітру (м/с)",
+        windHint: "Встановіть за покажчиком вітру на прицілі у грі (напрямок, звідки дме вітер + швидкість) — швидкість 0 вимикає поправку на вітер",
         range: "Дистанція (м)",
         elevationMil: "Приціл (mil)",
         timeSec: "Час (сек)",
@@ -1911,6 +1939,101 @@ const BALLISTIC_DATA = {
     }
 };
 
+// ===================== WIND CORRECTION DATA (ลมในเกม - ไม่ใช่ mod) =====================
+// ตารางค่าแก้ลมจากตารางยิงในเกม (แบบเดียวกับ arma-mortar.com)
+// รูปแบบแต่ละแถว: [ระยะ (m), Zw = ค่าแก้ทิศจากลมขวาง (mils ต่อลม 10 m/s), Xw = ค่าแก้ระยะจากลมตามแนวยิง (m ต่อลม 10 m/s)]
+// วิธีใช้: องค์ประกอบลม = ความเร็วลม × cos/sin(ทิศลมพัดมาจาก − อาซิมุทยิง)
+//   - แก้ระยะ:  ระยะเล็ง = ระยะจริง + (Xw ÷ 10) × องค์ประกอบลมตามแนวยิง
+//   - แก้ทิศ:   อาซิมุท (mils) += (Zw ÷ 10) × องค์ประกอบลมขวาง
+// หมายเหตุ: มีข้อมูลเฉพาะปืน Original (M252 และ 2Б14) เท่านั้น — M107 และ MOD ไม่มีตารางลม
+const WIND_DATA = {
+    M821: {
+        0: [[50, 91, 3], [100, 41, 4], [150, 24, 4], [200, 18, 4], [250, 15, 5], [300, 12, 5], [350, 10, 5], [400, 8, 6]],
+        1: [[100, 117, 11], [200, 66, 12], [300, 43, 13], [400, 32, 14], [500, 25, 15], [600, 20, 16], [700, 17, 17], [800, 14, 18], [900, 12, 18]],
+        2: [[200, 169, 26], [300, 88, 27], [400, 77, 27], [500, 54, 29], [600, 45, 30], [700, 41, 31], [800, 34, 33], [900, 30, 34], [1000, 28, 35], [1100, 24, 37], [1200, 23, 38], [1300, 21, 39], [1400, 19, 40], [1500, 17, 40], [1600, 15, 40]],
+        3: [[300, 190, 43], [400, 108, 44], [500, 100, 45], [600, 73, 46], [700, 63, 48], [800, 55, 49], [900, 49, 50], [1000, 48, 51], [1100, 41, 53], [1200, 39, 54], [1300, 34, 56], [1400, 33, 57], [1500, 30, 59], [1600, 28, 61], [1700, 26, 62], [1800, 25, 62], [1900, 23, 64], [2000, 21, 64], [2100, 19, 65], [2200, 18, 64], [2300, 14, 59]],
+        4: [[400, 208, 63], [500, 127, 65], [600, 106, 66], [700, 105, 66], [800, 80, 68], [900, 71, 69], [1000, 71, 69], [1100, 59, 72], [1200, 58, 72], [1300, 50, 75], [1400, 47, 77], [1500, 46, 77], [1600, 41, 80], [1700, 38, 81], [1800, 36, 83], [1900, 34, 84], [2000, 31, 87], [2100, 32, 86], [2200, 29, 88], [2300, 28, 89], [2400, 26, 90], [2500, 25, 91], [2600, 23, 91], [2700, 22, 91], [2800, 20, 91], [2900, 18, 88]]
+    },
+    M819: {
+        1: [[200, 68, 15], [250, 61, 15], [300, 46, 16], [350, 40, 17], [400, 35, 17], [450, 32, 18], [500, 28, 19], [550, 26, 20], [600, 23, 20], [650, 20, 21], [700, 18, 21], [750, 15, 20]],
+        // แถว 1100: Xw ในตารางต้นทางเป็น 39 ซึ่งผิดปกติ (เพื่อนบ้าน 48/51) — ปรับเป็น 49 ตามแนวโน้ม
+        2: [[200, 173, 35], [300, 131, 35], [400, 88, 37], [500, 71, 39], [600, 63, 40], [700, 53, 42], [800, 44, 45], [900, 39, 47], [1000, 35, 48], [1100, 32, 49], [1200, 29, 51], [1300, 25, 51], [1400, 20, 48]],
+        3: [[300, 190, 58], [400, 142, 59], [500, 115, 60], [600, 96, 62], [700, 83, 64], [800, 77, 65], [900, 65, 68], [1000, 61, 69], [1100, 53, 72], [1200, 47, 74], [1300, 43, 76], [1400, 42, 76], [1500, 38, 79], [1600, 35, 80], [1700, 32, 81], [1800, 29, 80], [1900, 26, 79]],
+        4: [[400, 201, 82], [500, 162, 83], [600, 135, 85], [700, 116, 86], [800, 112, 86], [900, 91, 90], [1000, 87, 90], [1100, 74, 94], [1200, 68, 96], [1300, 63, 98], [1400, 58, 100], [1500, 54, 101], [1600, 51, 103], [1700, 48, 105], [1800, 45, 107], [1900, 43, 107], [2000, 39, 109], [2100, 36, 110], [2200, 34, 110], [2300, 31, 109], [2400, 28, 106]]
+    },
+    M853A1: {
+        1: [[200, 137, 29], [250, 121, 29], [300, 92, 31], [350, 79, 33], [400, 69, 34], [450, 65, 35], [500, 53, 37], [550, 51, 37], [600, 46, 38], [650, 40, 39], [700, 36, 39], [750, 29, 37]],
+        2: [[200, 457, 73], [300, 242, 75], [400, 183, 77], [500, 147, 80], [600, 132, 81], [700, 106, 85], [800, 92, 88], [900, 82, 90], [1000, 73, 93], [1100, 65, 95], [1200, 60, 96], [1300, 52, 96], [1400, 44, 94]],
+        3: [[300, 372, 116], [400, 283, 118], [500, 230, 120], [600, 211, 120], [700, 165, 124], [800, 155, 125], [900, 129, 129], [1000, 122, 130], [1100, 105, 134], [1200, 95, 136], [1300, 84, 139], [1400, 80, 139], [1500, 76, 140], [1600, 70, 141], [1700, 63, 141], [1800, 58, 140], [1900, 50, 136]],
+        4: [[400, 390, 164], [500, 356, 164], [600, 267, 167], [700, 231, 169], [800, 223, 169], [900, 181, 173], [1000, 174, 173], [1100, 148, 177], [1200, 143, 178], [1300, 124, 181], [1400, 121, 181], [1500, 107, 184], [1600, 95, 186], [1700, 96, 186], [1800, 86, 188], [1900, 80, 188], [2000, 78, 188], [2100, 70, 188], [2200, 65, 186], [2300, 60, 183], [2400, 55, 179]]
+    },
+    "0-832Ay": {
+        0: [[50, 169, 9], [100, 82, 9], [150, 55, 9], [200, 42, 10], [250, 33, 11], [300, 28, 11], [350, 24, 12], [400, 21, 13], [450, 18, 13], [500, 15, 14]],
+        1: [[100, 215, 18], [200, 99, 19], [300, 64, 20], [400, 44, 22], [500, 35, 24], [600, 28, 26], [700, 25, 27], [800, 21, 28]],
+        2: [[200, 169, 37], [300, 129, 37], [400, 86, 39], [500, 69, 41], [600, 62, 42], [700, 52, 44], [800, 44, 47], [900, 39, 49], [1000, 36, 50], [1100, 32, 52], [1200, 28, 53], [1300, 24, 53], [1400, 19, 49]],
+        3: [[300, 174, 57], [400, 149, 59], [500, 106, 60], [600, 97, 60], [700, 76, 63], [800, 72, 64], [900, 59, 67], [1000, 54, 69], [1100, 51, 70], [1200, 44, 73], [1300, 41, 75], [1400, 37, 77], [1500, 34, 78], [1600, 31, 79], [1700, 29, 79], [1800, 26, 78]],
+        4: [[400, 186, 81], [500, 170, 81], [600, 126, 84], [700, 108, 86], [800, 94, 88], [900, 84, 90], [1000, 81, 90], [1100, 69, 94], [1200, 67, 94], [1300, 59, 98], [1400, 57, 98], [1500, 50, 102], [1600, 45, 104], [1700, 45, 104], [1800, 41, 106], [1900, 38, 107], [2000, 36, 108], [2100, 34, 108], [2200, 30, 108], [2300, 27, 105]]
+    },
+    "A-832AY": {
+        0: [[50, 130, 7], [100, 73, 7], [150, 48, 7], [200, 35, 8], [250, 28, 9], [300, 22, 9], [350, 19, 10], [400, 16, 11], [450, 13, 11]],
+        1: [[200, 71, 16], [300, 48, 17], [400, 36, 19], [500, 29, 21], [600, 24, 22], [700, 20, 23], [800, 15, 23]],
+        2: [[300, 109, 31], [400, 78, 32], [500, 58, 35], [600, 48, 37], [700, 41, 38], [800, 36, 40], [900, 32, 42], [1000, 29, 43], [1100, 25, 45], [1200, 22, 45]],
+        // แถว 900: Xw ในตารางต้นทางเป็น 48 ซึ่งผิดปกติ (เพื่อนบ้าน 55/59) — ปรับเป็น 57 ตามแนวโน้ม
+        3: [[400, 125, 48], [500, 88, 50], [600, 73, 50], [700, 67, 53], [800, 55, 55], [900, 49, 57], [1000, 46, 59], [1100, 40, 61], [1200, 36, 63], [1300, 33, 65], [1400, 30, 66], [1500, 27, 67], [1600, 24, 66], [1700, 19, 61]]
+    },
+    "C-832C": {
+        1: [[100, 260, 28], [150, 174, 29], [200, 145, 30], [250, 113, 31], [300, 89, 34], [350, 76, 34], [400, 66, 37], [450, 58, 38], [500, 51, 39], [550, 44, 40], [600, 37, 39]],
+        // แถว 600: Zw ในตารางต้นทางเป็น 12 ซึ่งผิดปกติ (เพื่อนบ้าน 150/100) — ปรับเป็น 125 ตามแนวโน้ม
+        2: [[200, 333, 75], [300, 231, 78], [400, 175, 80], [500, 150, 82], [600, 125, 85], [700, 100, 89], [800, 86, 92], [900, 77, 94], [1000, 65, 95], [1100, 54, 93]],
+        3: [[300, 375, 126], [400, 287, 129], [500, 254, 130], [600, 194, 133], [700, 167, 136], [800, 154, 137], [900, 129, 141], [1000, 115, 143], [1100, 104, 145], [1200, 94, 146], [1300, 85, 147], [1400, 76, 147], [1500, 70, 145], [1600, 60, 140]],
+        4: [[400, 439, 201], [500, 408, 201], [600, 304, 204], [700, 288, 204], [800, 230, 207], [900, 220, 208], [1000, 185, 210], [1100, 177, 211], [1200, 153, 213], [1300, 140, 215], [1400, 129, 216], [1500, 119, 216], [1600, 110, 216], [1700, 102, 216], [1800, 98, 216], [1900, 88, 214], [2000, 81, 211], [2100, 76, 208], [2200, 66, 199]]
+    }
+};
+
+// ตารางค่าแก้ลมของ MOD Adult Mortars (v1.0.4) — สกัดจากไฟล์ AM_WindData_*.conf ใน data.pak ของ mod โดยตรง
+// (SCR_ProjectileWindTable ที่ลม 10 m/s) แล้วแปลงจากแกนมุมยก → แกนระยะ ตามแนวระยะเดียวกับตาราง BALLISTIC_DATA.mod
+// รูปแบบเดียวกับ WIND_DATA: [ระยะ (m), Zw (mils ตามระบบมิลของปืน ต่อลม 10 m/s), Xw (m ต่อลม 10 m/s)]
+const WIND_DATA_MOD = {
+    M821: {
+        0: [[50, 70, 4], [100, 35, 4], [150, 23, 4], [200, 17, 4], [250, 14, 5], [300, 12, 5], [350, 10, 5], [400, 8, 6]],
+        1: [[300, 96, 33], [400, 72, 34], [500, 58, 36], [600, 48, 37], [700, 42, 39], [800, 37, 40], [900, 33, 42], [1000, 29, 43], [1100, 27, 45], [1200, 25, 46], [1300, 23, 47], [1400, 21, 49], [1500, 19, 49], [1600, 18, 50], [1700, 16, 49], [1800, 15, 48], [1900, 12, 43]],
+        2: [[500, 121, 77], [600, 101, 79], [700, 86, 80], [800, 76, 82], [900, 67, 84], [1000, 61, 85], [1100, 55, 87], [1200, 51, 89], [1300, 47, 91], [1400, 44, 93], [1500, 41, 95], [1600, 38, 97], [1700, 36, 98], [1800, 34, 100], [1900, 32, 101], [2000, 31, 103], [2100, 29, 104], [2200, 28, 105], [2300, 26, 106], [2400, 25, 106], [2500, 24, 107], [2600, 23, 107], [2700, 22, 106], [2800, 21, 105], [2900, 20, 104], [3000, 19, 102], [3100, 18, 99], [3200, 16, 95], [3300, 14, 86]],
+        3: [[700, 130, 129], [800, 114, 131], [900, 101, 132], [1000, 91, 134], [1100, 83, 136], [1200, 76, 138], [1300, 70, 140], [1400, 66, 142], [1500, 61, 144], [1600, 57, 146], [1700, 54, 148], [1800, 51, 150], [1900, 48, 152], [2000, 46, 154], [2100, 44, 156], [2200, 42, 157], [2300, 40, 159], [2400, 39, 160], [2500, 37, 162], [2600, 36, 163], [2700, 34, 164], [2800, 33, 165], [2900, 32, 166], [3000, 31, 166], [3100, 30, 166], [3200, 29, 167], [3300, 28, 166], [3400, 27, 166], [3500, 26, 165], [3600, 25, 165], [3700, 24, 163], [3800, 23, 162], [3900, 22, 160], [4000, 22, 158], [4100, 21, 155], [4200, 20, 152], [4300, 19, 148], [4400, 18, 143], [4500, 17, 136], [4600, 16, 126]],
+        4: [[900, 134, 190], [1000, 121, 191], [1100, 110, 193], [1200, 100, 195], [1300, 93, 197], [1400, 87, 199], [1500, 81, 201], [1600, 75, 204], [1700, 71, 206], [1800, 67, 208], [1900, 64, 210], [2000, 61, 212], [2100, 58, 214], [2200, 55, 216], [2300, 53, 218], [2400, 51, 219], [2500, 49, 221], [2600, 47, 222], [2700, 45, 224], [2800, 43, 225], [2900, 42, 226], [3000, 41, 227], [3100, 39, 228], [3200, 38, 229], [3300, 37, 230], [3400, 36, 230], [3500, 35, 231], [3600, 34, 231], [3700, 33, 231], [3800, 32, 230], [3900, 31, 230], [4000, 30, 229], [4100, 29, 228], [4200, 29, 228], [4300, 28, 226], [4400, 27, 225], [4500, 27, 223], [4600, 26, 222], [4700, 25, 220], [4800, 25, 217], [4900, 24, 215], [5000, 23, 212], [5100, 23, 209], [5200, 22, 206], [5300, 21, 202], [5400, 21, 198], [5500, 20, 194], [5600, 19, 189], [5700, 19, 182], [5800, 18, 175], [5900, 17, 165]]
+    },
+    M819: {
+        1: [[300, 109, 40], [350, 93, 41], [400, 82, 42], [450, 73, 43], [500, 66, 44], [550, 60, 45], [600, 55, 46], [650, 51, 47], [700, 47, 49], [750, 44, 50], [800, 41, 51], [850, 39, 52], [900, 37, 53], [950, 35, 54], [1000, 33, 54], [1050, 31, 55], [1100, 30, 56], [1150, 28, 56], [1200, 27, 56], [1250, 25, 56], [1300, 24, 56], [1350, 23, 55], [1400, 21, 54], [1450, 20, 52], [1500, 17, 48]],
+        2: [[400, 179, 101], [500, 144, 103], [600, 120, 106], [700, 103, 108], [800, 90, 111], [900, 80, 113], [1000, 72, 116], [1100, 66, 119], [1200, 61, 121], [1300, 56, 123], [1400, 52, 125], [1500, 49, 127], [1600, 45, 129], [1700, 43, 130], [1800, 40, 131], [1900, 38, 131], [2000, 36, 131], [2100, 34, 131], [2200, 32, 130], [2300, 30, 128], [2400, 29, 125], [2500, 27, 122], [2600, 25, 118], [2700, 23, 111], [2800, 21, 101]],
+        3: [[500, 204, 168], [600, 171, 170], [700, 147, 172], [800, 129, 175], [900, 115, 178], [1000, 103, 180], [1100, 94, 183], [1200, 86, 186], [1300, 79, 188], [1400, 74, 191], [1500, 69, 193], [1600, 65, 195], [1700, 61, 197], [1800, 58, 198], [1900, 55, 200], [2000, 52, 201], [2100, 50, 201], [2200, 47, 202], [2300, 45, 202], [2400, 43, 201], [2500, 42, 201], [2600, 40, 200], [2700, 38, 198], [2800, 37, 197], [2900, 35, 194], [3000, 34, 192], [3100, 33, 189], [3200, 32, 186], [3300, 30, 182], [3400, 29, 178], [3500, 28, 173], [3600, 27, 167], [3700, 25, 161], [3800, 24, 153], [3900, 22, 141]],
+        4: [[800, 157, 242], [900, 140, 245], [1000, 126, 247], [1100, 115, 250], [1200, 105, 253], [1300, 97, 255], [1400, 90, 257], [1500, 84, 259], [1600, 79, 262], [1700, 74, 263], [1800, 70, 265], [1900, 67, 266], [2000, 63, 267], [2100, 61, 268], [2200, 58, 268], [2300, 55, 269], [2400, 53, 269], [2500, 51, 268], [2600, 49, 268], [2700, 48, 267], [2800, 46, 266], [2900, 44, 264], [3000, 43, 262], [3100, 42, 260], [3200, 40, 258], [3300, 39, 256], [3400, 38, 253], [3500, 37, 250], [3600, 36, 247], [3700, 35, 244], [3800, 34, 240], [3900, 33, 236], [4000, 32, 232], [4100, 31, 228], [4200, 30, 223], [4300, 29, 219], [4400, 28, 213], [4500, 27, 207], [4600, 26, 201], [4700, 25, 194], [4800, 24, 185], [4900, 23, 174]]
+    },
+    M853A1: {
+        1: [[300, 175, 78], [350, 151, 79], [400, 132, 81], [450, 118, 83], [500, 106, 85], [550, 96, 86], [600, 88, 88], [650, 82, 90], [700, 76, 91], [750, 71, 93], [800, 66, 94], [850, 62, 95], [900, 59, 96], [950, 56, 96], [1000, 53, 96], [1050, 50, 96], [1100, 47, 95], [1150, 45, 94], [1200, 42, 93], [1250, 40, 91], [1300, 38, 89], [1350, 35, 85], [1400, 33, 81], [1450, 29, 73]],
+        2: [[500, 198, 219], [600, 165, 223], [700, 142, 226], [800, 124, 228], [900, 111, 230], [1000, 100, 232], [1100, 92, 232], [1200, 84, 232], [1300, 78, 231], [1400, 73, 230], [1500, 69, 228], [1600, 65, 225], [1700, 61, 222], [1800, 58, 218], [1900, 55, 214], [2000, 53, 209], [2100, 50, 204], [2200, 48, 199], [2300, 46, 193], [2400, 44, 187], [2500, 42, 180], [2600, 39, 173], [2700, 37, 164], [2800, 35, 155], [2900, 32, 142]],
+        3: [[700, 156, 355], [800, 137, 356], [900, 123, 355], [1000, 111, 353], [1100, 102, 351], [1200, 95, 348], [1300, 88, 345], [1400, 83, 341], [1500, 79, 336], [1600, 75, 332], [1700, 71, 327], [1800, 68, 322], [1900, 65, 317], [2000, 63, 312], [2100, 61, 307], [2200, 58, 301], [2300, 56, 296], [2400, 55, 291], [2500, 53, 285], [2600, 51, 280], [2700, 50, 274], [2800, 48, 269], [2900, 47, 263], [3000, 46, 257], [3100, 44, 251], [3200, 43, 246], [3300, 42, 239], [3400, 41, 233], [3500, 40, 227], [3600, 38, 221], [3700, 37, 214], [3800, 36, 207], [3900, 35, 199], [4000, 33, 191], [4100, 32, 182]],
+        4: [[3400, 45, 295], [3500, 44, 290], [3600, 43, 284], [3700, 42, 279], [3800, 41, 274], [3900, 40, 268], [4000, 39, 263], [4100, 38, 258], [4200, 38, 252], [4300, 37, 247], [4400, 36, 241], [4500, 35, 235], [4600, 34, 229], [4700, 33, 223], [4800, 33, 217], [4900, 32, 210], [5000, 31, 203]]
+    },
+    "0-832Ay": {
+        0: [[50, 167, 9], [100, 83, 9], [150, 55, 9], [200, 41, 10], [250, 33, 11], [300, 28, 12], [350, 24, 12], [400, 21, 13], [450, 18, 13], [500, 15, 13]],
+        1: [[200, 166, 40], [300, 111, 41], [400, 83, 43], [500, 67, 45], [600, 56, 48], [700, 48, 50], [800, 42, 52], [900, 38, 54], [1000, 34, 56], [1100, 30, 57], [1200, 27, 57], [1300, 24, 57], [1400, 21, 54]],
+        2: [[300, 198, 80], [400, 150, 82], [500, 120, 84], [600, 100, 87], [700, 86, 89], [800, 75, 92], [900, 67, 94], [1000, 61, 97], [1100, 55, 99], [1200, 51, 102], [1300, 47, 103], [1400, 43, 105], [1500, 40, 106], [1600, 38, 107], [1700, 35, 107], [1800, 33, 107], [1900, 31, 106], [2000, 29, 104], [2100, 27, 101], [2200, 24, 97], [2300, 22, 89]],
+        3: [[400, 207, 124], [500, 167, 127], [600, 139, 129], [700, 119, 131], [800, 104, 134], [900, 93, 137], [1000, 84, 140], [1100, 76, 142], [1200, 70, 145], [1300, 65, 147], [1400, 60, 150], [1500, 56, 152], [1600, 53, 153], [1700, 50, 155], [1800, 47, 156], [1900, 44, 156], [2000, 42, 156], [2100, 40, 156], [2200, 38, 155], [2300, 36, 154], [2400, 34, 153], [2500, 33, 150], [2600, 31, 148], [2700, 29, 144], [2800, 28, 140], [2900, 26, 134], [3000, 24, 127], [3100, 22, 115]],
+        4: [[600, 176, 180], [700, 151, 183], [800, 132, 186], [900, 118, 188], [1000, 106, 191], [1100, 96, 194], [1200, 89, 196], [1300, 82, 199], [1400, 76, 201], [1500, 71, 204], [1600, 67, 205], [1700, 63, 207], [1800, 59, 209], [1900, 56, 210], [2000, 54, 210], [2100, 51, 211], [2200, 49, 211], [2300, 47, 211], [2400, 45, 210], [2500, 43, 209], [2600, 41, 208], [2700, 40, 206], [2800, 38, 204], [2900, 37, 202], [3000, 35, 199], [3100, 34, 196], [3200, 33, 192], [3300, 31, 188], [3400, 30, 184], [3500, 29, 179], [3600, 28, 173], [3700, 26, 166], [3800, 25, 158], [3900, 23, 147]]
+    },
+    "A-832AY": {
+        1: [[50, 131, 7], [100, 66, 7], [150, 44, 8], [200, 33, 8], [250, 27, 9], [300, 22, 10], [350, 19, 10], [400, 16, 11], [450, 13, 11]],
+        2: [[200, 141, 33], [300, 94, 35], [400, 71, 36], [500, 57, 38], [600, 48, 41], [700, 41, 43], [800, 36, 45], [900, 32, 46], [1000, 28, 48], [1100, 25, 48], [1200, 22, 48], [1300, 19, 46]],
+        3: [[300, 169, 66], [400, 128, 68], [500, 103, 70], [600, 86, 72], [700, 74, 75], [800, 65, 77], [900, 58, 80], [1000, 52, 82], [1100, 47, 84], [1200, 43, 86], [1300, 40, 88], [1400, 37, 89], [1500, 34, 90], [1600, 32, 91], [1700, 30, 90], [1800, 27, 89], [1900, 25, 87], [2000, 23, 84], [2100, 20, 77]],
+        4: [[400, 181, 102], [500, 145, 104], [600, 121, 107], [700, 104, 109], [800, 91, 112], [900, 81, 114], [1000, 73, 117], [1100, 66, 120], [1200, 61, 122], [1300, 56, 124], [1400, 52, 126], [1500, 49, 128], [1600, 46, 130], [1700, 43, 131], [1800, 41, 132], [1900, 38, 132], [2000, 36, 132], [2100, 34, 132], [2200, 32, 131], [2300, 31, 129], [2400, 29, 127], [2500, 27, 124], [2600, 26, 119], [2700, 24, 114], [2800, 21, 104]]
+    },
+    "C-832C": {
+        1: [[150, 289, 62], [200, 218, 64], [250, 176, 66], [300, 147, 68], [350, 126, 70], [400, 110, 72], [450, 98, 74], [500, 89, 76], [550, 81, 77], [600, 74, 79], [650, 68, 79], [700, 63, 80], [750, 58, 79], [800, 54, 79], [850, 50, 77], [900, 46, 75], [950, 42, 71], [1000, 37, 65]],
+        2: [[300, 266, 167], [400, 201, 171], [500, 161, 175], [600, 135, 178], [700, 116, 180], [800, 102, 181], [900, 91, 181], [1000, 83, 179], [1100, 76, 177], [1200, 70, 173], [1300, 65, 168], [1400, 60, 163], [1500, 56, 157], [1600, 52, 150], [1700, 48, 142], [1800, 44, 132], [1900, 40, 120]],
+        3: [[400, 228, 273], [500, 183, 275], [600, 154, 276], [700, 133, 276], [800, 118, 274], [900, 106, 271], [1000, 97, 267], [1100, 90, 263], [1200, 84, 258], [1300, 79, 253], [1400, 74, 247], [1500, 70, 241], [1600, 66, 235], [1700, 63, 228], [1800, 60, 222], [1900, 58, 215], [2000, 55, 209], [2100, 53, 202], [2200, 50, 194], [2300, 48, 187], [2400, 46, 179], [2500, 44, 171], [2600, 42, 161], [2700, 39, 151]],
+        4: [[600, 143, 394], [700, 125, 387], [800, 113, 379], [900, 103, 371], [1000, 96, 363], [1100, 90, 354], [1200, 84, 346], [1300, 80, 338], [1400, 76, 331], [1500, 73, 323], [1600, 70, 315], [1700, 67, 308], [1800, 65, 301], [1900, 63, 294], [2000, 61, 288], [2100, 59, 281], [2200, 57, 274], [2300, 55, 268], [2400, 54, 262], [2500, 52, 256], [2600, 51, 249], [2700, 49, 243], [2800, 48, 237], [2900, 47, 231], [3000, 45, 225], [3100, 44, 219], [3200, 43, 212], [3300, 42, 206], [3400, 40, 199], [3500, 39, 192], [3600, 38, 185], [3700, 36, 178]]
+    }
+};
+
 // คลาสหลักสำหรับการคำนวณมอร์ต้าร์ในเกม ARMA REFORGER
 // ใช้ข้อมูลจาก BALLISTIC_DATA เป็นหลักในการคำนวณวิถีกระสุน
 // รวมถึงการชดเชยมุมยกปืนจากความแตกต่างของระดับความสูง
@@ -1935,7 +2058,12 @@ class MortarCalculator {
             humidity: parseFloat(localStorage.getItem('aceHumidity') || '50') // %
         };
 
+        // ลมในเกม (native wind) — ค่าเริ่มต้น จะถูกโหลดจริงใน initWindWidget()
+        this.gameWind = { speed: 0, dirFrom: 0 };
+        this.lastWindAdjust = null;
+
         this.initializeElements();
+        this.initWindWidget();
         this.bindEvents();
         this.loadInitialData();
         this.loadTargetPresets();
@@ -2498,6 +2626,266 @@ class MortarCalculator {
         };
     }
 
+    // =============== Native In-game Wind (ลมในเกม — คำนวณแบบ arma-mortar.com) ==================
+    initWindWidget() {
+        this.windSection = document.getElementById('wind-widget-box');
+        this.windDirDial = document.getElementById('wind-dir-dial');
+        this.windSpeedDial = document.getElementById('wind-speed-dial');
+        this.windDirInput = document.getElementById('wind-dir-input');
+        this.windSpeedInput = document.getElementById('wind-speed-input');
+        this.windStatusEl = document.getElementById('wind-status');
+        if (!this.windDirDial || !this.windSpeedDial) return;
+
+        // โหลดค่าที่บันทึกไว้
+        this.gameWind = {
+            speed: Math.max(0, parseFloat(localStorage.getItem('gameWindSpeed') || '0') || 0),
+            dirFrom: ((parseFloat(localStorage.getItem('gameWindDirFrom') || '0') || 0) % 360 + 360) % 360
+        };
+        this.windDirInput.value = Math.round(this.gameWind.dirFrom);
+        this.windSpeedInput.value = this.gameWind.speed;
+
+        // สร้างหน้าปัด SVG
+        this.buildWindDial(this.windDirDial, 'dir');
+        this.buildWindDial(this.windSpeedDial, 'speed');
+        this.renderWindDials();
+        if (this.windSection) this.windSection.classList.toggle('wind-active', this.gameWind.speed > 0);
+
+        // ลากหมุนหน้าปัดทิศลม (0° = เหนือ, ตามเข็มนาฬิกา)
+        this.attachDialDrag(this.windDirDial, (angleDeg) => {
+            this.setWindDir(Math.round(angleDeg));
+        });
+        // ลากหน้าปัดความเร็ว (1 รอบ = 20 m/s, ปัดทีละ 0.5)
+        this.attachDialDrag(this.windSpeedDial, (angleDeg) => {
+            const spd = Math.round((angleDeg / 360) * 20 * 2) / 2;
+            this.setWindSpeed(spd);
+        });
+
+        // ช่องกรอกตัวเลข + ปุ่มปรับทีละขั้น
+        this.windDirInput.addEventListener('change', () => this.setWindDir(parseFloat(this.windDirInput.value)));
+        this.windSpeedInput.addEventListener('change', () => this.setWindSpeed(parseFloat(this.windSpeedInput.value)));
+        document.querySelectorAll('[data-wind-dir-step]').forEach(btn => {
+            btn.addEventListener('click', () => this.setWindDir(this.gameWind.dirFrom + parseFloat(btn.dataset.windDirStep)));
+        });
+        document.querySelectorAll('[data-wind-speed-step]').forEach(btn => {
+            btn.addEventListener('click', () => this.setWindSpeed(this.gameWind.speed + parseFloat(btn.dataset.windSpeedStep)));
+        });
+
+        this.updateWindStatus();
+    }
+
+    buildWindDial(svg, kind) {
+        const NS = 'http://www.w3.org/2000/svg';
+        svg.innerHTML = '';
+
+        // วงแหวนพื้นหลัง — ทิศ: สีอ่อนแบบเกจในเกม, ความเร็ว: สีเข้ม
+        const track = document.createElementNS(NS, 'circle');
+        track.setAttribute('cx', '60');
+        track.setAttribute('cy', '60');
+        track.setAttribute('r', '48');
+        track.setAttribute('fill', 'none');
+        track.setAttribute('stroke', kind === 'dir' ? '#d7dde3' : '#21262d');
+        track.setAttribute('stroke-width', '12');
+        svg.appendChild(track);
+
+        // แถบส้ม (ทิศลม / ปริมาณความเร็ว)
+        const arc = document.createElementNS(NS, 'path');
+        arc.setAttribute('fill', 'none');
+        arc.setAttribute('stroke', '#e8a33d');
+        arc.setAttribute('stroke-width', '12');
+        arc.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(arc);
+
+        // ตัวอักษร N บอกทิศเหนือ (เฉพาะหน้าปัดทิศ) — วางในรูตรงกลาง ใต้ขอบวงด้านบน ไม่ให้ทับวงแหวน
+        if (kind === 'dir') {
+            const n = document.createElementNS(NS, 'text');
+            n.setAttribute('x', '60');
+            n.setAttribute('y', '31');
+            n.setAttribute('text-anchor', 'middle');
+            n.setAttribute('fill', '#8b949e');
+            n.setAttribute('font-size', '9');
+            n.setAttribute('font-weight', '700');
+            n.textContent = 'N';
+            svg.appendChild(n);
+        }
+
+        // ตัวเลขตรงกลาง
+        const label = document.createElementNS(NS, 'text');
+        label.setAttribute('x', '60');
+        label.setAttribute('y', '62');
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('dominant-baseline', 'central');
+        label.setAttribute('fill', '#e8a33d');
+        label.setAttribute('font-size', '20');
+        label.setAttribute('font-weight', '700');
+        label.setAttribute('font-family', "'JetBrains Mono', 'Consolas', monospace");
+        svg.appendChild(label);
+
+        svg._arc = arc;
+        svg._label = label;
+    }
+
+    // จุดบนวงกลม: มุมเป็นองศาจากทิศเหนือ ตามเข็มนาฬิกา
+    _windPolar(cx, cy, r, angleDeg) {
+        const a = (angleDeg - 90) * Math.PI / 180;
+        return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    }
+
+    _windArcPath(cx, cy, r, startDeg, endDeg) {
+        const [sx, sy] = this._windPolar(cx, cy, r, startDeg);
+        const [ex, ey] = this._windPolar(cx, cy, r, endDeg);
+        const sweep = ((endDeg - startDeg) % 360 + 360) % 360;
+        const large = sweep > 180 ? 1 : 0;
+        return `M ${sx.toFixed(2)} ${sy.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${ex.toFixed(2)} ${ey.toFixed(2)}`;
+    }
+
+    renderWindDials() {
+        if (!this.windDirDial || !this.windDirDial._arc) return;
+        // หน้าปัดทิศ: แถบส้มกว้าง 40° ชี้ทิศที่ลมพัดมาจาก
+        const dir = this.gameWind.dirFrom;
+        this.windDirDial._arc.setAttribute('d', this._windArcPath(60, 60, 48, dir - 20, dir + 20));
+        this.windDirDial._label.textContent = `${Math.round(dir)}°`;
+
+        // หน้าปัดความเร็ว: แถบส้มยาวตามสัดส่วน (เต็มวง = 20 m/s)
+        const spd = this.gameWind.speed;
+        const frac = Math.max(0, Math.min(1, spd / 20));
+        if (frac <= 0.002) {
+            this.windSpeedDial._arc.removeAttribute('d');
+        } else {
+            this.windSpeedDial._arc.setAttribute('d', this._windArcPath(60, 60, 48, 0, frac * 359.9));
+        }
+        this.windSpeedDial._label.textContent = String(Math.round(spd * 10) / 10);
+    }
+
+    attachDialDrag(svg, onAngle) {
+        const getAngle = (ev) => {
+            const rect = svg.getBoundingClientRect();
+            const dx = ev.clientX - (rect.left + rect.width / 2);
+            const dy = ev.clientY - (rect.top + rect.height / 2);
+            const deg = Math.atan2(dx, -dy) * 180 / Math.PI;
+            return (deg % 360 + 360) % 360;
+        };
+        let dragging = false;
+        svg.addEventListener('pointerdown', (ev) => {
+            dragging = true;
+            try { svg.setPointerCapture(ev.pointerId); } catch (e) { }
+            onAngle(getAngle(ev));
+            ev.preventDefault();
+        });
+        svg.addEventListener('pointermove', (ev) => {
+            if (dragging) onAngle(getAngle(ev));
+        });
+        const stop = () => { dragging = false; };
+        svg.addEventListener('pointerup', stop);
+        svg.addEventListener('pointercancel', stop);
+    }
+
+    setWindDir(deg) {
+        if (!isFinite(deg)) deg = 0;
+        deg = ((Math.round(deg) % 360) + 360) % 360;
+        this.gameWind.dirFrom = deg;
+        if (this.windDirInput) this.windDirInput.value = deg;
+        localStorage.setItem('gameWindDirFrom', String(deg));
+        this.onWindChanged();
+    }
+
+    setWindSpeed(spd) {
+        if (!isFinite(spd)) spd = 0;
+        spd = Math.max(0, Math.min(30, Math.round(spd * 10) / 10));
+        this.gameWind.speed = spd;
+        if (this.windSpeedInput) this.windSpeedInput.value = spd;
+        localStorage.setItem('gameWindSpeed', String(spd));
+        this.onWindChanged();
+    }
+
+    onWindChanged() {
+        this.renderWindDials();
+        if (this.windSection) this.windSection.classList.toggle('wind-active', this.gameWind.speed > 0);
+        if (this.validateInputs()) {
+            this.calculate(); // calculate() จะอัปเดตสถานะลมให้เอง
+        } else {
+            this.lastWindAdjust = null;
+            this.updateWindStatus();
+        }
+    }
+
+    // ตารางค่าแก้ลมของกระสุนปัจจุบัน (Original = ตารางเกม, MOD = ตารางจาก Adult Mortars v1.0.4)
+    // เหลือเฉพาะ M107 ที่ยังไม่มีข้อมูลลม
+    getWindTableForCurrentShell() {
+        const source = this.currentMortarType === 'mod' ? WIND_DATA_MOD : WIND_DATA;
+        return source[this.currentShell] || null;
+    }
+
+    // ประมาณค่า Zw (wc) / Xw (wl) เชิงเส้นตามระยะ
+    interpolateWindRow(rows, distance) {
+        if (!rows || rows.length === 0) return null;
+        if (distance <= rows[0][0]) return { wc: rows[0][1], wl: rows[0][2] };
+        const last = rows[rows.length - 1];
+        if (distance >= last[0]) return { wc: last[1], wl: last[2] };
+        for (let i = 0; i < rows.length - 1; i++) {
+            const a = rows[i], b = rows[i + 1];
+            if (distance >= a[0] && distance <= b[0]) {
+                if (b[0] === a[0]) return { wc: a[1], wl: a[2] }; // กันแถวระยะซ้ำ (หารศูนย์)
+                const t = (distance - a[0]) / (b[0] - a[0]);
+                return { wc: a[1] + (b[1] - a[1]) * t, wl: a[2] + (b[2] - a[2]) * t };
+            }
+        }
+        return { wc: last[1], wl: last[2] };
+    }
+
+    // คำนวณค่าชดเชยลมจากตาราง (สูตรเดียวกับ arma-mortar.com)
+    // - deltaRange (m): บวกเข้ากับระยะที่ใช้เปิดตาราง (ลมต้าน → เล็งไกลขึ้น)
+    // - deflectMils (mils): บวกเข้ากับอาซิมุท (+ = ขวา) ในระบบมิลของปืนนั้น
+    computeWindAdjustment(distance, azimuthDeg, ring) {
+        const table = this.getWindTableForCurrentShell();
+        const speed = Math.max(0, this.gameWind ? this.gameWind.speed : 0);
+        if (!table || !table[ring] || speed <= 0) return null;
+        const row = this.interpolateWindRow(table[ring], distance);
+        if (!row) return null;
+
+        const fromDeg = ((this.gameWind.dirFrom || 0) % 360 + 360) % 360;
+        const delta = (fromDeg - azimuthDeg) * Math.PI / 180;
+        const headwind = Math.cos(delta) * speed;   // + = ลมพัดมาจากทิศที่ยิง (ต้านกระสุน)
+        const crosswind = Math.sin(delta) * speed;  // + = ลมพัดมาจากขวาของแนวยิง
+
+        return {
+            headwind: headwind,
+            crosswind: crosswind,
+            wc: row.wc,
+            wl: row.wl,
+            ring: ring,
+            deltaRange: (row.wl / 10) * headwind,
+            deflectMils: (row.wc / 10) * crosswind
+        };
+    }
+
+    // แสดงสถานะการชดเชยลมใต้หน้าปัด
+    updateWindStatus() {
+        if (!this.windStatusEl) return;
+        const speed = this.gameWind ? this.gameWind.speed : 0;
+        const table = this.getWindTableForCurrentShell();
+        const th = currentLanguage === 'th';
+
+        if (speed > 0 && !table) {
+            this.windStatusEl.className = 'wind-status show warn';
+            this.windStatusEl.textContent = th
+                ? '⚠️ กระสุนนี้ยังไม่มีตารางค่าแก้ลม (เฉพาะ M107) — ระบบจะไม่ชดเชยลมให้'
+                : '⚠️ No wind correction table for this shell yet (M107 only) — wind will not be compensated';
+            return;
+        }
+        if (speed > 0 && this.lastWindAdjust) {
+            const w = this.lastWindAdjust;
+            const dR = Math.round(w.deltaRange);
+            const dA = Math.round(w.deflectMils);
+            this.windStatusEl.className = 'wind-status show';
+            this.windStatusEl.textContent = th
+                ? `🌬️ ชดเชยลม: ระยะเล็ง ${dR >= 0 ? '+' : ''}${dR} m | อาซิมุท ${dA >= 0 ? '+' : ''}${dA} mils ${dA > 0 ? '(ขวา)' : dA < 0 ? '(ซ้าย)' : ''}`
+                : `🌬️ Wind correction: aim range ${dR >= 0 ? '+' : ''}${dR} m | azimuth ${dA >= 0 ? '+' : ''}${dA} mils ${dA > 0 ? '(right)' : dA < 0 ? '(left)' : ''}`;
+            return;
+        }
+        this.windStatusEl.className = 'wind-status';
+        this.windStatusEl.textContent = '';
+    }
+
     setupDeviceSpecificUI() {
         // Detect if device supports touch
         const isTouchDevice = ('ontouchstart' in window) ||
@@ -2548,6 +2936,12 @@ class MortarCalculator {
             }
 
             shellTypeEl.textContent = shellText;
+        }
+
+        // อัปเดตสถานะลม (บางกระสุน/ปืนไม่มีตารางค่าแก้ลม)
+        if (this.updateWindStatus) {
+            if (!(this.validateInputs && this.validateInputs())) this.lastWindAdjust = null;
+            this.updateWindStatus();
         }
     }
 
@@ -3380,12 +3774,38 @@ class MortarCalculator {
             calculationNote = `สูตรปรับแล้ว: ระยะทาง ${distance}m ${sign} ${rangeAdjustment}m = ${adjustedDistance}m, ความสูง ${adjustedHeightDiff}m (ตัดไว้ 100m)`;
         }
 
+        // ลมในเกม (native wind) — ใช้ตารางค่าแก้จริง แบบเดียวกับ arma-mortar.com
+        const windActive = (this.gameWind && this.gameWind.speed > 0) && !!this.getWindTableForCurrentShell();
+
         // Apply ACE Weather adjustments (range, azimuth, elevation tweak)
+        // หมายเหตุ: เมื่อใช้ลมในเกมอยู่ จะข้ามส่วน "ลม" ของ ACE เพื่อไม่ให้ชดเชยซ้ำ (ยังคงผลจากความหนาแน่นอากาศ)
         let weatherAdjust = null;
         if (this.enableAceWeather) {
             weatherAdjust = this.applyAceWeatherAdjustments(adjustedDistance, azimuthDegrees);
-            adjustedDistance = adjustedDistance + weatherAdjust.deltaRange; // may be +/-
+            if (!windActive) {
+                adjustedDistance = adjustedDistance + weatherAdjust.deltaRange; // may be +/-
+            }
         }
+
+        // คำนวณค่าชดเชยลมในเกม: แก้ระยะเล็งตามลมต้าน/ตาม แล้วค่อยเปิดตารางยิง
+        let windAdjust = null;
+        if (windActive) {
+            // หา ring ที่จะใช้เปิดตารางลม (ตาม ring ที่เลือกไว้ หรือ ring อัตโนมัติจากระยะ)
+            let ringForWind = this.manualRingSelected ? this.currentCharge : this.selectOptimalCharge(adjustedDistance);
+            windAdjust = this.computeWindAdjustment(adjustedDistance, azimuthDegrees, ringForWind);
+
+            // ถ้าระยะหลังชดเชยลมทำให้ ring อัตโนมัติเปลี่ยน ให้คำนวณใหม่ด้วย ring นั้น
+            if (windAdjust && !this.manualRingSelected) {
+                const ringAfterWind = this.selectOptimalCharge(adjustedDistance + windAdjust.deltaRange);
+                if (ringAfterWind !== ringForWind) {
+                    windAdjust = this.computeWindAdjustment(adjustedDistance, azimuthDegrees, ringAfterWind);
+                }
+            }
+            if (windAdjust) {
+                adjustedDistance = adjustedDistance + windAdjust.deltaRange;
+            }
+        }
+        this.lastWindAdjust = windAdjust;
 
         // เลือกประจุที่เหมาะสมตามระยะทางที่ปรับแล้ว (เว้นแต่ผู้ใช้เลือกเอง)
         if (!this.manualRingSelected) {
@@ -3416,7 +3836,10 @@ class MortarCalculator {
 
         // Display results (simplified like arma-mortar.com)
         // Azimuth with crosswind deflection (mils -> degrees)
-        const deflectMils = this.enableAceWeather && weatherAdjust ? weatherAdjust.deflectionMils : 0;
+        // - ลมในเกม: ใช้ค่าแก้จากตาราง (Zw) / ACE: ใช้ค่าประมาณ (เฉพาะเมื่อไม่ได้ใช้ลมในเกม)
+        const aceDeflectMils = (!windActive && this.enableAceWeather && weatherAdjust) ? weatherAdjust.deflectionMils : 0;
+        const windDeflectMils = windAdjust ? windAdjust.deflectMils : 0;
+        const deflectMils = aceDeflectMils + windDeflectMils;
         const finalAzimuthMils = Math.round(azimuthMils + deflectMils);
         const finalAzimuthDeg = (azimuthDegrees + this.milsToDegrees(deflectMils)).toFixed(1);
 
@@ -3439,18 +3862,33 @@ class MortarCalculator {
             muzzleVelocity: ballisticData.muzzleVelocity || 150,
             trajectory: ballisticData.trajectory || [],
             calculationNote: calculationNote,
-            isAdjusted: adjustedDistance !== distance || adjustedHeightDiff !== heightDiff || !!weatherAdjust,
+            isAdjusted: adjustedDistance !== distance || adjustedHeightDiff !== heightDiff || !!weatherAdjust || !!windAdjust,
+            gameWind: windAdjust ? {
+                enabled: true,
+                speed: this.gameWind.speed,
+                dirFrom: this.gameWind.dirFrom,
+                headwind: windAdjust.headwind,
+                crosswind: windAdjust.crosswind,
+                deltaRange: windAdjust.deltaRange,
+                deflectMils: windAdjust.deflectMils,
+                wc: windAdjust.wc,
+                wl: windAdjust.wl
+            } : { enabled: false },
             aceWeather: this.enableAceWeather ? {
                 enabled: true,
-                headwind: weatherAdjust ? weatherAdjust.headwind : 0,
-                crosswind: weatherAdjust ? weatherAdjust.crosswind : 0,
-                deltaRange: weatherAdjust ? weatherAdjust.deltaRange : 0,
-                deflectionMils: weatherAdjust ? weatherAdjust.deflectionMils : 0,
+                windSkipped: windActive, // ลม ACE ถูกข้ามเพราะใช้ลมในเกมแทน
+                headwind: (!windActive && weatherAdjust) ? weatherAdjust.headwind : 0,
+                crosswind: (!windActive && weatherAdjust) ? weatherAdjust.crosswind : 0,
+                deltaRange: (!windActive && weatherAdjust) ? weatherAdjust.deltaRange : 0,
+                deflectionMils: (!windActive && weatherAdjust) ? weatherAdjust.deflectionMils : 0,
                 deltaElevMils: weatherAdjust ? weatherAdjust.deltaElevMils : 0,
                 rho: weatherAdjust ? weatherAdjust.rho : null,
                 densityRatioDelta: weatherAdjust ? weatherAdjust.densityRatioDelta : null
             } : { enabled: false }
         });
+
+        // อัปเดตสถานะลมใต้หน้าปัด
+        this.updateWindStatus();
 
         // Highlight table row
         this.highlightTableRow(ballisticData.range);
@@ -3539,9 +3977,22 @@ class MortarCalculator {
                 `NATO (6400 mils = 360°)`
             }
             </div>
+            ${results.gameWind && results.gameWind.enabled ? `
+            <div class="info-item">
+                <strong>🌬️ ${currentLanguage === 'th' ? 'ลมในเกม:' : 'In-game Wind:'}</strong>
+                ${results.gameWind.speed} m/s ${currentLanguage === 'th' ? 'พัดมาจาก' : 'from'} ${results.gameWind.dirFrom}°
+            </div>
+            <div class="info-item">
+                <strong>${currentLanguage === 'th' ? 'ชดเชยลม (จากตารางยิง):' : 'Wind Correction (from firing table):'}</strong>
+                ${currentLanguage === 'th' ? 'ลมต้าน/ตาม' : 'Head/Tail'}: ${results.gameWind.headwind.toFixed(1)} m/s,
+                ${currentLanguage === 'th' ? 'ลมขวาง' : 'Crosswind'}: ${results.gameWind.crosswind.toFixed(1)} m/s,
+                ΔRange: ${Math.round(results.gameWind.deltaRange)} m,
+                ΔAzimuth: ${Math.round(results.gameWind.deflectMils)} mils ${Math.round(results.gameWind.deflectMils) > 0 ? (currentLanguage === 'th' ? '(ขวา)' : '(right)') : Math.round(results.gameWind.deflectMils) < 0 ? (currentLanguage === 'th' ? '(ซ้าย)' : '(left)') : ''}
+            </div>
+            ` : ''}
             ${results.aceWeather && results.aceWeather.enabled ? `
             <div class="info-item">
-                <strong>🌦️ ACE Weather:</strong> ${currentLanguage === 'th' ? 'เปิด' : 'On'}
+                <strong>🌦️ ACE Weather:</strong> ${currentLanguage === 'th' ? 'เปิด' : 'On'}${results.aceWeather.windSkipped ? ` — ${currentLanguage === 'th' ? 'ส่วนลมของ ACE ถูกข้าม (ใช้ลมในเกมแทน)' : 'ACE wind skipped (using in-game wind)'}` : ''}
             </div>
             <div class="info-item">
                 <strong>${currentLanguage === 'th' ? 'ชดเชยจากลม:' : 'Wind Adjustments:'}</strong>

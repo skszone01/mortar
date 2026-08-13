@@ -2567,6 +2567,183 @@ body {
     }
 }
 
+/* ==========================================================================
+   Wind (native in-game wind) — แบบย่อในการ์ดตำแหน่งอาวุธ
+   ========================================================================== */
+.wind-inline {
+    margin-top: 14px;
+    padding: 12px;
+    background: rgba(13, 17, 23, 0.45);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition-base);
+}
+
+.wind-inline h4 {
+    color: var(--accent-teal);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.wind-inline.wind-active {
+    border-color: rgba(240, 136, 62, 0.55);
+}
+
+.wind-widget {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.wind-dial-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.wind-dial {
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.wind-dial-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.wind-input-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.wind-input-row input {
+    width: 64px;
+    padding: 5px 6px;
+    text-align: center;
+    background: rgba(13, 17, 23, 0.8);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--accent-yellow);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.wind-input-row input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+/* Hide number input spinners (we have our own +/- buttons) */
+.wind-input-row input::-webkit-outer-spin-button,
+.wind-input-row input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.wind-input-row input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.wind-step-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(48, 54, 61, 0.4);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.wind-step-btn:hover {
+    background: rgba(88, 166, 255, 0.18);
+    border-color: var(--accent-blue);
+    color: var(--text-primary);
+}
+
+.wind-hint {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 0.78rem;
+}
+
+.wind-status {
+    display: none;
+    margin-top: 8px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-yellow);
+    background: rgba(240, 136, 62, 0.08);
+    border: 1px solid rgba(240, 136, 62, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+}
+
+.wind-status.show {
+    display: block;
+}
+
+.wind-status.warn {
+    color: var(--accent-red);
+    background: rgba(255, 107, 107, 0.08);
+    border-color: rgba(255, 107, 107, 0.3);
+}
+
+/* มือถือ: ขยายหน้าปัดและปุ่มให้กดด้วยนิ้วง่ายขึ้น โดยยังวางสองหน้าปัดคู่กันได้ในการ์ด (~313px)
+   งบความกว้าง: กล่อง 313 − padding 20 = 293 ≥ แถวปุ่ม (38+56+38+8)×2 + ช่องว่าง 8 = 288 */
+@media (max-width: 480px) {
+    .wind-inline {
+        padding: 10px;
+    }
+
+    .wind-widget {
+        gap: 8px;
+    }
+
+    .wind-dial {
+        width: 116px;
+        height: 116px;
+    }
+
+    .wind-input-row {
+        gap: 4px;
+    }
+
+    .wind-step-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.25rem;
+    }
+
+    .wind-input-row input {
+        width: 56px;
+        padding: 8px 4px;
+        font-size: 1.05rem;
+    }
+}
+
 /*
  * =======================================================================
  * ไม่อนุญาตให้นำไปใช้เพื่อแสวงหาผลกำไรใดๆทั้งสิ้น
