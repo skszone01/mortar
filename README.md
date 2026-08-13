@@ -113,7 +113,7 @@ If used in other projects, please credit **Youtube : Sitt Chanel**
 
 ## 🔄 Version
 
-**Current Version:** v1.0  
+**Current Version:** v2.0  
 **Last Updated:** December 2025
 
 ## 🐛 Bug Reports & Suggestions

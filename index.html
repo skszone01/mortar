@@ -78,7 +78,7 @@
         "Time of flight calculator"
       ],
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "softwareVersion": "1.0",
+      "softwareVersion": "2.0",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
@@ -109,7 +109,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="./style.css?v=wind4">
+    <link rel="stylesheet" href="./style.css?v=sim1">
 
     <!-- Progressive Web App Manifest -->
     <link rel="manifest" href="./manifest.json">
@@ -194,23 +194,36 @@
                         <span class="checkmark"></span>
                         <span class="label-text" data-lang-key="modMortars">[MOD] Adult Mortars</span>
                     </label>
+                    <label class="type-option">
+                        <input type="radio" name="mortar-type" value="m777">
+                        <span class="checkmark"></span>
+                        <span class="label-text" data-lang-key="m777Howitzer">[MOD] M777 Howitzer 155mm</span>
+                    </label>
                 </div>
             </section>
 
-            <!-- Shell Selection -->
+            <!-- Shell Selection (ปุ่มสร้างตามประเภทปืนที่เลือก) -->
             <section class="shell-selection">
                 <h2 data-lang-key="shellType">💥 Shell Type</h2>
-                <div class="shell-buttons">
-                    <button class="shell-btn active" data-shell="M821">M821</button>
-                    <button class="shell-btn" data-shell="M107">M107 HE</button>
-                    <button class="shell-btn" data-shell="M819">M819</button>
-                    <button class="shell-btn" data-shell="M853A1">M853A1</button>
-                    <button class="shell-btn" data-shell="0-832Ay">0-832Ay</button>
-                    <button class="shell-btn" data-shell="A-832AY">A-832AY</button>
-                    <button class="shell-btn" data-shell="C-832C">C-832C</button>
-                </div>
+                <div class="shell-buttons" id="shell-buttons"></div>
                 <div class="shell-info">
                     <span class="shell-type" data-lang-key="heShell">HE shell</span>
+                </div>
+            </section>
+
+            <!-- Advanced Solution (trajectory simulation) -->
+            <section class="advanced-section" id="advanced-section">
+                <div class="advanced-header">
+                    <h3 data-lang-key="advancedTitle">🧪 คำนวณขั้นสูง (จำลองวิถีกระสุน)</h3>
+                    <label class="advanced-switch">
+                        <input type="checkbox" id="advanced-toggle" checked>
+                        <span data-lang-key="advancedToggle">เปิดใช้งาน</span>
+                    </label>
+                </div>
+                <div class="advanced-intro">
+                    <small data-lang-key="advancedIntro">จำลองวิถีกระสุนด้วยสมการและค่าคงที่จากไฟล์เกมโดยตรง
+                        (แรงต้านอากาศจริงต่อกระสุนแต่ละชนิด) แก้ความสูงและลมแบบเต็มรูปแบบ ไม่ใช้ค่าประมาณเชิงเส้น
+                        — ผลลัพธ์แสดงในส่วน FIRING SOLUTION</small>
                 </div>
             </section>
 
@@ -475,6 +488,9 @@
                                 </small>
                             </div>
                         </div>
+
+                        <!-- Ring / Charge picker -->
+                        <div class="ring-picker" id="ring-picker-offset"></div>
                     </div>
                 </div>
             </div>
@@ -486,6 +502,7 @@
                 <h2 class="result-header">
                     <span data-lang-key="firingSolution">📊 FIRING SOLUTION</span>
                     <span id="mortar-type-badge" class="mortar-badge">ORIGINAL</span>
+                    <span id="calc-method-badge" class="mortar-badge method-badge"></span>
                 </h2>
                 <div class="result-grid">
                     <div class="result-item distance-result">
@@ -513,6 +530,9 @@
                         <span id="height-diff">-</span>
                     </div>
                 </div>
+
+                <!-- Advanced (trajectory simulation) results -->
+                <div class="advanced-results" id="advanced-results"></div>
 
                 <!-- Additional Info -->
                 <div class="additional-info" id="additional-info">
@@ -558,7 +578,7 @@
         </main>
 
         <footer>
-            <p data-lang-key="footer">ARMA REFORGER Mortar Calculator v1.0 | Based on in-game ballistic data</p>
+            <p data-lang-key="footer">ARMA REFORGER Mortar Calculator v2.0 | Based on in-game ballistic data</p>
             <div class="credits">
                 <p data-lang-key="usageTerms">ไม่อนุญาตให้นำไปใช้เพื่อแสวงหาผลกำไรใดๆทั้งสิ้น</p>
                 <p data-lang-key="creditRequest">หากนำไปใช้งานในส่วนอื่น ใส่เครดิต <strong>Youtube : Sitt
@@ -633,7 +653,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=wind2"></script>
+    <script src="script.js?v=sim3"></script>
 </body>
 
 </html>
