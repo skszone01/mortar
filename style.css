@@ -12,7 +12,7 @@
     --text-primary: #e6edf3;
     --text-secondary: #c9d1d9;
     --text-muted: #8b949e;
-    --text-faint: #6e7681;
+    --text-faint: #7d8590;
     --accent-blue: #58a6ff;
     --accent-blue-soft: rgba(88, 166, 255, 0.18);
     --accent-orange: #f0883e;
@@ -122,7 +122,9 @@ body::before {
     border-radius: 6px;
     padding: 4px 6px;
     cursor: pointer;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     min-width: 32px;
     min-height: 32px;
     display: flex;
@@ -217,19 +219,6 @@ body::before {
     font-style: italic;
 }
 
-/* Numpad Info Box */
-.numpad-info-box {
-    background: #232323;
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin: 10px 0;
-    font-size: 0.85em;
-    line-height: 1.4;
-    color: #c9d1d9;
-    border: 1px solid #30363d;
-    max-width: 300px;
-}
-
 /* Header */
 header {
     text-align: center;
@@ -309,7 +298,13 @@ header::before {
     cursor: pointer;
     font-size: 0.82rem;
     font-weight: 500;
-    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
+    transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        color var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-base),
+        opacity var(--transition-base);
     font-family: inherit;
     display: inline-flex;
     align-items: center;
@@ -419,7 +414,9 @@ header::before {
     padding: 10px;
     background: rgba(48, 54, 61, 0.3);
     border-radius: 8px;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     border: 2px solid transparent;
 }
 
@@ -439,7 +436,9 @@ header::before {
     border-radius: 50%;
     margin-right: 10px;
     position: relative;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
 }
 
 .type-option input[type="radio"]:checked+.checkmark {
@@ -506,7 +505,13 @@ header::before {
     font-size: 0.85rem;
     letter-spacing: 0.5px;
     cursor: pointer;
-    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
+    transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        color var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-base),
+        opacity var(--transition-base);
 }
 
 .shell-btn:hover {
@@ -609,7 +614,13 @@ header::before {
     color: var(--accent-blue);
     font-family: var(--font-mono);
     font-weight: 600;
-    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
+    transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        color var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-base),
+        opacity var(--transition-base);
     -webkit-appearance: none;
     appearance: none;
 }
@@ -677,7 +688,9 @@ header::before {
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
 }
 
 .grid-warning:hover {
@@ -725,7 +738,13 @@ header::before {
     text-transform: uppercase;
     letter-spacing: 3px;
     cursor: pointer;
-    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
+    transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        color var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-base),
+        opacity var(--transition-base);
     margin-bottom: 20px;
     position: relative;
     box-shadow: 0 8px 24px rgba(35, 134, 54, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -785,7 +804,7 @@ header::before {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    color: #238636;
+    color: #3fb950;
     font-size: 1.3rem;
     margin-bottom: 15px;
     text-transform: uppercase;
@@ -796,7 +815,7 @@ header::before {
 }
 
 .mortar-badge {
-    background: linear-gradient(135deg, #1f6feb, #58a6ff);
+    background: linear-gradient(135deg, #0d47a1, #1f6feb);
     color: #ffffff;
     padding: 2px 10px;
     border-radius: 4px;
@@ -830,7 +849,13 @@ header::before {
     text-align: center;
     border-left: 3px solid var(--accent-blue);
     border-top: 1px solid var(--border-soft);
-    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
+    transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        color var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-base),
+        opacity var(--transition-base);
     position: relative;
     overflow: hidden;
 }
@@ -891,7 +916,7 @@ header::before {
 }
 
 .charge-result span {
-    color: #238636;
+    color: #3fb950;
 }
 
 .time-result {
@@ -900,15 +925,6 @@ header::before {
 
 .time-result span {
     color: #a855f7;
-}
-
-/* Additional Info */
-.additional-info {
-    margin-top: 15px;
-    padding: 10px;
-    background: rgba(48, 54, 61, 0.3);
-    border-radius: 8px;
-    border: 1px dashed #30363d;
 }
 
 /* Ballistic Section */
@@ -944,7 +960,9 @@ header::before {
     font-family: 'Consolas', monospace;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -1145,7 +1163,7 @@ footer > p {
 /* Desktop Styles */
 @media (min-width: 1024px) {
     .result-grid {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 
     .charge-tabs {
@@ -1257,7 +1275,9 @@ footer > p {
 
 /* Touch feedback animations */
 .preset-btn {
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.2s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
 }
 
 .preset-btn:active {
@@ -1296,13 +1316,8 @@ footer > p {
 }
 
 /* Instructions styling */
-.mobile-instructions {
-    color: #fbbf24 !important;
-    font-weight: 500 !important;
-}
-
-.desktop-instructions {
-    color: #6e7681;
+.preset-instructions-text {
+    color: #9aa4b0;
 }
 
 /* Coordinate Guide Section */
@@ -1326,7 +1341,9 @@ footer > p {
 .guide-toggle {
     cursor: pointer;
     user-select: none;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     padding: 8px;
     border-radius: 6px;
 }
@@ -1341,7 +1358,9 @@ footer > p {
     flex-direction: column;
     gap: 15px;
     overflow: hidden;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
 }
 
 .guide-content.show {
@@ -1525,167 +1544,6 @@ footer > p {
     }
 }
 
-/* Physics Information Styles */
-.physics-info {
-    background: linear-gradient(90deg, #1f6feb, #388bfd) !important;
-    color: white !important;
-    font-weight: bold !important;
-    text-align: center !important;
-    padding: 8px !important;
-    border-radius: 6px !important;
-    margin: 10px 0 5px 0 !important;
-    box-shadow: 0 2px 8px rgba(31, 111, 235, 0.3) !important;
-}
-
-.physics-info strong {
-    font-size: 0.95rem !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Enhanced info items for physics data */
-.additional-info .info-item:has(strong:contains("Muzzle Velocity")),
-.additional-info .info-item:has(strong:contains("Physics Elevation")),
-.additional-info .info-item:has(strong:contains("Physics Time")) {
-    background: rgba(31, 111, 235, 0.1);
-    border-left: 3px solid #1f6feb;
-    padding-left: 12px;
-    margin-left: 5px;
-}
-
-/* Ballistic trajectory visualization hint */
-.trajectory-hint {
-    font-style: italic;
-    color: #7d8590;
-    font-size: 0.85rem;
-    text-align: center;
-    margin-top: 10px;
-    padding: 8px;
-    background: rgba(31, 111, 235, 0.05);
-    border-radius: 4px;
-    border: 1px dashed #30363d;
-}
-
-/* Mils System Information Styles */
-.mil-system-info {
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(139, 69, 193, 0.15)) !important;
-    border: 2px solid rgba(168, 85, 247, 0.4) !important;
-    border-radius: 8px !important;
-    padding: 10px !important;
-    margin: 8px 0 !important;
-    text-align: center !important;
-}
-
-.mil-system-info strong {
-    color: #a855f7 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-    font-size: 1rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-}
-
-/* Highlight mils values in results */
-.result-value:contains('mils') {
-    background: rgba(168, 85, 247, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid rgba(168, 85, 247, 0.3);
-}
-
-/* Accuracy Warning Styles */
-.accuracy-warning {
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 152, 0, 0.15));
-    border: 2px solid rgba(255, 193, 7, 0.6);
-    border-radius: 10px;
-    padding: 15px;
-    margin: 15px 0;
-}
-
-/* ระยะอยู่นอกตารางของประจุที่เลือก — ค่าที่แสดงถูกหนีบไว้ ใช้ยิงจริงไม่ได้ */
-.out-of-table-warning {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.16), rgba(220, 38, 38, 0.16));
-    border: 2px solid rgba(255, 107, 107, 0.65);
-    border-radius: 10px;
-    padding: 14px;
-    margin: 4px 0 12px;
-}
-
-.out-of-table-warning .warning-header {
-    margin-bottom: 8px;
-}
-
-.out-of-table-warning .warning-header strong {
-    color: var(--accent-red);
-}
-
-.out-of-table-warning .warning-icon {
-    font-size: 1.2rem;
-}
-
-.out-of-table-warning .warning-text {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    line-height: 1.55;
-}
-
-.warning-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.accuracy-warning .warning-icon {
-    font-size: 1.2rem;
-    color: #ffc107;
-}
-
-.warning-header strong {
-    color: #ffc107;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.accuracy-warning .warning-text {
-    color: #ffc107;
-    font-size: 0.95rem;
-    font-weight: 500;
-    line-height: 1.5;
-    padding-left: 32px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes warningPulse {
-
-    0%,
-    100% {
-        box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
-        transform: scale(1);
-    }
-
-    50% {
-        box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
-        transform: scale(1.02);
-    }
-}
-
-@keyframes shake {
-
-    0%,
-    100% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(-5deg);
-    }
-
-    75% {
-        transform: rotate(5deg);
-    }
-}
-
 /* Credits Section */
 .credits {
     margin-top: 15px;
@@ -1709,7 +1567,9 @@ footer > p {
     gap: 5px;
     padding: 4px 8px;
     border-radius: 6px;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     background: rgba(255, 68, 68, 0.1);
     border: 1px solid rgba(255, 68, 68, 0.2);
 }
@@ -1735,7 +1595,13 @@ footer > p {
     gap: 5px;
     padding: 4px 10px;
     border-radius: 6px;
-    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
+    transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        color var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-base),
+        opacity var(--transition-base);
     background: rgba(79, 139, 255, 0.12);
     border: 1px solid rgba(79, 139, 255, 0.3);
     margin-left: 6px;
@@ -1827,7 +1693,9 @@ footer > p {
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     border: 2px solid transparent;
 }
 
@@ -1850,7 +1718,9 @@ footer > p {
     border-radius: 6px;
     text-align: center;
     border-left: 4px solid #fbbf24;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     position: relative;
 }
 
@@ -1992,7 +1862,9 @@ footer > p {
     font-family: 'Consolas', monospace;
     font-size: 0.65rem;
     cursor: pointer;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2142,7 +2014,9 @@ footer > p {
     font-size: 0.7rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
+    transition-property: background-color, border-color, color, box-shadow, transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
     min-width: 42px;
     min-height: 32px;
     text-align: center;
@@ -2371,7 +2245,7 @@ footer > p {
 }
 
 .firing-solution-title {
-    color: #238636;
+    color: #3fb950;
     font-weight: bold;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -2445,7 +2319,7 @@ footer > p {
 }
 
 .fs-item:nth-child(4) .fs-value {
-    color: #238636;
+    color: #3fb950;
 }
 
 .fs-item:nth-child(5) {
@@ -2480,7 +2354,7 @@ footer > p {
 
     .firing-solution-data {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 6px;
         width: 100%;
     }
@@ -2493,7 +2367,9 @@ footer > p {
         align-items: center;
         gap: 2px;
         text-align: center;
-    }
+            white-space: normal;
+        overflow-wrap: anywhere;
+}
 
     .fs-label {
         font-size: 0.6rem;
@@ -2553,7 +2429,9 @@ footer > p {
         border-radius: 6px;
         border-left: 2px solid var(--accent-blue);
         text-align: center;
-    }
+            white-space: normal;
+        overflow-wrap: anywhere;
+}
 
     .fs-label {
         font-size: 0.55rem;
@@ -2576,7 +2454,9 @@ footer > p {
     .fs-item {
         padding: 4px 2px;
         min-height: 34px;
-    }
+            white-space: normal;
+        overflow-wrap: anywhere;
+}
 
     .fs-value {
         font-size: 0.78rem;
@@ -2709,7 +2589,13 @@ body {
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-fast);
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast),
+        opacity var(--transition-fast);
 }
 
 .wind-step-btn:hover {
@@ -2778,6 +2664,33 @@ body {
         width: 56px;
         padding: 8px 4px;
         font-size: 1.05rem;
+    }
+}
+
+/* จอ 360px: การ์ดเหลือความกว้างข้างใน ~276px แถวปุ่มชุดเดิม (38+56+38+8)×2+8 = 288
+   ซึ่งเกิน ทำให้สองหน้าปัดตกบรรทัด ต้องย่อลงอีกนิดให้เหลือ (38+50+38+6)×2+8 = 272 */
+@media (max-width: 400px) {
+    .wind-widget {
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .wind-dial {
+        width: 108px;
+        height: 108px;
+    }
+
+    .wind-input-row {
+        gap: 3px;
+    }
+
+    .wind-input-row input {
+        width: 50px;
+        padding: 8px 2px;
+    }
+
+    .wind-dial-label {
+        font-size: 0.72rem;
     }
 }
 
@@ -3089,29 +3002,9 @@ body {
     font-size: 10px;
 }
 
-/* ตัวอักษรใน SVG ย่อ/ขยายตามความกว้างของ viewBox
-   บนจอแคบ SVG ถูกย่อเหลือ ~45% ตัวอักษรจึงเล็กจนอ่านไม่ออก ต้องชดเชยด้วยการเพิ่มขนาดหน่วยใน viewBox */
-@media (max-width: 640px) {
-    .traj-lbl {
-        font-size: 22px;
-    }
-
-    .traj-sub {
-        font-size: 18px;
-    }
-
-    .traj-apex-lbl {
-        font-size: 20px;
-    }
-
-    .traj-path {
-        stroke-width: 3.5;
-    }
-
-    .traj-target {
-        stroke-width: 4;
-    }
-}
+/* ขนาดตัวอักษร/เส้นของกราฟถูกชดเชยตามอัตราส่วนย่อจริงใน renderTrajectorySvg()
+   (attribute font-size / stroke-width บน element) จึงไม่มี media query ตรงนี้อีก
+   ค่าด้านบนเป็นค่าตั้งต้นสำหรับกรณีที่ SVG ไม่ถูกย่อ */
 
 .adv-meta {
     margin-top: 10px;
@@ -3172,3 +3065,8 @@ body {
  * If used in other projects, please credit Youtube : Sitt Chanel
  * =======================================================================
  */
+/* มุมยกที่ถูกค่าออฟเซ็ตดันจนเกินขีดจำกัดฐานปืน — ต้องเห็นชัดว่าตั้งจริงไม่ได้ */
+#elevation.over-limit,
+#fs-elevation.over-limit {
+    color: #f0883e;
+}

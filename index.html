@@ -24,7 +24,7 @@
     <meta property="og:title" content="ARMA REFORGER Mortar Calculator - Ballistic Calculator Tool">
     <meta property="og:description"
         content="Free online ARMA REFORGER Mortar Calculator with ballistic data, ring calculations, and target presets. Calculate elevation, azimuth, charge for mortars.">
-    <meta property="og:image" content="https://skszone01.github.io/mortar/image/mortar-tutor.png">
+    <meta property="og:image" content="https://skszone01.github.io/mortar/image/mortar-tutor.jpg">
     <meta property="og:site_name" content="SITT CHANEL Mortar Calculator">
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="th_TH">
@@ -39,13 +39,15 @@
     <meta property="twitter:title" content="ARMA REFORGER Mortar Calculator - Ballistic Calculator Tool">
     <meta property="twitter:description"
         content="Free online ARMA REFORGER Mortar Calculator with ballistic data and ring calculations.">
-    <meta property="twitter:image" content="https://skszone01.github.io/mortar/image/mortar-tutor.png">
+    <meta property="twitter:image" content="https://skszone01.github.io/mortar/image/mortar-tutor.jpg">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://skszone01.github.io/mortar/">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="./image/icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./image/apple-touch-icon.png">
 
     <!-- Structured Data (JSON-LD) for Rich Snippets -->
     <script type="application/ld+json">
@@ -109,7 +111,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="./style.css?v=perf2">
+    <link rel="stylesheet" href="./style.css?v=fix21">
 
     <!-- Progressive Web App Manifest -->
     <link rel="manifest" href="./manifest.json">
@@ -297,7 +299,7 @@
                         <h4 class="guide-toggle" data-lang-key="coordinateGuide">📍 วิธีหาพิกัดเบื้องต้น (click)</h4>
                         <div class="guide-content" id="guide-content">
                             <div class="guide-image">
-                                <img src="./image/mortar-tutor.png" alt="Coordinate Guide" class="guide-img">
+                                <img src="./image/mortar-tutor.jpg" alt="Coordinate Guide" class="guide-img" loading="lazy" decoding="async">
                             </div>
                             <div class="guide-text">
                                 <p data-lang-key="guideScale">🔍 <strong>มาตราส่วน: 1mm = 10</strong></p>
@@ -406,10 +408,8 @@
                             </button>
                         </div>
                         <div class="preset-instructions">
-                            <small data-lang-key="presetInstructions" class="desktop-instructions">Click to load •
+                            <small data-lang-key="presetInstructions" class="preset-instructions-text">Click to load •
                                 Right-click to save</small>
-                            <small class="mobile-instructions" style="display: none;">Tap: Load • Long press:
-                                Save</small>
                         </div>
                     </div>
 
@@ -529,11 +529,6 @@
 
                 <!-- Advanced (trajectory simulation) results -->
                 <div class="advanced-results" id="advanced-results"></div>
-
-                <!-- Additional Info -->
-                <div class="additional-info" id="additional-info">
-                    <!-- Will be populated by JavaScript -->
-                </div>
             </section>
 
             <!-- RING Calculation Section -->
@@ -649,7 +644,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=sim6"></script>
+    <script src="script.js?v=fix21"></script>
 </body>
 
 </html>

@@ -85,6 +85,67 @@ const LANGUAGE_DATA = {
         presetWithOffset: "บันทึกพร้อมค่าออฟเซ็ต:",
         presetLoadedWithOffset: "โหลดพร้อมค่าออฟเซ็ต:",
         offsetLabel: "ชดเชย",
+        // ---- ข้อความที่เคยเขียนตายตัวไว้แค่ไทย/อังกฤษ ย้ายมาไว้ที่นี่ให้ครบทุกภาษา ----
+        toggleOn: "เปิด",
+        toggleOff: "ปิด",
+        aceTemperature: "อุณหภูมิ (°C)",
+        acePressure: "ความกดอากาศ (hPa)",
+        aceHumidity: "ความชื้น (%)",
+        aceWindSpeedLabel: "ความเร็วลม (ม./วิ)",
+        aceWindFromLabel: "ทิศลมพัดมาจาก (°)",
+        windNoTableWarning: "⚠️ กระสุนนี้ยังไม่มีตารางค่าแก้ลม — ระบบจะไม่ชดเชยลมให้",
+        windCorrectionStatus: "🌬️ ชดเชยลม: ระยะเล็ง {0} m | อาซิมุท {1} mils {2}",
+        dirRight: "(ขวา)",
+        dirLeft: "(ซ้าย)",
+        trajTitle: "🛰️ เส้นวิถีกระสุน (จากการจำลอง)",
+        trajAriaLabel: "กราฟวิถีกระสุน",
+        trajMortarLabel: "ปืน",
+        trajTargetLabel: "เป้าหมาย",
+        trajApexLabel: "จุดสูงสุด",
+        advBlockTitle: "🧪 คำนวณขั้นสูง — จำลองวิถีกระสุน",
+        advErrNoPhysics: "⚠️ กระสุนนี้ไม่มีข้อมูลฟิสิกส์ในไฟล์เกม",
+        advErrTooFar: "⚠️ ไกลเกินไป — ระยะไกลสุดที่ความสูงนี้คือ {0} m (RING {1})",
+        advErrNoLift: "⚠️ เป้าหมายสูงเกินไป — ไม่มีประจุไหนยิงกระสุนขึ้นไปถึงระดับความสูงนั้นได้",
+        advErrTooClose: "⚠️ ใกล้เกินไป — ประจุที่ยิงใกล้ได้สุดคือ RING {0} ที่ {1} m (มุมยกชนขีดจำกัด {2}° ของฐานปืน)",
+        advErrFailed: "⚠️ คำนวณไม่สำเร็จ",
+        advAceDensityNote: "ความหนาแน่นอากาศ {0} kg/m³ ({1}% เทียบมาตรฐาน) — ปรับแรงต้านอากาศในการจำลองแล้ว",
+        advAceWindUsed: "ใช้ลมของ ACE {0} m/s จาก {1}°",
+        advAceWindSkipped: "ส่วนลมของ ACE ถูกข้าม (ใช้ลมในเกมแทน)",
+        advChargeLabel: "ประจุ (เลือกให้)",
+        advElevationLabel: "มุมยกปืน (จำลอง)",
+        advAzimuthLabel: "ทิศทาง (จำลอง)",
+        advTimeOfFlightLabel: "เวลาบิน",
+        advImpactAngleLabel: "มุมตกกระทบ",
+        advCompareTitle: "📐 เทียบกับวิธีตาราง",
+        advColTable: "ตาราง",
+        advColSimulated: "จำลอง",
+        advColDiff: "ต่าง",
+        advSame: "เท่ากัน",
+        advDiffers: "ต่างกัน",
+        advRowElevation: "มุมยก",
+        advRowAzimuth: "ทิศทาง",
+        advRowTof: "เวลาบิน",
+        advNoteDifferentRing: "คนละประจุจึงเทียบมุมยกกันตรง ๆ ไม่ได้ — โหมดจำลองเลือก RING {0} เพราะเป็นประจุต่ำสุดที่ยิงถึงจริงเมื่อคิดความสูงและลมด้วย",
+        advNoteLargeGap: "ต่างกันมากเพราะความสูงต่างกันเยอะ — วิธีตารางใช้ค่าแก้ความสูงแบบเชิงเส้นซึ่งใช้ได้ดีเฉพาะเมื่อความสูงต่างกันน้อย ส่วนโหมดจำลองแก้วิถีจริงเหมือนที่เกมทำตอนยิง",
+        advMetaViableRings: "ประจุที่ยิงถึง",
+        advMetaMaxRange: "ระยะไกลสุดของ RING นี้",
+        advMetaWind: "ลม",
+        advMetaWindAxes: "ตาม/ข้าง",
+        ringAdjustedRange: "ระยะปรับแล้ว",
+        ringPickerTitle: "💥 ประจุ (RING)",
+        ringSelectedMessage: "เลือก Ring {0}",
+        numpadNeedTargetCoords: "กรุณากรอกพิกัดเป้าหมาย X และ Y ก่อน",
+        numpadMinDigits: "พิกัดต้องมีตัวเลขอย่างน้อย 3 ตัวขึ้นไป",
+        numpadAppliedMessage: "ปรับพิกัดตาม Numpad {0} เรียบร้อยแล้ว",
+        elevBeyondMountLimits: "⚠️ เกินขีดจำกัดฐานปืน ({0}–{1} mils)",
+        noSolutionCharge: "— ยิงไม่ได้",
+        presetHasData: "มีข้อมูล",
+        presetButtonTooltip: "คลิกซ้าย: โหลด • คลิกขวา: บันทึก",
+        presetIncompleteData: "เป้าหมาย {0}: กรุณากรอกข้อมูลเป้าหมายให้ครบก่อนบันทึก",
+        presetEmptyMessage: "เป้าหมาย {0} ยังไม่มีข้อมูล",
+        invalidInputMessage: "กรุณากรอกทุกช่องเป็นตัวเลขที่ถูกต้อง (Grid: 0-99999 ไม่เกิน 5 หลัก)",
+        noBallisticDataMessage: "ไม่มีข้อมูลการยิงสำหรับการตั้งค่านี้",
+        fillAllFieldsMessage: "กรุณากรอกข้อมูลให้ครบถ้วน",
         usageTerms: "ไม่อนุญาตให้นำไปใช้เพื่อแสวงหาผลกำไรใดๆทั้งสิ้น",
         creditRequest: "หากนำไปใช้งานในส่วนอื่น ใส่เครดิต <strong>Youtube : Sitt Chanel</strong> ให้ด้วย"
     },
@@ -173,6 +234,67 @@ const LANGUAGE_DATA = {
         presetWithOffset: "Saved with offset:",
         presetLoadedWithOffset: "Loaded with offset:",
         offsetLabel: "Offset",
+        // ---- ข้อความที่เคยเขียนตายตัวไว้แค่ไทย/อังกฤษ ย้ายมาไว้ที่นี่ให้ครบทุกภาษา ----
+        toggleOn: "On",
+        toggleOff: "Off",
+        aceTemperature: "Temperature (°C)",
+        acePressure: "Pressure (hPa)",
+        aceHumidity: "Humidity (%)",
+        aceWindSpeedLabel: "Wind Speed (m/s)",
+        aceWindFromLabel: "Wind Dir FROM (°)",
+        windNoTableWarning: "⚠️ No wind correction table for this shell yet — wind will not be compensated",
+        windCorrectionStatus: "🌬️ Wind correction: aim range {0} m | azimuth {1} mils {2}",
+        dirRight: "(right)",
+        dirLeft: "(left)",
+        trajTitle: "🛰️ Simulated Trajectory",
+        trajAriaLabel: "Projectile trajectory chart",
+        trajMortarLabel: "Mortar",
+        trajTargetLabel: "Target",
+        trajApexLabel: "Apex",
+        advBlockTitle: "🧪 Advanced — Trajectory Simulation",
+        advErrNoPhysics: "⚠️ No physics data for this shell in the game files",
+        advErrTooFar: "⚠️ Too far — the longest reach at this height is {0} m (RING {1})",
+        advErrNoLift: "⚠️ Target is too high — no charge can lift the shell to that altitude",
+        advErrTooClose: "⚠️ Too close — the shortest reach is RING {0} at {1} m (elevation capped at the mount's {2}° limit)",
+        advErrFailed: "⚠️ Simulation failed",
+        advAceDensityNote: "Air density {0} kg/m³ ({1}% vs standard) — drag scaled in the simulation",
+        advAceWindUsed: "Using ACE wind {0} m/s from {1}°",
+        advAceWindSkipped: "ACE wind skipped (in-game wind takes priority)",
+        advChargeLabel: "Charge (auto)",
+        advElevationLabel: "Elevation (simulated)",
+        advAzimuthLabel: "Azimuth (simulated)",
+        advTimeOfFlightLabel: "Time of Flight",
+        advImpactAngleLabel: "Impact Angle",
+        advCompareTitle: "📐 vs Table Method",
+        advColTable: "Table",
+        advColSimulated: "Simulated",
+        advColDiff: "Diff",
+        advSame: "same",
+        advDiffers: "differs",
+        advRowElevation: "Elevation",
+        advRowAzimuth: "Azimuth",
+        advRowTof: "ToF",
+        advNoteDifferentRing: "Different charges, so elevations are not directly comparable — the simulation picked RING {0} as the lowest charge that actually reaches once height and wind are accounted for.",
+        advNoteLargeGap: "Large gap due to the height difference — the table method uses a linear height correction that only holds for small offsets, while the simulation solves the real trajectory the way the game does when firing.",
+        advMetaViableRings: "RINGs that reach",
+        advMetaMaxRange: "max range this RING",
+        advMetaWind: "wind",
+        advMetaWindAxes: "along/cross",
+        ringAdjustedRange: "Adjusted range",
+        ringPickerTitle: "💥 Charge (RING)",
+        ringSelectedMessage: "Selected Ring {0}",
+        numpadNeedTargetCoords: "Please enter target X and Y coordinates first",
+        numpadMinDigits: "Coordinates must have at least 3 digits",
+        numpadAppliedMessage: "Applied Numpad {0} reference successfully",
+        elevBeyondMountLimits: "⚠️ beyond mount limits ({0}–{1} mils)",
+        noSolutionCharge: "— no solution",
+        presetHasData: "Saved",
+        presetButtonTooltip: "Left-click: Load • Right-click: Save",
+        presetIncompleteData: "Target {0}: please fill in all target fields before saving",
+        presetEmptyMessage: "Target {0} is empty",
+        invalidInputMessage: "Please fill in all fields with valid numbers (Grid: 0-99999, max 5 digits)",
+        noBallisticDataMessage: "No firing data for this configuration",
+        fillAllFieldsMessage: "Please fill in all fields",
         usageTerms: "Not allowed to be used for any commercial purposes.",
         creditRequest: "If used in other projects, please credit <strong>Youtube : Sitt Chanel</strong>"
     },
@@ -261,6 +383,67 @@ const LANGUAGE_DATA = {
         presetWithOffset: "オフセット付きで保存:",
         presetLoadedWithOffset: "オフセット付きで読込:",
         offsetLabel: "補正",
+        // ---- ข้อความที่เคยเขียนตายตัวไว้แค่ไทย/อังกฤษ ย้ายมาไว้ที่นี่ให้ครบทุกภาษา ----
+        toggleOn: "オン",
+        toggleOff: "オフ",
+        aceTemperature: "気温 (°C)",
+        acePressure: "気圧 (hPa)",
+        aceHumidity: "湿度 (%)",
+        aceWindSpeedLabel: "風速 (m/s)",
+        aceWindFromLabel: "風向 (吹いてくる方向 °)",
+        windNoTableWarning: "⚠️ この砲弾の風補正表はまだありません — 風は補正されません",
+        windCorrectionStatus: "🌬️ 風補正: 照準距離 {0} m | 方位 {1} mils {2}",
+        dirRight: "(右)",
+        dirLeft: "(左)",
+        trajTitle: "🛰️ 弾道シミュレーション",
+        trajAriaLabel: "弾道グラフ",
+        trajMortarLabel: "迫撃砲",
+        trajTargetLabel: "目標",
+        trajApexLabel: "頂点",
+        advBlockTitle: "🧪 高度計算 — 弾道シミュレーション",
+        advErrNoPhysics: "⚠️ この砲弾の物理データがゲームファイルにありません",
+        advErrTooFar: "⚠️ 遠すぎます — この高度での最大射程は {0} m (RING {1})",
+        advErrNoLift: "⚠️ 目標が高すぎます — どの装薬でもその高度まで届きません",
+        advErrTooClose: "⚠️ 近すぎます — 最短射程は RING {0} の {1} m (仰角が砲架の上限 {2}° に達しています)",
+        advErrFailed: "⚠️ 計算に失敗しました",
+        advAceDensityNote: "空気密度 {0} kg/m³ (標準比 {1}%) — シミュレーションの空気抵抗に反映済み",
+        advAceWindUsed: "ACE の風 {0} m/s ({1}° から) を使用",
+        advAceWindSkipped: "ACE の風はスキップ (ゲーム内の風を優先)",
+        advChargeLabel: "装薬 (自動)",
+        advElevationLabel: "仰角 (シミュレーション)",
+        advAzimuthLabel: "方位 (シミュレーション)",
+        advTimeOfFlightLabel: "飛翔時間",
+        advImpactAngleLabel: "落角",
+        advCompareTitle: "📐 表方式との比較",
+        advColTable: "表",
+        advColSimulated: "模擬",
+        advColDiff: "差",
+        advSame: "同じ",
+        advDiffers: "異なる",
+        advRowElevation: "仰角",
+        advRowAzimuth: "方位",
+        advRowTof: "飛翔時間",
+        advNoteDifferentRing: "装薬が異なるため仰角を直接比較できません — 高度と風を考慮したうえで実際に届く最小の装薬として RING {0} が選ばれました。",
+        advNoteLargeGap: "高度差が大きいため差が開いています — 表方式は高度補正を線形近似しており小さな差でしか通用しませんが、シミュレーションはゲームが発射時に行うのと同じく実際の弾道を解いています。",
+        advMetaViableRings: "到達可能な RING",
+        advMetaMaxRange: "この RING の最大射程",
+        advMetaWind: "風",
+        advMetaWindAxes: "追い風/横風",
+        ringAdjustedRange: "補正後の距離",
+        ringPickerTitle: "💥 装薬 (RING)",
+        ringSelectedMessage: "Ring {0} を選択",
+        numpadNeedTargetCoords: "先に目標の X と Y 座標を入力してください",
+        numpadMinDigits: "座標は3桁以上必要です",
+        numpadAppliedMessage: "Numpad {0} の補正を適用しました",
+        elevBeyondMountLimits: "⚠️ 砲架の可動範囲外 ({0}–{1} mils)",
+        noSolutionCharge: "— 射撃不可",
+        presetHasData: "保存済み",
+        presetButtonTooltip: "左クリック: 読込 • 右クリック: 保存",
+        presetIncompleteData: "目標 {0}: 保存する前に目標データをすべて入力してください",
+        presetEmptyMessage: "目標 {0} は空です",
+        invalidInputMessage: "すべての項目に有効な数値を入力してください (Grid: 0-99999、最大5桁)",
+        noBallisticDataMessage: "この設定の射撃データがありません",
+        fillAllFieldsMessage: "すべての項目を入力してください",
         usageTerms: "いかなる営利目的での使用も禁止されています。",
         creditRequest: "他のプロジェクトで使用する場合は、<strong>YouTube：Sitt Chanel</strong> をクレジットしてください。"
     },
@@ -349,6 +532,67 @@ const LANGUAGE_DATA = {
         presetWithOffset: "保存时包含偏移:",
         presetLoadedWithOffset: "加载时包含偏移:",
         offsetLabel: "补偿",
+        // ---- ข้อความที่เคยเขียนตายตัวไว้แค่ไทย/อังกฤษ ย้ายมาไว้ที่นี่ให้ครบทุกภาษา ----
+        toggleOn: "开启",
+        toggleOff: "关闭",
+        aceTemperature: "温度 (°C)",
+        acePressure: "气压 (hPa)",
+        aceHumidity: "湿度 (%)",
+        aceWindSpeedLabel: "风速 (m/s)",
+        aceWindFromLabel: "风向 (来向 °)",
+        windNoTableWarning: "⚠️ 此弹种尚无风偏修正表 — 将不进行风力补偿",
+        windCorrectionStatus: "🌬️ 风偏修正: 瞄准距离 {0} m | 方位 {1} mils {2}",
+        dirRight: "(右)",
+        dirLeft: "(左)",
+        trajTitle: "🛰️ 弹道模拟曲线",
+        trajAriaLabel: "弹道图表",
+        trajMortarLabel: "迫击炮",
+        trajTargetLabel: "目标",
+        trajApexLabel: "最高点",
+        advBlockTitle: "🧪 高级计算 — 弹道模拟",
+        advErrNoPhysics: "⚠️ 游戏文件中没有此弹种的物理数据",
+        advErrTooFar: "⚠️ 距离过远 — 此高度下最大射程为 {0} m (RING {1})",
+        advErrNoLift: "⚠️ 目标过高 — 任何装药都无法将弹丸送至该高度",
+        advErrTooClose: "⚠️ 距离过近 — 最短射程为 RING {0} 的 {1} m (仰角已达炮架上限 {2}°)",
+        advErrFailed: "⚠️ 计算失败",
+        advAceDensityNote: "空气密度 {0} kg/m³ (相对标准 {1}%) — 已按此缩放模拟中的空气阻力",
+        advAceWindUsed: "使用 ACE 风: {0} m/s，来向 {1}°",
+        advAceWindSkipped: "已跳过 ACE 风 (以游戏内风为准)",
+        advChargeLabel: "装药 (自动)",
+        advElevationLabel: "仰角 (模拟)",
+        advAzimuthLabel: "方位 (模拟)",
+        advTimeOfFlightLabel: "飞行时间",
+        advImpactAngleLabel: "落角",
+        advCompareTitle: "📐 与查表法对比",
+        advColTable: "查表",
+        advColSimulated: "模拟",
+        advColDiff: "差值",
+        advSame: "相同",
+        advDiffers: "不同",
+        advRowElevation: "仰角",
+        advRowAzimuth: "方位",
+        advRowTof: "飞行时间",
+        advNoteDifferentRing: "装药不同，仰角无法直接比较 — 在计入高差与风力后，模拟选择了实际能够到达的最小装药 RING {0}。",
+        advNoteLargeGap: "高差较大导致差异明显 — 查表法采用线性高度修正，仅在高差较小时成立；而模拟像游戏开火时那样求解真实弹道。",
+        advMetaViableRings: "可达的 RING",
+        advMetaMaxRange: "此 RING 最大射程",
+        advMetaWind: "风",
+        advMetaWindAxes: "顺风/侧风",
+        ringAdjustedRange: "修正后距离",
+        ringPickerTitle: "💥 装药 (RING)",
+        ringSelectedMessage: "已选择 Ring {0}",
+        numpadNeedTargetCoords: "请先输入目标的 X 和 Y 坐标",
+        numpadMinDigits: "坐标至少需要 3 位数字",
+        numpadAppliedMessage: "已应用 Numpad {0} 参考偏移",
+        elevBeyondMountLimits: "⚠️ 超出炮架可调范围 ({0}–{1} mils)",
+        noSolutionCharge: "— 无解",
+        presetHasData: "已保存",
+        presetButtonTooltip: "左键: 加载 • 右键: 保存",
+        presetIncompleteData: "目标 {0}: 保存前请填写完整的目标数据",
+        presetEmptyMessage: "目标 {0} 无数据",
+        invalidInputMessage: "请在所有字段填入有效数字 (Grid: 0-99999，最多 5 位)",
+        noBallisticDataMessage: "此配置没有射击数据",
+        fillAllFieldsMessage: "请填写所有字段",
         usageTerms: "不允许用于任何商业用途。",
         creditRequest: "如果在其他项目中使用，请注明 <strong>Youtube : Sitt Chanel</strong>"
     },
@@ -437,6 +681,67 @@ const LANGUAGE_DATA = {
         presetWithOffset: "Disimpan dengan offset:",
         presetLoadedWithOffset: "Dimuat dengan offset:",
         offsetLabel: "Koreksi",
+        // ---- ข้อความที่เคยเขียนตายตัวไว้แค่ไทย/อังกฤษ ย้ายมาไว้ที่นี่ให้ครบทุกภาษา ----
+        toggleOn: "Aktif",
+        toggleOff: "Nonaktif",
+        aceTemperature: "Suhu (°C)",
+        acePressure: "Tekanan (hPa)",
+        aceHumidity: "Kelembapan (%)",
+        aceWindSpeedLabel: "Kecepatan Angin (m/s)",
+        aceWindFromLabel: "Arah Angin DARI (°)",
+        windNoTableWarning: "⚠️ Belum ada tabel koreksi angin untuk peluru ini — angin tidak dikompensasi",
+        windCorrectionStatus: "🌬️ Koreksi angin: jarak bidik {0} m | azimut {1} mils {2}",
+        dirRight: "(kanan)",
+        dirLeft: "(kiri)",
+        trajTitle: "🛰️ Lintasan Hasil Simulasi",
+        trajAriaLabel: "Grafik lintasan proyektil",
+        trajMortarLabel: "Mortir",
+        trajTargetLabel: "Target",
+        trajApexLabel: "Puncak",
+        advBlockTitle: "🧪 Lanjutan — Simulasi Lintasan",
+        advErrNoPhysics: "⚠️ Tidak ada data fisika untuk peluru ini di berkas game",
+        advErrTooFar: "⚠️ Terlalu jauh — jangkauan terjauh pada ketinggian ini {0} m (RING {1})",
+        advErrNoLift: "⚠️ Target terlalu tinggi — tidak ada muatan yang mampu mencapai ketinggian itu",
+        advErrTooClose: "⚠️ Terlalu dekat — jangkauan terpendek RING {0} pada {1} m (elevasi mentok batas dudukan {2}°)",
+        advErrFailed: "⚠️ Simulasi gagal",
+        advAceDensityNote: "Kerapatan udara {0} kg/m³ ({1}% vs standar) — hambatan udara disesuaikan dalam simulasi",
+        advAceWindUsed: "Memakai angin ACE {0} m/s dari {1}°",
+        advAceWindSkipped: "Angin ACE dilewati (angin dalam game diprioritaskan)",
+        advChargeLabel: "Muatan (otomatis)",
+        advElevationLabel: "Elevasi (simulasi)",
+        advAzimuthLabel: "Azimut (simulasi)",
+        advTimeOfFlightLabel: "Waktu Terbang",
+        advImpactAngleLabel: "Sudut Jatuh",
+        advCompareTitle: "📐 vs Metode Tabel",
+        advColTable: "Tabel",
+        advColSimulated: "Simulasi",
+        advColDiff: "Selisih",
+        advSame: "sama",
+        advDiffers: "berbeda",
+        advRowElevation: "Elevasi",
+        advRowAzimuth: "Azimut",
+        advRowTof: "Waktu",
+        advNoteDifferentRing: "Muatan berbeda sehingga elevasi tidak bisa dibandingkan langsung — simulasi memilih RING {0} sebagai muatan terendah yang benar-benar mencapai target setelah tinggi dan angin diperhitungkan.",
+        advNoteLargeGap: "Selisih besar karena beda ketinggian — metode tabel memakai koreksi tinggi linear yang hanya berlaku untuk selisih kecil, sedangkan simulasi menghitung lintasan nyata seperti yang dilakukan game saat menembak.",
+        advMetaViableRings: "RING yang mencapai",
+        advMetaMaxRange: "jangkauan maks RING ini",
+        advMetaWind: "angin",
+        advMetaWindAxes: "searah/silang",
+        ringAdjustedRange: "Jarak terkoreksi",
+        ringPickerTitle: "💥 Muatan (RING)",
+        ringSelectedMessage: "Ring {0} dipilih",
+        numpadNeedTargetCoords: "Masukkan koordinat X dan Y target terlebih dahulu",
+        numpadMinDigits: "Koordinat harus minimal 3 digit",
+        numpadAppliedMessage: "Referensi Numpad {0} berhasil diterapkan",
+        elevBeyondMountLimits: "⚠️ di luar batas dudukan ({0}–{1} mils)",
+        noSolutionCharge: "— tidak ada solusi",
+        presetHasData: "Tersimpan",
+        presetButtonTooltip: "Klik kiri: Muat • Klik kanan: Simpan",
+        presetIncompleteData: "Target {0}: lengkapi data target sebelum menyimpan",
+        presetEmptyMessage: "Target {0} masih kosong",
+        invalidInputMessage: "Isi semua kolom dengan angka yang valid (Grid: 0-99999, maks 5 digit)",
+        noBallisticDataMessage: "Tidak ada data tembakan untuk konfigurasi ini",
+        fillAllFieldsMessage: "Harap isi semua kolom",
         usageTerms: "Tidak diizinkan untuk digunakan untuk tujuan komersial apa pun.",
         creditRequest: "Jika digunakan dalam proyek lain, harap sertakan kredit <strong>Youtube : Sitt Chanel</strong>"
     },
@@ -525,6 +830,67 @@ const LANGUAGE_DATA = {
         presetWithOffset: "Сохранено с правкой:",
         presetLoadedWithOffset: "Загружено с правкой:",
         offsetLabel: "Правка",
+        // ---- ข้อความที่เคยเขียนตายตัวไว้แค่ไทย/อังกฤษ ย้ายมาไว้ที่นี่ให้ครบทุกภาษา ----
+        toggleOn: "Вкл",
+        toggleOff: "Выкл",
+        aceTemperature: "Температура (°C)",
+        acePressure: "Давление (гПа)",
+        aceHumidity: "Влажность (%)",
+        aceWindSpeedLabel: "Скорость ветра (м/с)",
+        aceWindFromLabel: "Ветер ОТКУДА (°)",
+        windNoTableWarning: "⚠️ Для этого снаряда пока нет таблицы поправок на ветер — ветер не компенсируется",
+        windCorrectionStatus: "🌬️ Поправка на ветер: дальность {0} м | азимут {1} мил {2}",
+        dirRight: "(вправо)",
+        dirLeft: "(влево)",
+        trajTitle: "🛰️ Смоделированная траектория",
+        trajAriaLabel: "График траектории снаряда",
+        trajMortarLabel: "Миномёт",
+        trajTargetLabel: "Цель",
+        trajApexLabel: "Вершина",
+        advBlockTitle: "🧪 Расширенный расчёт — моделирование траектории",
+        advErrNoPhysics: "⚠️ В файлах игры нет физических данных для этого снаряда",
+        advErrTooFar: "⚠️ Слишком далеко — максимальная дальность на этой высоте {0} м (RING {1})",
+        advErrNoLift: "⚠️ Цель слишком высоко — ни один заряд не поднимет снаряд на эту высоту",
+        advErrTooClose: "⚠️ Слишком близко — минимальная дальность RING {0} — {1} м (угол упёрся в предел станка {2}°)",
+        advErrFailed: "⚠️ Не удалось выполнить расчёт",
+        advAceDensityNote: "Плотность воздуха {0} кг/м³ ({1}% от стандартной) — сопротивление в модели пересчитано",
+        advAceWindUsed: "Используется ветер ACE {0} м/с с {1}°",
+        advAceWindSkipped: "Ветер ACE пропущен (приоритет у ветра в игре)",
+        advChargeLabel: "Заряд (авто)",
+        advElevationLabel: "Угол возвышения (модель)",
+        advAzimuthLabel: "Азимут (модель)",
+        advTimeOfFlightLabel: "Время полёта",
+        advImpactAngleLabel: "Угол падения",
+        advCompareTitle: "📐 Сравнение с табличным методом",
+        advColTable: "Таблица",
+        advColSimulated: "Модель",
+        advColDiff: "Разн.",
+        advSame: "совпадает",
+        advDiffers: "отличается",
+        advRowElevation: "Возвышение",
+        advRowAzimuth: "Азимут",
+        advRowTof: "Время",
+        advNoteDifferentRing: "Заряды разные, поэтому углы напрямую не сравнить — модель выбрала RING {0} как наименьший заряд, который реально достаёт с учётом высоты и ветра.",
+        advNoteLargeGap: "Большая разница из-за перепада высот — табличный метод использует линейную поправку по высоте, верную лишь при малых перепадах, тогда как модель решает реальную траекторию так же, как игра при выстреле.",
+        advMetaViableRings: "Заряды, которые достают",
+        advMetaMaxRange: "макс. дальность этого RING",
+        advMetaWind: "ветер",
+        advMetaWindAxes: "вдоль/поперёк",
+        ringAdjustedRange: "Скорр. дальность",
+        ringPickerTitle: "💥 Заряд (RING)",
+        ringSelectedMessage: "Выбран Ring {0}",
+        numpadNeedTargetCoords: "Сначала введите координаты цели X и Y",
+        numpadMinDigits: "В координатах должно быть не менее 3 цифр",
+        numpadAppliedMessage: "Смещение Numpad {0} применено",
+        elevBeyondMountLimits: "⚠️ вне пределов станка ({0}–{1} мил)",
+        noSolutionCharge: "— решения нет",
+        presetHasData: "Есть данные",
+        presetButtonTooltip: "ЛКМ: загрузить • ПКМ: сохранить",
+        presetIncompleteData: "Цель {0}: заполните все поля цели перед сохранением",
+        presetEmptyMessage: "Цель {0} пуста",
+        invalidInputMessage: "Заполните все поля корректными числами (Grid: 0-99999, не более 5 цифр)",
+        noBallisticDataMessage: "Нет данных стрельбы для этой конфигурации",
+        fillAllFieldsMessage: "Пожалуйста, заполните все поля",
         usageTerms: "Не допускается использование в каких-либо коммерческих целях.",
         creditRequest: "При использовании в других проектах, пожалуйста, укажите автора: <strong>Youtube : Sitt Chanel</strong>"
     },
@@ -613,11 +979,90 @@ const LANGUAGE_DATA = {
         presetWithOffset: "Збережено з правкою:",
         presetLoadedWithOffset: "Завантажено з правкою:",
         offsetLabel: "Правка",
+        // ---- ข้อความที่เคยเขียนตายตัวไว้แค่ไทย/อังกฤษ ย้ายมาไว้ที่นี่ให้ครบทุกภาษา ----
+        toggleOn: "Увімк",
+        toggleOff: "Вимк",
+        aceTemperature: "Температура (°C)",
+        acePressure: "Тиск (гПа)",
+        aceHumidity: "Вологість (%)",
+        aceWindSpeedLabel: "Швидкість вітру (м/с)",
+        aceWindFromLabel: "Вітер ЗВІДКИ (°)",
+        windNoTableWarning: "⚠️ Для цього снаряда ще немає таблиці поправок на вітер — вітер не компенсується",
+        windCorrectionStatus: "🌬️ Поправка на вітер: дальність {0} м | азимут {1} мил {2}",
+        dirRight: "(вправо)",
+        dirLeft: "(вліво)",
+        trajTitle: "🛰️ Змодельована траєкторія",
+        trajAriaLabel: "Графік траєкторії снаряда",
+        trajMortarLabel: "Міномет",
+        trajTargetLabel: "Ціль",
+        trajApexLabel: "Вершина",
+        advBlockTitle: "🧪 Розширений розрахунок — моделювання траєкторії",
+        advErrNoPhysics: "⚠️ У файлах гри немає фізичних даних для цього снаряда",
+        advErrTooFar: "⚠️ Задалеко — максимальна дальність на цій висоті {0} м (RING {1})",
+        advErrNoLift: "⚠️ Ціль занадто високо — жоден заряд не підніме снаряд на цю висоту",
+        advErrTooClose: "⚠️ Занадто близько — мінімальна дальність RING {0} — {1} м (кут уперся в межу станка {2}°)",
+        advErrFailed: "⚠️ Не вдалося виконати розрахунок",
+        advAceDensityNote: "Щільність повітря {0} кг/м³ ({1}% від стандартної) — опір у моделі перераховано",
+        advAceWindUsed: "Використовується вітер ACE {0} м/с з {1}°",
+        advAceWindSkipped: "Вітер ACE пропущено (пріоритет у вітру в грі)",
+        advChargeLabel: "Заряд (авто)",
+        advElevationLabel: "Кут підвищення (модель)",
+        advAzimuthLabel: "Азимут (модель)",
+        advTimeOfFlightLabel: "Час польоту",
+        advImpactAngleLabel: "Кут падіння",
+        advCompareTitle: "📐 Порівняння з табличним методом",
+        advColTable: "Таблиця",
+        advColSimulated: "Модель",
+        advColDiff: "Різн.",
+        advSame: "збігається",
+        advDiffers: "відрізняється",
+        advRowElevation: "Підвищення",
+        advRowAzimuth: "Азимут",
+        advRowTof: "Час",
+        advNoteDifferentRing: "Заряди різні, тож кути напряму не порівняти — модель обрала RING {0} як найменший заряд, який реально дістає з урахуванням висоти та вітру.",
+        advNoteLargeGap: "Велика різниця через перепад висот — табличний метод використовує лінійну поправку за висотою, чинну лише за малих перепадів, тоді як модель розв'язує реальну траєкторію так само, як гра під час пострілу.",
+        advMetaViableRings: "Заряди, що дістають",
+        advMetaMaxRange: "макс. дальність цього RING",
+        advMetaWind: "вітер",
+        advMetaWindAxes: "вздовж/поперек",
+        ringAdjustedRange: "Скор. дальність",
+        ringPickerTitle: "💥 Заряд (RING)",
+        ringSelectedMessage: "Обрано Ring {0}",
+        numpadNeedTargetCoords: "Спочатку введіть координати цілі X та Y",
+        numpadMinDigits: "У координатах має бути щонайменше 3 цифри",
+        numpadAppliedMessage: "Зміщення Numpad {0} застосовано",
+        elevBeyondMountLimits: "⚠️ поза межами станка ({0}–{1} мил)",
+        noSolutionCharge: "— розв'язку немає",
+        presetHasData: "Є дані",
+        presetButtonTooltip: "ЛКМ: завантажити • ПКМ: зберегти",
+        presetIncompleteData: "Ціль {0}: заповніть усі поля цілі перед збереженням",
+        presetEmptyMessage: "Ціль {0} порожня",
+        invalidInputMessage: "Заповніть усі поля коректними числами (Grid: 0-99999, не більше 5 цифр)",
+        noBallisticDataMessage: "Немає даних стрільби для цієї конфігурації",
+        fillAllFieldsMessage: "Будь ласка, заповніть усі поля",
         usageTerms: "Не допускається використання в будь-яких комерційних цілях.",
         creditRequest: "При використанні в інших проєктах, будь ласка, вкажіть автора: <strong>Youtube : Sitt Chanel</strong>"
     },
 
 };
+
+// แปลข้อความตามภาษาปัจจุบัน พร้อมแทนที่ตัวยึด {0}, {1}, ...
+// ถ้าภาษานั้นยังไม่มี key ให้ถอยไปใช้อังกฤษ แล้วค่อยเป็นตัว key เอง (จะได้เห็นชัดว่าตกหล่น)
+function T(key, ...args) {
+    const pack = LANGUAGE_DATA[currentLanguage] || LANGUAGE_DATA.en;
+    let out = pack[key];
+    if (out === undefined) out = LANGUAGE_DATA.en[key];
+    if (out === undefined) return key;
+    return args.length
+        ? out.replace(/\{(\d+)\}/g, (m, i) => (args[i] !== undefined ? args[i] : m))
+        : out;
+}
+
+// รหัสภาษาสำหรับ toLocaleTimeString / toLocaleDateString
+const LOCALE_TAGS = {"th": "th-TH", "en": "en-US", "ja": "ja-JP", "zh": "zh-CN", "id": "id-ID", "ru": "ru-RU", "uk": "uk-UA"};
+function localeTag() {
+    return LOCALE_TAGS[currentLanguage] || 'en-US';
+}
 
 let currentLanguage = 'en'; // Default to English
 
@@ -656,10 +1101,8 @@ function updateLanguageDisplay() {
         for (let i = 1; i <= 9; i++) {
             window.mortarCalculator.updatePresetButtonStatus(i);
         }
-        // Refresh RING results if visible
-        if (window.mortarCalculator.ringSection && window.mortarCalculator.ringSection.classList.contains('show')) {
-            window.mortarCalculator.calculateAvailableRings();
-        }
+        // ไม่ต้องเรียก calculateAvailableRings() ตรงนี้ — calculate() ด้านล่างเรียกให้อยู่แล้ว
+        // (ของเดิมทำให้งานเดิมรัน 3 รอบต่อการสลับภาษา 1 ครั้ง และเด้ง error ถ้าพิกัดยังกรอกไม่ครบ)
         // Refresh ACE Weather UI language if available
         if (window.mortarCalculator.updateAceWeatherUILanguage) {
             window.mortarCalculator.updateAceWeatherUILanguage();
@@ -2157,12 +2600,13 @@ const SHELL_LABELS = {
 };
 
 // ขีดจำกัดมุมยกของฐานปืนแต่ละแบบ (จากไฟล์เกม/mod: LimitsVert)
-// มอร์ต้าร์ยิงโค้งสูงอย่างเดียว 45–85° ส่วน M777 เป็นปืนใหญ่ยกได้ 0–71.7°
-// เว็บนี้คำนวณเฉพาะวิถีโค้งสูง จึงใช้ช่วง 45° ถึงมุมสูงสุดของปืนนั้น
+// ขีดจำกัดมุมยกตามไฟล์เกม: Mortar_Base.et = `LimitsVert 45 85`, M777_Howitzer.et = `LimitsVert 0 71.7`
+// เว็บคำนวณเฉพาะคำตอบวิถีโค้งสูง (กิ่งขาลงหลังจุดยิงไกลสุด) แต่ขอบล่างต้องตรงตามปืนจริง
+// เพราะ M777 ยิงไกลสุดที่ราว 38° ไม่ใช่ 45° — ถ้าตัดที่ 45 จะเสียระยะไปถึง ~385 m
 const ELEV_LIMITS = {
     original: { min: 45, max: 85 },
     mod: { min: 45, max: 85 },
-    m777: { min: 45, max: 71.7 }
+    m777: { min: 0, max: 71.7 }
 };
 
 const SHELL_PHYSICS = {
@@ -2175,13 +2619,20 @@ const SHELL_PHYSICS = {
         'C-832C': { k: 0.000523077, rings: { 1: 88.66, 2: 141.13, 3: 191.95, 4: 273.18 } }
     },
     // MOD Adult Mortars ใช้กระสุนตัวเดียวกับเกม (ค่า drag เท่ากัน) เปลี่ยนแค่แรงส่งของแต่ละ ring
+    //
+    // ค่าเหล่านี้ = InitSpeed ของกระสุน x ตัวคูณประจุใน m_aChargeRingConfig ของไฟล์ Ammo_Shell_*.et ของ mod
+    // ซึ่งเป็นค่าที่เอนจิ้นเกมใช้ยิงจริง (เช่น C-832C ring 4 = 127 x 5.181 = 657.987)
+    //
+    // ของเดิมปรับเทียบกับ "ตารางที่ mod แจกมา" แทน ซึ่งตัวตารางเองสั้นกว่าฟิสิกส์จริง 0.18-0.39%
+    // จึงได้ความเร็วต่ำกว่าที่ควร 0.10-1.59% (หนักสุดคือกระสุนส่องสว่าง C-832C/M853A1 ring 4)
+    // = คลาดราว 26 m ที่ระยะไกลสุด ตอนนี้ใช้ค่าจากไฟล์กระสุนตรง ๆ แล้ว
     mod: {
-        M821: { k: 0.000113793, rings: { 0: 65.89, 1: 149.47, 2: 211.38, 3: 267.81, 4: 327.49 } },
-        M819: { k: 0.000188433, rings: { 1: 136.81, 2: 209.80, 3: 275.91, 4: 344.51 } },
-        M853A1: { k: 0.000372000, rings: { 1: 151.65, 2: 292.13, 3: 476.72, 4: 692.67 } },
-        '0-832Ay': { k: 0.000198387, rings: { 0: 75.87, 1: 136.23, 2: 185.35, 3: 230.80, 4: 282.99 } },
-        'A-832AY': { k: 0.000188218, rings: { 0: 70.88, 1: 128.05, 2: 172.12, 3: 211.33 } },  // mod นับ ring 0-3 ตามไฟล์ Ammo_Shell_82mm_Smoke_D832DU.et
-        'C-832C': { k: 0.000523077, rings: { 1: 126.67, 2: 228.71, 3: 360.35, 4: 647.66 } }
+        M821: { k: 0.000113793, rings: { 0: 66.000, 1: 149.622, 2: 211.596, 3: 268.158, 4: 327.954 } },
+        M819: { k: 0.000188433, rings: { 1: 137.000, 2: 210.158, 3: 276.466, 4: 345.377 } },
+        M853A1: { k: 0.000372000, rings: { 1: 152.000, 2: 293.360, 3: 480.320, 4: 700.872 } },
+        '0-832Ay': { k: 0.000198387, rings: { 0: 76.000, 1: 136.420, 2: 185.668, 3: 231.192, 4: 283.556 } },
+        'A-832AY': { k: 0.000188218, rings: { 0: 71.000, 1: 128.226, 2: 172.033, 3: 211.225 } },  // mod นับ ring 0-3 ตามไฟล์ Ammo_Shell_82mm_Smoke_D832DU.et (ตัวคูณ 1.806/2.423/2.975)
+        'C-832C': { k: 0.000523077, rings: { 1: 127.000, 2: 229.743, 3: 363.220, 4: 657.987 } }
     },
     // MOD M777 Howitzer 155mm — กระสุน M107 HE (M107_Shell_155MM_HE.et)
     // InitSpeed 100, Mass 43, AirDrag 0.0022 -> k = 5.11628e-5
@@ -2271,8 +2722,9 @@ const BALLISTIC_SIM = {
     // ทั้งที่มุมสูงกว่านั้นยิงถึงได้ จึงต้องกวาดหาจุดยอดจริงก่อน แล้วค่อยแบ่งครึ่งช่วงบนกิ่งขาลง
     solve(v0, k, range, heightDiff, wind, limits) {
         // ขีดจำกัดมุมยกต่างกันตามฐานปืน (มอร์ต้าร์ 45-85, M777 45-71.7)
-        const MIN = (limits && limits.min) || this.MIN_ELEV_DEG;
-        const MAX = (limits && limits.max) || this.MAX_ELEV_DEG;
+        // ใช้ Number.isFinite ไม่ใช่ `||` เพราะ min = 0 ของ M777 เป็นค่าที่ถูกต้อง แต่ `||` มองว่าเป็นเท็จ
+        const MIN = (limits && Number.isFinite(limits.min)) ? limits.min : this.MIN_ELEV_DEG;
+        const MAX = (limits && Number.isFinite(limits.max)) ? limits.max : this.MAX_ELEV_DEG;
         const SCAN_DT = 0.02;                       // ก้าวหยาบสำหรับค้นหา (RK4 แม่นพอ)
         const at = (deg, dt) => {
             const r = this.shoot(v0, k, deg, heightDiff, wind, dt || SCAN_DT);
@@ -2282,7 +2734,7 @@ const BALLISTIC_SIM = {
         let peakDeg = MIN;
         let peakRange = at(MIN);
 
-        if (heightDiff > 0) {
+        {
             // กวาดหยาบทีละ 3° แล้วขยับละเอียดรอบจุดยอด
             for (let d = MIN + 3; d <= MAX; d += 3) {
                 const r = at(d);
@@ -2290,8 +2742,8 @@ const BALLISTIC_SIM = {
             }
             // ลูปข้างบนก้าวทีละ 3° จึงไม่ตกที่ 85° พอดี ต้องลองมุมสูงสุดแยก
             // (เมื่อเป้าสูงมาก ช่วงมุมที่ยิงถึงอาจแคบและอยู่ชิด 85° เท่านั้น)
-            const rTop = at(MAX);
-            if (rTop > peakRange) { peakRange = rTop; peakDeg = MAX; }
+            const rTopScan = at(MAX);
+            if (rTopScan > peakRange) { peakRange = rTopScan; peakDeg = MAX; }
 
             for (let step = 1.5; step >= 0.05; step /= 2) {
                 for (const d of [peakDeg - step, peakDeg + step]) {
@@ -2433,7 +2885,12 @@ class MortarCalculator {
 
     bindEvents() {
         // Calculate button
-        this.calculateBtn.addEventListener('click', () => this.calculate());
+        this.calculateBtn.addEventListener('click', () => {
+            clearTimeout(this._calcTimer);
+            const ok = this.validateInputs();
+            if (this._coordinateIncomplete) this.showCoordinateError();
+            if (ok) this.calculate();
+        });
 
         // RING calculate button
         this.calculateRingsBtn.addEventListener('click', () => this.calculateAvailableRings());
@@ -2455,7 +2912,7 @@ class MortarCalculator {
                     this.updateNumpadHighlight();
                 }
                 if (this.validateInputs()) {
-                    this.calculate();
+                    this.scheduleCalculate();
                 }
             });
         });
@@ -2538,6 +2995,9 @@ class MortarCalculator {
                     if (!isLongPress && (Date.now() - touchStartTime < 500)) {
                         this.loadTargetPreset(presetNumber);
                     }
+                    // บอก handler ของ click ว่าการแตะจัดการไปแล้ว จะได้ไม่โหลดซ้ำ
+                    // (เบราว์เซอร์ยิง click ตามหลัง touchend เสมอ)
+                    this._touchHandledPreset = true;
                 });
 
                 // Touch cancel (mobile)
@@ -2554,19 +3014,17 @@ class MortarCalculator {
                 // Desktop support (existing functionality)
                 // Left click: Load preset
                 btn.addEventListener('click', (e) => {
-                    // Only handle if not on touch device or if touch events didn't handle it
-                    if (!('ontouchstart' in window)) {
-                        e.preventDefault();
-                        this.loadTargetPreset(presetNumber);
-                    }
+                    // ข้ามเฉพาะกรณีที่การแตะจัดการไปแล้วจริง ๆ ไม่ใช่กันทั้งเครื่องที่รองรับ touch
+                    // (โน้ตบุ๊กจอสัมผัสรองรับ touch แต่ผู้ใช้กดด้วยเมาส์ ซึ่งไม่ยิง touchstart)
+                    if (this._touchHandledPreset) { this._touchHandledPreset = false; return; }
+                    e.preventDefault();
+                    this.loadTargetPreset(presetNumber);
                 });
 
                 // Right click: Save preset (desktop only)
                 btn.addEventListener('contextmenu', (e) => {
-                    if (!('ontouchstart' in window)) {
-                        e.preventDefault();
-                        this.saveTargetPreset(presetNumber);
-                    }
+                    e.preventDefault();
+                    this.saveTargetPreset(presetNumber);
                 });
             }
         });
@@ -2763,7 +3221,7 @@ class MortarCalculator {
             localStorage.setItem('aceTempC', String(this.weather.temperatureC));
             localStorage.setItem('acePressure', String(this.weather.pressureHpa));
             localStorage.setItem('aceHumidity', String(this.weather.humidity));
-            if (this.enableAceWeather && this.validateInputs()) this.calculate();
+            if (this.enableAceWeather && this.validateInputs()) this.scheduleCalculate();
         };
 
         [g1.input, g2.input, g3.input, g4.input, g5.input].forEach(inp => {
@@ -2837,16 +3295,16 @@ class MortarCalculator {
     }
 
     // Small i18n helpers
-    _tAceWeather() { return currentLanguage === 'th' ? '🌦️ ACE Weather' : '🌦️ ACE Weather'; }
-    _tOn() { return currentLanguage === 'th' ? 'เปิด' : 'On'; }
-    _tOff() { return currentLanguage === 'th' ? 'ปิด' : 'Off'; }
+    _tAceWeather() { return '🌦️ ACE Weather'; }
+    _tOn() { return T('toggleOn'); }
+    _tOff() { return T('toggleOff'); }
     _t(key) {
         const map = {
-            windSpeed: currentLanguage === 'th' ? 'ความเร็วลม (ม./วิ)' : 'Wind Speed (m/s)',
-            windFrom: currentLanguage === 'th' ? 'ทิศลมพัดมาจาก (°)' : 'Wind Dir FROM (°)',
-            temperature: currentLanguage === 'th' ? 'อุณหภูมิ (°C)' : 'Temperature (°C)',
-            pressure: currentLanguage === 'th' ? 'ความกดอากาศ (hPa)' : 'Pressure (hPa)',
-            humidity: currentLanguage === 'th' ? 'ความชื้น (%)' : 'Humidity (%)'
+            windSpeed: T('aceWindSpeedLabel'),
+            windFrom: T('aceWindFromLabel'),
+            temperature: T('aceTemperature'),
+            pressure: T('acePressure'),
+            humidity: T('aceHumidity')
         };
         return map[key] || key;
     }
@@ -3045,8 +3503,17 @@ class MortarCalculator {
             onAngle(getAngle(ev));
             ev.preventDefault();
         });
+        // pointermove ยิงถี่มาก (100+ ครั้ง/วินาที) ถ้าคำนวณทุกครั้งจะกระตุกหนัก
+        // รวมให้เหลือเฟรมละครั้งด้วย requestAnimationFrame
+        let pending = null, rafId = 0;
         svg.addEventListener('pointermove', (ev) => {
-            if (dragging) onAngle(getAngle(ev));
+            if (!dragging) return;
+            pending = getAngle(ev);
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+                rafId = 0;
+                if (pending !== null) onAngle(pending);
+            });
         });
         const stop = () => { dragging = false; };
         svg.addEventListener('pointerup', stop);
@@ -3073,7 +3540,8 @@ class MortarCalculator {
         this.renderWindDials();
         if (this.windSection) this.windSection.classList.toggle('wind-active', this.gameWind.speed > 0);
         if (this.validateInputs()) {
-            this.calculate(); // calculate() จะอัปเดตสถานะลมให้เอง
+            // ใช้ตัวหน่วงเวลาเดียวกับช่องพิกัด ไม่งั้นลากหน้าปัด 1 วินาทีจะคำนวณหลายสิบรอบ
+            this.scheduleCalculate();
         } else {
             this.lastWindAdjust = null;
             this.updateWindStatus();
@@ -3134,13 +3602,10 @@ class MortarCalculator {
         if (!this.windStatusEl) return;
         const speed = this.gameWind ? this.gameWind.speed : 0;
         const table = this.getWindTableForCurrentShell();
-        const th = currentLanguage === 'th';
 
         if (speed > 0 && !table) {
             this.windStatusEl.className = 'wind-status show warn';
-            this.windStatusEl.textContent = th
-                ? '⚠️ กระสุนนี้ยังไม่มีตารางค่าแก้ลม — ระบบจะไม่ชดเชยลมให้'
-                : '⚠️ No wind correction table for this shell yet — wind will not be compensated';
+            this.windStatusEl.textContent = T('windNoTableWarning');
             return;
         }
         if (speed > 0 && this.lastWindAdjust) {
@@ -3148,9 +3613,9 @@ class MortarCalculator {
             const dR = Math.round(w.deltaRange);
             const dA = Math.round(w.deflectMils);
             this.windStatusEl.className = 'wind-status show';
-            this.windStatusEl.textContent = th
-                ? `🌬️ ชดเชยลม: ระยะเล็ง ${dR >= 0 ? '+' : ''}${dR} m | อาซิมุท ${dA >= 0 ? '+' : ''}${dA} mils ${dA > 0 ? '(ขวา)' : dA < 0 ? '(ซ้าย)' : ''}`
-                : `🌬️ Wind correction: aim range ${dR >= 0 ? '+' : ''}${dR} m | azimuth ${dA >= 0 ? '+' : ''}${dA} mils ${dA > 0 ? '(right)' : dA < 0 ? '(left)' : ''}`;
+            const side = dA > 0 ? T('dirRight') : dA < 0 ? T('dirLeft') : '';
+            this.windStatusEl.textContent = T('windCorrectionStatus',
+                (dR >= 0 ? '+' : '') + dR, (dA >= 0 ? '+' : '') + dA, side);
             return;
         }
         this.windStatusEl.className = 'wind-status';
@@ -3183,13 +3648,35 @@ class MortarCalculator {
     // แปลงลม (ทิศที่พัดมาจาก) เป็นองค์ประกอบเทียบแนวยิง
     //   along: + = ลมส่งท้าย (ดันกระสุนไปข้างหน้า)   cross: + = ดันกระสุนไปทางขวา
     windComponents(azimuthDeg) {
-        if (!this.gameWind || !(this.gameWind.speed > 0)) return { along: 0, cross: 0 };
-        const windTo = (this.gameWind.dirFrom + 180) % 360;
+        // ถ้าไม่ได้ตั้งลมในเกมไว้ แต่เปิด ACE Weather และกรอกลมไว้ ให้ใช้ลมของ ACE แทน
+        // (ไม่รวมกันเพื่อไม่ให้ชดเชยซ้ำ — ลมในเกมเป็นค่าจริงจึงมาก่อนเสมอ)
+        let src = this.gameWind;
+        if (!src || !(src.speed > 0)) {
+            if (this.enableAceWeather && this.weather && this.weather.windSpeed > 0) {
+                src = { speed: this.weather.windSpeed, dirFrom: this.weather.windDirFrom || 0 };
+            } else {
+                return { along: 0, cross: 0 };
+            }
+        }
+        const windTo = (src.dirFrom + 180) % 360;
         const d = (windTo - azimuthDeg) * Math.PI / 180;
         return {
-            along: this.gameWind.speed * Math.cos(d),
-            cross: this.gameWind.speed * Math.sin(d)
+            along: src.speed * Math.cos(d),
+            cross: src.speed * Math.sin(d)
         };
+    }
+
+    // อัตราส่วนความหนาแน่นอากาศเทียบกับมาตรฐาน (1.0 = ปิด ACE หรืออากาศมาตรฐาน)
+    getAirDensityScale() {
+        if (!this.enableAceWeather || !this.weather) return 1;
+        const num = (v, def) => (Number.isFinite(v) ? v : def);
+        const rho = this.computeAirDensity(
+            num(this.weather.temperatureC, 15),
+            num(this.weather.pressureHpa, 1013),
+            num(this.weather.humidity, 50)
+        );
+        if (!Number.isFinite(rho) || rho <= 0) return 1;
+        return rho / 1.225;
     }
 
     // เก็บเส้นทางวิถีกระสุนสำหรับวาดกราฟ + หาจุดสูงสุด (จุดกลับตัว)
@@ -3222,6 +3709,11 @@ class MortarCalculator {
 
         const wind = this.windComponents(azimuthDeg);
         const useWind = (wind.along !== 0 || wind.cross !== 0) ? wind : null;
+        // เกมมีค่า AirDrag ค่าเดียวต่อกระสุน ซึ่งสมมติอากาศมาตรฐาน (ρ0 = 1.225)
+        // ACE Weather ให้ผู้เล่นกรอกอุณหภูมิ/ความกดอากาศ/ความชื้น แรงต้านอากาศแปรผันตรงกับความหนาแน่น
+        // จึงคูณ k ด้วยอัตราส่วนความหนาแน่น เพื่อให้ค่าที่กรอกมีผลกับคำตอบจริง ๆ
+        const densityScale = this.getAirDensityScale();
+        const kEff = phys.k * densityScale;
         const ringList = Object.keys(phys.rings).map(Number).sort((a, b) => a - b);
 
         const t0 = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
@@ -3242,7 +3734,7 @@ class MortarCalculator {
 
         for (const ring of ringList) {
             const v0 = phys.rings[ring];
-            const sol = BALLISTIC_SIM.solve(v0, phys.k, distance, heightDiff, useWind, this.getElevLimits());
+            const sol = BALLISTIC_SIM.solve(v0, kEff, distance, heightDiff, useWind, this.getElevLimits());
             if (ring === forcedRing) forced = { ring, v0, sol };
             if (sol.error) {
                 if (sol.error === 'tooClose') {
@@ -3291,6 +3783,13 @@ class MortarCalculator {
         // ค่าออฟเซ็ตที่ผู้ใช้ตั้งเองเป็นการปรับศูนย์เล็ง ใช้ได้กับทั้งสองวิธี
         // ต้องบวกให้โหมดจำลองด้วย ไม่งั้นตอนเทียบกันจะเห็นเป็นส่วนต่างปลอมเท่ากับค่าออฟเซ็ต
         const mils = this.degreesToMils(sol.elevationDeg) + this.elevationOffset;
+        // ค่าออฟเซ็ตอาจดันมุมยกทะลุขีดจำกัดของฐานปืน ต้องเตือน ไม่ใช่แสดงค่าที่ตั้งจริงไม่ได้เงียบ ๆ
+        const lim = this.getElevLimits();
+        const milsMin = Math.round(this.degreesToMils(lim.min));
+        const milsMax = Math.round(this.degreesToMils(lim.max));
+        const offsetOutOfRange = (mils < milsMin || mils > milsMax)
+            ? { min: milsMin, max: milsMax }
+            : null;
         // ค่าแก้ทิศจากลมขวาง: กระสุนถูกดันไปทางขวา = ต้องเล็งไปทางซ้าย
         const deflectMils = distance > 0
             ? -this.degreesToMils(Math.atan2(sol.drift, distance) * 180 / Math.PI)
@@ -3300,10 +3799,12 @@ class MortarCalculator {
             available: true,
             ring: picked.ring,
             v0: picked.v0,
-            k: phys.k,
+            k: kEff,
+            densityScale,
             viableRings: viable,
             elevationOffset: this.elevationOffset,
-            trajectory: this.buildTrajectoryPath(picked.v0, phys.k, sol.elevationDeg, heightDiff, useWind),
+            offsetOutOfRange,
+            trajectory: this.buildTrajectoryPath(picked.v0, kEff, sol.elevationDeg, heightDiff, useWind),
             heightDiff: heightDiff,
             elevationMils: Math.round(mils),
             elevationDeg: sol.elevationDeg,
@@ -3319,14 +3820,52 @@ class MortarCalculator {
     }
 
     // วาดวิถีกระสุนเป็น SVG: จุดตั้งปืน -> เส้นวิถี -> เป้าหมาย พร้อมความสูงและเวลา
+    // วาดกราฟใหม่เมื่อความกว้างของกล่องเปลี่ยน (หมุนจอ / ย่อขยายหน้าต่าง / เลย์เอาต์ขยับ)
+    // ใช้ ResizeObserver แทน window resize เพราะจับได้ทุกกรณีที่กล่องเปลี่ยนขนาดจริง
+    _bindAdvResize() {
+        if (this._advResizeBound) return;
+        const box = document.getElementById('advanced-results');
+        if (!box) return;
+        this._advResizeBound = true;
+        this._advLastWidth = box.clientWidth;
+        const check = () => {
+            const cw = box.clientWidth;
+            // เปลี่ยนไม่ถึง 8px ไม่ต้องวาดใหม่ (กันวนซ้ำจากการวาดของตัวเอง)
+            if (!cw || Math.abs(cw - this._advLastWidth) < 8) return;
+            this._advLastWidth = cw;
+            clearTimeout(this._advResizeTimer);
+            this._advResizeTimer = setTimeout(() => {
+                if (this._lastAdvArgs) {
+                    const a = this._lastAdvArgs;
+                    this.displayAdvancedSolution(a.adv, a.tableResult);
+                }
+            }, 120);
+        };
+        if (typeof ResizeObserver !== 'undefined') {
+            // ต้องเก็บอ้างอิงไว้ ไม่งั้น observer อาจถูกเก็บกวาดทิ้งไปเฉย ๆ
+            this._advRO = new ResizeObserver(check);
+            this._advRO.observe(box);
+        }
+        // สำรองไว้เผื่อ ResizeObserver ถูกจำกัดในบางเบราว์เซอร์/บางสถานะของหน้า
+        window.addEventListener('resize', check);
+        window.addEventListener('orientationchange', check);
+    }
+
     renderTrajectorySvg(adv, weaponAlt) {
         const tr = adv.trajectory;
         if (!tr || !tr.points.length) return '';
-        const th = currentLanguage === 'th';
 
-        // จอแคบต้องเผื่อขอบมากขึ้น เพราะตัวอักษรถูกขยายในหน่วย viewBox เพื่อชดเชยการย่อ (ดู style.css)
-        const narrow = (window.innerWidth || 1024) <= 640;
-        const W = 640, H = narrow ? 300 : 260;
+        // SVG ถูกย่อให้พอดีความกว้างของกล่อง ตัวอักษรที่ระบุเป็นหน่วย viewBox จึงถูกย่อตามไปด้วย
+        // ต้องหารด้วยอัตราส่วนย่อ เพื่อให้ขนาดตัวอักษรบนจอคงที่ทุกความกว้าง (ไม่ใช่กระโดดที่ 640px)
+        const W = 640;
+        const box = document.getElementById('advanced-results');
+        const availW = box && box.clientWidth ? box.clientWidth : W;
+        const drawW = Math.min(W, Math.max(220, availW));
+        const fs = W / drawW;              // ตัวคูณชดเชย (1.0 เมื่อไม่ถูกย่อ)
+        const F = (px) => +(px * fs).toFixed(1);
+
+        const narrow = fs > 1.25;          // ถูกย่อมากจนตัวอักษรกินที่ ต้องเผื่อขอบเพิ่ม
+        const H = narrow ? 300 : 260;
         const padL = narrow ? 58 : 52, padR = narrow ? 58 : 52;
         const padT = narrow ? 34 : 26, padB = narrow ? 58 : 34;
 
@@ -3348,34 +3887,34 @@ class MortarCalculator {
         const tx = sx(maxRange), ty = sy(targetAlt);   // เป้าหมาย
         const ax = sx(tr.apex.range), ay = sy(topAlt); // จุดกลับตัว
 
-        const mLbl = th ? 'ปืน' : 'Mortar';
-        const tLbl = th ? 'เป้าหมาย' : 'Target';
-        const aLbl = th ? 'จุดสูงสุด' : 'Apex';
+        const mLbl = T('trajMortarLabel');
+        const tLbl = T('trajTargetLabel');
+        const aLbl = T('trajApexLabel');
 
         return `
         <div class="adv-traj">
-            <div class="adv-traj-title">${th ? '🛰️ เส้นวิถีกระสุน (จากการจำลอง)' : '🛰️ Simulated Trajectory'}</div>
+            <div class="adv-traj-title">${T('trajTitle')}</div>
             <svg class="adv-traj-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img"
-                 aria-label="${th ? 'กราฟวิถีกระสุน' : 'Projectile trajectory chart'}">
+                 aria-label="${T('trajAriaLabel')}">
                 <line x1="${padL}" y1="${padT - 12}" x2="${padL}" y2="${H - padB}" class="traj-axis"/>
                 <line x1="${padL}" y1="${H - padB}" x2="${W - padR + 12}" y2="${H - padB}" class="traj-axis"/>
 
                 <line x1="${ax}" y1="${ay}" x2="${ax}" y2="${H - padB}" class="traj-guide"/>
-                <path d="${d}" class="traj-path"/>
+                <path d="${d}" class="traj-path" stroke-width="${F(2)}"/>
 
-                <circle cx="${ax}" cy="${ay}" r="3.5" class="traj-apex-dot"/>
-                <text x="${Math.min(Math.max(ax, padL + 60), W - padR - 60)}" y="${ay - (narrow ? 14 : 10)}" class="traj-apex-lbl" text-anchor="middle">${aLbl} ${Math.round(topAlt)} m · ${tr.apex.time.toFixed(1)} s</text>
+                <circle cx="${ax}" cy="${ay}" r="${F(3.5)}" class="traj-apex-dot"/>
+                <text x="${Math.min(Math.max(ax, padL + 60), W - padR - 60)}" y="${ay - (narrow ? 14 : 10)}" class="traj-apex-lbl" font-size="${F(11)}" text-anchor="middle">${aLbl} ${Math.round(topAlt)} m · ${tr.apex.time.toFixed(1)} s</text>
 
                 <polygon points="${gx - 6},${gy} ${gx + 6},${gy} ${gx},${gy - 11}" class="traj-mortar"/>
-                <text x="${gx}" y="${H - padB + (narrow ? 26 : 15)}" class="traj-lbl traj-lbl-mortar" text-anchor="start">${Math.round(weaponAlt)} m</text>
-                <text x="${gx}" y="${H - padB + (narrow ? 48 : 28)}" class="traj-sub" text-anchor="start">${mLbl}</text>
+                <text x="${gx}" y="${H - padB + (narrow ? 26 : 15)}" class="traj-lbl traj-lbl-mortar" font-size="${F(12)}" text-anchor="start">${Math.round(weaponAlt)} m</text>
+                <text x="${gx}" y="${H - padB + (narrow ? 48 : 28)}" class="traj-sub" font-size="${F(10)}" text-anchor="start">${mLbl}</text>
 
-                <line x1="${tx - 6}" y1="${ty - 6}" x2="${tx + 6}" y2="${ty + 6}" class="traj-target"/>
-                <line x1="${tx + 6}" y1="${ty - 6}" x2="${tx - 6}" y2="${ty + 6}" class="traj-target"/>
-                <text x="${tx}" y="${H - padB + (narrow ? 26 : 15)}" class="traj-lbl traj-lbl-target" text-anchor="end">${Math.round(targetAlt)} m</text>
-                <text x="${tx}" y="${H - padB + (narrow ? 48 : 28)}" class="traj-sub" text-anchor="end">${tLbl} · ${adv.timeOfFlight.toFixed(1)} s</text>
+                <line x1="${tx - 6}" y1="${ty - 6}" x2="${tx + 6}" y2="${ty + 6}" class="traj-target" stroke-width="${F(2.5)}"/>
+                <line x1="${tx + 6}" y1="${ty - 6}" x2="${tx - 6}" y2="${ty + 6}" class="traj-target" stroke-width="${F(2.5)}"/>
+                <text x="${tx}" y="${H - padB + (narrow ? 26 : 15)}" class="traj-lbl traj-lbl-target" font-size="${F(12)}" text-anchor="end">${Math.round(targetAlt)} m</text>
+                <text x="${tx}" y="${H - padB + (narrow ? 48 : 28)}" class="traj-sub" font-size="${F(10)}" text-anchor="end">${tLbl} · ${adv.timeOfFlight.toFixed(1)} s</text>
 
-                <text x="${(gx + tx) / 2}" y="${H - padB + (narrow ? 26 : 22)}" class="traj-sub" text-anchor="middle">${Math.round(maxRange)} m</text>
+                <text x="${(gx + tx) / 2}" y="${H - padB + (narrow ? 26 : 22)}" class="traj-sub" font-size="${F(10)}" text-anchor="middle">${Math.round(maxRange)} m</text>
             </svg>
         </div>`;
     }
@@ -3383,26 +3922,25 @@ class MortarCalculator {
     displayAdvancedSolution(adv, tableResult) {
         const box = document.getElementById('advanced-results');
         if (!box) return;
-        const th = currentLanguage === 'th';
+        // เก็บไว้วาดใหม่ตอนเปลี่ยนขนาดหน้าจอ — กราฟคำนวณขนาดตัวอักษรจากความกว้างจริงของกล่อง
+        this._lastAdvArgs = { adv, tableResult };
+        this._bindAdvResize();
 
-        const title = `<div class="adv-block-title">${th ? '🧪 คำนวณขั้นสูง — จำลองวิถีกระสุน' : '🧪 Advanced — Trajectory Simulation'}</div>`;
+        const title = `<div class="adv-block-title">${T('advBlockTitle')}</div>`;
 
         if (!adv.available) {
             let msg;
             if (adv.reason === 'noData') {
-                msg = th ? '⚠️ กระสุนนี้ไม่มีข้อมูลฟิสิกส์ในไฟล์เกม'
-                    : '⚠️ No physics data for this shell in the game files';
+                msg = T('advErrNoPhysics');
             } else if (adv.reason === 'range') {
-                msg = th ? `⚠️ ไกลเกินไป — ระยะไกลสุดที่ความสูงนี้คือ ${Math.round(adv.maxRange)} m (RING ${adv.ring})`
-                    : `⚠️ Too far — the longest reach at this height is ${Math.round(adv.maxRange)} m (RING ${adv.ring})`;
+                msg = T('advErrTooFar', Math.round(adv.maxRange), adv.ring);
             } else if (adv.reason === 'noLift') {
-                msg = th ? `⚠️ เป้าหมายสูงเกินไป — ไม่มีประจุไหนยิงกระสุนขึ้นไปถึงระดับความสูงนั้นได้`
-                    : `⚠️ Target is too high — no charge can lift the shell to that altitude`;
+                msg = T('advErrNoLift');
             } else if (adv.reason === 'tooClose') {
-                msg = th ? `⚠️ ใกล้เกินไป — ประจุที่ยิงใกล้ได้สุดคือ RING ${adv.ring} ที่ ${Math.round(adv.minRange)} m (มุมยกชนขีดจำกัด 85° ของฐานปืน)`
-                    : `⚠️ Too close — the shortest reach is RING ${adv.ring} at ${Math.round(adv.minRange)} m (elevation capped at the mount's 85° limit)`;
+                const maxDeg = this.getElevLimits().max;
+                msg = T('advErrTooClose', adv.ring, Math.round(adv.minRange), maxDeg);
             } else {
-                msg = th ? '⚠️ คำนวณไม่สำเร็จ' : '⚠️ Simulation failed';
+                msg = T('advErrFailed');
             }
             box.innerHTML = title + `<div class="adv-warn">${msg}</div>`;
             return;
@@ -3416,76 +3954,89 @@ class MortarCalculator {
         // เทียบมุมยกกันตรง ๆ ได้เฉพาะเมื่อใช้ ring เดียวกัน
         const big = sameRing && Math.abs(dElev) >= 15;
 
+        // ACE Weather มีผลกับคำตอบจริงแล้ว (ผ่านความหนาแน่นอากาศ และลมเมื่อไม่ได้ตั้งลมในเกม)
+        // ต้องบอกให้เห็นว่ามีผล ไม่งั้นผู้ใช้กรอกไปแล้วไม่รู้ว่าถูกใช้หรือเปล่า
+        let aceNote = '';
+        if (this.enableAceWeather) {
+            const ds = adv.densityScale || 1;
+            const pct = ((ds - 1) * 100).toFixed(1);
+            const usingAceWind = !(this.gameWind && this.gameWind.speed > 0)
+                && this.weather && this.weather.windSpeed > 0;
+            const parts = [];
+            parts.push(T('advAceDensityNote', (ds * 1.225).toFixed(3), (pct > 0 ? '+' : '') + pct));
+            parts.push(usingAceWind
+                ? T('advAceWindUsed', this.weather.windSpeed, this.weather.windDirFrom)
+                : T('advAceWindSkipped'));
+            aceNote = `<div class="adv-note">🌦️ ACE Weather: ${parts.join(' · ')}</div>`;
+        }
+
         box.innerHTML = title + `
             <div class="adv-grid">
                 <div class="adv-item">
-                    <label>${th ? 'ประจุ (เลือกเอง)' : 'Charge (auto)'}</label>
+                    <label>${T('advChargeLabel')}</label>
                     <span class="adv-main">RING ${adv.ring}</span>
                 </div>
                 <div class="adv-item">
-                    <label>${th ? 'มุมยกปืน (จำลอง)' : 'Elevation (simulated)'}</label>
+                    <label>${T('advElevationLabel')}</label>
                     <span class="adv-main">${adv.elevationMils} mils</span>
                 </div>
                 <div class="adv-item">
-                    <label>${th ? 'ทิศทาง (จำลอง)' : 'Azimuth (simulated)'}</label>
+                    <label>${T('advAzimuthLabel')}</label>
                     <span class="adv-main">${adv.azimuthMils} mils</span>
                 </div>
                 <div class="adv-item">
-                    <label>${th ? 'เวลาบิน' : 'Time of Flight'}</label>
+                    <label>${T('advTimeOfFlightLabel')}</label>
                     <span>${adv.timeOfFlight.toFixed(1)} s</span>
                 </div>
                 <div class="adv-item">
-                    <label>${th ? 'มุมตกกระทบ' : 'Impact Angle'}</label>
+                    <label>${T('advImpactAngleLabel')}</label>
                     <span>${adv.impactAngle.toFixed(1)}°</span>
                 </div>
             </div>
+            ${aceNote}
             <div class="adv-compare ${big || !sameRing ? 'adv-diverge' : ''}">
-                <div class="adv-compare-title">${th ? '📐 เทียบกับวิธีตาราง' : '📐 vs Table Method'}</div>
+                <div class="adv-compare-title">${T('advCompareTitle')}</div>
                 <table class="adv-table">
                     <tr>
                         <th></th>
-                        <th>${th ? 'ตาราง' : 'Table'}</th>
-                        <th>${th ? 'จำลอง' : 'Simulated'}</th>
-                        <th>${th ? 'ต่าง' : 'Diff'}</th>
+                        <th>${T('advColTable')}</th>
+                        <th>${T('advColSimulated')}</th>
+                        <th>${T('advColDiff')}</th>
                     </tr>
                     <tr>
                         <td>RING</td>
                         <td>${tableResult.charge}</td>
                         <td>${adv.ring}</td>
-                        <td class="${sameRing ? '' : 'adv-big'}">${sameRing ? (th ? 'เท่ากัน' : 'same') : (th ? 'ต่างกัน' : 'differs')}</td>
+                        <td class="${sameRing ? '' : 'adv-big'}">${sameRing ? T('advSame') : T('advDiffers')}</td>
                     </tr>
                     <tr>
-                        <td>${th ? 'มุมยก' : 'Elevation'}</td>
+                        <td>${T('advRowElevation')}</td>
                         <td>${tableResult.elevation}</td>
                         <td>${adv.elevationMils}</td>
                         <td class="${big ? 'adv-big' : ''}">${sameRing ? sign(dElev) + ' mils' : '—'}</td>
                     </tr>
                     <tr>
-                        <td>${th ? 'ทิศทาง' : 'Azimuth'}</td>
+                        <td>${T('advRowAzimuth')}</td>
                         <td>${tableResult.azimuthMils}</td>
                         <td>${adv.azimuthMils}</td>
                         <td>${sign(dAz)} mils</td>
                     </tr>
                     <tr>
-                        <td>${th ? 'เวลาบิน' : 'ToF'}</td>
+                        <td>${T('advRowTof')}</td>
                         <td>${tableResult.timeOfFlight}</td>
                         <td>${adv.timeOfFlight.toFixed(1)}</td>
                         <td>${sameRing ? sign(+dTof.toFixed(1)) + ' s' : '—'}</td>
                     </tr>
                 </table>
-                ${!sameRing ? `<div class="adv-note">${th
-                ? `คนละประจุจึงเทียบมุมยกกันตรง ๆ ไม่ได้ — โหมดจำลองเลือก RING ${adv.ring} เพราะเป็นประจุต่ำสุดที่ยิงถึงจริงเมื่อคิดความสูงและลมด้วย`
-                : `Different charges, so elevations are not directly comparable — the simulation picked RING ${adv.ring} as the lowest charge that actually reaches once height and wind are accounted for.`}</div>`
-                : big ? `<div class="adv-note">${th
-                    ? 'ต่างกันมากเพราะความสูงต่างกันเยอะ — วิธีตารางใช้ค่าแก้ความสูงแบบเชิงเส้นซึ่งใช้ได้ดีเฉพาะเมื่อความสูงต่างกันน้อย ส่วนโหมดจำลองแก้วิถีจริงเหมือนที่เกมทำตอนยิง'
-                    : 'Large gap due to the height difference — the table method uses a linear height correction that only holds for small offsets, while the simulation solves the real trajectory the way the game does when firing.'}</div>` : ''}
+                ${!sameRing ? `<div class="adv-note">${T('advNoteDifferentRing', adv.ring)}</div>`
+                : big ? `<div class="adv-note">${T('advNoteLargeGap')}</div>` : ''}
             </div>
             ${this.renderTrajectorySvg(adv, parseInt(this.weaponAlt.value) || 0)}
             <div class="adv-meta">
-                ${th ? 'ประจุที่ยิงถึง' : 'RINGs that reach'}: ${adv.viableRings.join(', ')} ·
+                ${T('advMetaViableRings')}: ${adv.viableRings.join(', ')} ·
                 v₀ ${adv.v0.toFixed(1)} m/s · k ${adv.k.toExponential(2)} ·
-                ${th ? 'ระยะไกลสุดของ RING นี้' : 'max range this RING'} ${Math.round(adv.maxRange)} m${adv.wind.along || adv.wind.cross
-                ? ` · ${th ? 'ลม' : 'wind'} ${adv.wind.along >= 0 ? '+' : ''}${adv.wind.along.toFixed(1)}/${adv.wind.cross >= 0 ? '+' : ''}${adv.wind.cross.toFixed(1)} m/s (${th ? 'ตาม/ข้าง' : 'along/cross'})` : ''} ·
+                ${T('advMetaMaxRange')} ${Math.round(adv.maxRange)} m${adv.wind.along || adv.wind.cross
+                ? ` · ${T('advMetaWind')} ${adv.wind.along >= 0 ? '+' : ''}${adv.wind.along.toFixed(1)}/${adv.wind.cross >= 0 ? '+' : ''}${adv.wind.cross.toFixed(1)} m/s (${T('advMetaWindAxes')})` : ''} ·
                 ${adv.computeMs.toFixed(1)} ms
             </div>
         `;
@@ -3497,18 +4048,9 @@ class MortarCalculator {
             (navigator.maxTouchPoints > 0) ||
             (navigator.msMaxTouchPoints > 0);
 
-        if (isTouchDevice) {
-            // Show mobile instructions
-            document.querySelectorAll('.desktop-instructions').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.mobile-instructions').forEach(el => el.style.display = 'inline');
-
-            // Add mobile-friendly class to body
-            document.body.classList.add('touch-device');
-        } else {
-            // Show desktop instructions
-            document.querySelectorAll('.desktop-instructions').forEach(el => el.style.display = 'inline');
-            document.querySelectorAll('.mobile-instructions').forEach(el => el.style.display = 'none');
-        }
+        // คำแนะนำใช้ข้อความชุดเดียว (presetInstructions) ซึ่งบอกทั้งวิธีบน PC และมือถือ
+        // และแปลครบทุกภาษา จึงไม่ต้องสลับสองบรรทัดอีก
+        document.body.classList.toggle('touch-device', isTouchDevice);
     }
 
     updateShellInfo() {
@@ -3757,10 +4299,10 @@ class MortarCalculator {
             }
         });
 
-        // Show coordinate error message if coordinates are less than 5 digits
-        if (coordinateError) {
-            this.showCoordinateError();
-        }
+        // เก็บสถานะไว้เฉย ๆ ไม่แสดง toast ที่นี่
+        // validateInputs() ถูกเรียกจากหลายที่รวมถึงตอนลากหน้าปัดลม (ยิงถี่มาก)
+        // ถ้าเด้ง toast ตรงนี้จะได้ toast เป็นร้อยอันซ้อนกัน
+        this._coordinateIncomplete = coordinateError;
 
         return isValid;
     }
@@ -4197,7 +4739,7 @@ class MortarCalculator {
 
         // Add summary information
         const summaryText = wasAdjusted ?
-            `${texts.availableRings} ${availableCount}/${rings.length} (${currentLanguage === 'th' ? 'ระยะปรับแล้ว' : 'Adjusted range'}: ${Math.round(targetDistance)}m)` :
+            `${texts.availableRings} ${availableCount}/${rings.length} (${T('ringAdjustedRange')}: ${Math.round(targetDistance)}m)` :
             `${texts.availableRings} ${availableCount}/${rings.length} (${Math.round(targetDistance)}m)`;
 
         html = `
@@ -4225,7 +4767,6 @@ class MortarCalculator {
         if (!box) return;
 
         const texts = LANGUAGE_DATA[currentLanguage];
-        const th = currentLanguage === 'th';
         const rings = this.getRingsForPicker();
         if (!rings.length) { box.innerHTML = ''; return; }
 
@@ -4244,7 +4785,7 @@ class MortarCalculator {
         ).join('');
 
         box.innerHTML = `
-            <h4 class="ring-picker-title">${th ? '💥 ประจุ (RING)' : '💥 Charge (RING)'}</h4>
+            <h4 class="ring-picker-title">${T('ringPickerTitle')}</h4>
             <div class="ring-picker-grid">${html}</div>`;
 
         box.querySelectorAll('.ring-item.available').forEach(item => {
@@ -4327,18 +4868,14 @@ class MortarCalculator {
             this.calculate();
         }
 
-        // Show success message
-        const texts = LANGUAGE_DATA[currentLanguage];
-        this.showMessage(`${currentLanguage === 'th' ? 'เลือก Ring' : 'Selected Ring'} ${ringNumber}`, 'success');
+        this.showMessage(T('ringSelectedMessage', ringNumber), 'success');
     }
 
     // Apply Numpad Reference values to target coordinates
     applyNumpadReference(numpadValue) {
         // Check if target coordinates have at least 3 digits
         if (!this.targetX.value || !this.targetY.value) {
-            this.showError(currentLanguage === 'th' ?
-                'กรุณากรอกพิกัดเป้าหมาย X และ Y ก่อน' :
-                'Please enter target X and Y coordinates first');
+            this.showError(T('numpadNeedTargetCoords'));
             return;
         }
 
@@ -4347,9 +4884,7 @@ class MortarCalculator {
 
         // Check minimum 3 digits requirement
         if (currentX.length < 3 || currentY.length < 3) {
-            this.showError(currentLanguage === 'th' ?
-                'พิกัดต้องมีตัวเลขอย่างน้อย 3 ตัวขึ้นไป' :
-                'Coordinates must have at least 3 digits');
+            this.showError(T('numpadMinDigits'));
             return;
         }
 
@@ -4433,9 +4968,7 @@ class MortarCalculator {
         this.updateNumpadHighlight();
 
         // Show success message
-        this.showMessage(currentLanguage === 'th' ?
-            `ปรับพิกัดตาม Numpad ${numpadValue} เรียบร้อยแล้ว` :
-            `Applied Numpad ${numpadValue} reference successfully`, 'success');
+        this.showMessage(T('numpadAppliedMessage', numpadValue), 'success');
     }
 
     // Update numpad highlighting based on current coordinates
@@ -4487,9 +5020,16 @@ class MortarCalculator {
         }
     }
 
+    // การจำลองวิถีกินเวลาพอสมควร ถ้าเรียกทุกครั้งที่กดแป้นจะหน่วงบนเครื่องช้า
+    // จึงรอให้หยุดพิมพ์ก่อนแล้วค่อยคำนวณรอบเดียว
+    scheduleCalculate(delay) {
+        clearTimeout(this._calcTimer);
+        this._calcTimer = setTimeout(() => this.calculate(), delay === undefined ? 130 : delay);
+    }
+
     calculate() {
         if (!this.validateInputs()) {
-            this.showError('Please fill in all fields with valid numbers (Grid: 0-99999, max 5 digits)');
+            this.showError(T('invalidInputMessage'));
             return;
         }
 
@@ -4597,7 +5137,7 @@ class MortarCalculator {
         // ค้นหาข้อมูลการยิงจากตาราง BALLISTIC_DATA ใช้ระยะทางที่ปรับแล้ว
         const ballisticData = this.findBallisticData(adjustedDistance);
         if (!ballisticData) {
-            this.showError('ไม่มีข้อมูลการยิงสำหรับการตั้งค่านี้');
+            this.showError(T('noBallisticDataMessage'));
             return;
         }
 
@@ -4745,9 +5285,16 @@ class MortarCalculator {
             const texts = LANGUAGE_DATA[currentLanguage];
             elevationText += `\n(${texts.offsetLabel} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset} mils)`;
         }
+        if (adv && adv.offsetOutOfRange) {
+            const o = adv.offsetOutOfRange;
+            elevationText += '\n' + T('elevBeyondMountLimits', o.min, o.max);
+        }
         this.elevationEl.textContent = elevationText;
+        this.elevationEl.classList.toggle('over-limit', !!(adv && adv.offsetOutOfRange));
 
-        this.chargeEl.textContent = `${shown.charge}`;
+        // RING 0 เป็นประจุที่มีจริง เลข 0 อย่างเดียวจึงแยกไม่ออกว่า "ยิงไม่ได้" หรือ "ใช้ RING 0"
+        // ต้องมีข้อความกำกับให้ชัด
+        this.chargeEl.textContent = adv ? `${shown.charge}` : T('noSolutionCharge');
         this.timeFlightEl.textContent = `${shown.timeOfFlight} sec`;
         this.heightDiffEl.textContent = adv
             ? `${shown.heightDiff > 0 ? '+' : ''}${shown.heightDiff.toFixed(1)} m`
@@ -4756,16 +5303,14 @@ class MortarCalculator {
         // Update fixed bottom firing solution bar
         this.updateFixedFiringSolution(results);
 
-        // Add additional info
-        this.updateAdditionalInfo(results);
-
         this.resultsSection.classList.add('show');
 
         // Auto-show RING section when results are displayed
         if (this.ringSection) {
             this.ringSection.classList.add('show');
             // Auto-calculate rings for convenience
-            setTimeout(() => this.calculateAvailableRings(), 100);
+            clearTimeout(this._ringsTimer);
+            this._ringsTimer = setTimeout(() => this.calculateAvailableRings(), 100);
         }
     }
 
@@ -4786,9 +5331,13 @@ class MortarCalculator {
             const texts = LANGUAGE_DATA[currentLanguage];
             elevationText += `\n(${texts.offsetLabel} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset})`;
         }
-        document.getElementById('fs-elevation').textContent = elevationText;
+        const advOOR = results.advanced && results.advanced.offsetOutOfRange;
+        if (ok && advOOR) elevationText += ' ⚠️';
+        const fsElev = document.getElementById('fs-elevation');
+        fsElev.textContent = elevationText;
+        fsElev.classList.toggle('over-limit', !!(ok && advOOR));
 
-        document.getElementById('fs-charge').textContent = `${shown.charge}`;
+        document.getElementById('fs-charge').textContent = ok ? `${shown.charge}` : T('noSolutionCharge');
         document.getElementById('fs-time').textContent = `${shown.timeOfFlight} sec`;
         document.getElementById('fs-height').textContent = ok
             ? `${shown.heightDiff > 0 ? '+' : ''}${shown.heightDiff.toFixed(1)} m`
@@ -4796,172 +5345,6 @@ class MortarCalculator {
 
         // Show the bar with animation
         fixedBar.classList.add('active');
-    }
-
-    updateAdditionalInfo(results) {
-        const additionalInfo = document.getElementById('additional-info');
-
-        // เปิดโหมดขั้นสูงแล้วไม่ต้องแสดงรายละเอียดการคำนวณของวิธีตาราง
-        // (ค่าแก้ความสูงเชิงเส้น, ระยะที่ถูกปรับ, สูตรชดเชย ฯลฯ) เพราะคำตอบที่ใช้จริงมาจากการจำลอง
-        if (this.enableAdvanced) {
-            additionalInfo.innerHTML = '';
-            additionalInfo.style.display = 'none';
-            return;
-        }
-        additionalInfo.style.display = '';
-
-        // คำนวณค่า dispersion ที่ใช้ในการคำนวณ elevation correction
-        const dispersionValue = parseFloat(results.dispersion.replace('m', ''));
-        const correctionFormula = `(${dispersionValue} ÷ 100) × |${results.adjustedHeightDiff || results.heightDiff}| = ${Math.abs(results.elevationCorrection)} mils ${(results.adjustedHeightDiff || results.heightDiff) < 0 ? '(+)' : '(-)'}`;
-
-        // Check if calculation was adjusted
-        const originalHeightCompensation = Math.abs(results.heightDiff);
-        const showWarning = originalHeightCompensation > 100;
-        const wasAdjusted = results.isAdjusted;
-
-        // Get text from current language
-        const texts = LANGUAGE_DATA[currentLanguage];
-
-        additionalInfo.innerHTML = `
-            ${results.overMountLimit ? `
-            <div class="out-of-table-warning">
-                <div class="warning-header">
-                    <span class="warning-icon">⛔</span>
-                    <strong>${currentLanguage === 'th' ? 'มุมยกเกินขีดจำกัดของฐานปืน' : 'Elevation exceeds the mount limit'}</strong>
-                </div>
-                <div class="warning-text">
-                    ${currentLanguage === 'th'
-                ? `ได้ ${results.elevation} mils แต่ฐานปืนในเกมยกได้สูงสุด ${results.overMountLimit.max} mils (85°) — ตั้งค่านี้ไม่ได้จริง เกิดจากค่าแก้ความสูงแบบเชิงเส้นบวกทับจนเกินจริง`
-                : `Got ${results.elevation} mils but the in-game mount tops out at ${results.overMountLimit.max} mils (85°) — this cannot be set on the weapon; the linear height correction has overshot`}
-                </div>
-            </div>
-            ` : ''}
-            ${results.outOfTable ? `
-            <div class="out-of-table-warning">
-                <div class="warning-header">
-                    <span class="warning-icon">⛔</span>
-                    <strong>${currentLanguage === 'th' ? 'ระยะอยู่นอกตารางของประจุนี้' : 'Distance is outside this charge\'s table'}</strong>
-                </div>
-                <div class="warning-text">
-                    ${currentLanguage === 'th'
-                ? `RING ${this.currentCharge} ครอบคลุม ${results.outOfTable.min}–${results.outOfTable.max} m แต่ระยะที่ใช้คำนวณคือ ${results.outOfTable.used} m — ค่าที่แสดงถูกหนีบไว้ที่แถวใกล้สุด ใช้ยิงจริงไม่ได้`
-                : `RING ${this.currentCharge} covers ${results.outOfTable.min}–${results.outOfTable.max} m but the calculation used ${results.outOfTable.used} m — the values shown are clamped to the nearest row and are not a valid firing solution`}
-                </div>
-            </div>
-            ` : ''}
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'กระสุน:' : 'Shell:'}</strong> ${this.currentShell}
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ประเภทมอร์ต้าร์:' : 'Mortar Type:'}</strong> ${this.currentMortarType === 'mod' ? 'MOD Adult Mortars' : 'Original Game'}
-            </div>
-            <div class="info-item mil-system-info">
-                <strong>🧭 ${currentLanguage === 'th' ? 'ระบบ Mils:' : 'Mils System:'}</strong> 
-                ${this.getShellMilliradianSystem() === 'russian' ?
-                `${currentLanguage === 'th' ? 'รัสเซีย' : 'Russian'} (6000 mils = 360°)` :
-                `NATO (6400 mils = 360°)`
-            }
-            </div>
-            ${results.gameWind && results.gameWind.enabled ? `
-            <div class="info-item">
-                <strong>🌬️ ${currentLanguage === 'th' ? 'ลมในเกม:' : 'In-game Wind:'}</strong>
-                ${results.gameWind.speed} m/s ${currentLanguage === 'th' ? 'พัดมาจาก' : 'from'} ${results.gameWind.dirFrom}°
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ชดเชยลม (จากตารางยิง):' : 'Wind Correction (from firing table):'}</strong>
-                ${currentLanguage === 'th' ? 'ลมต้าน/ตาม' : 'Head/Tail'}: ${results.gameWind.headwind.toFixed(1)} m/s,
-                ${currentLanguage === 'th' ? 'ลมขวาง' : 'Crosswind'}: ${results.gameWind.crosswind.toFixed(1)} m/s,
-                ΔRange: ${Math.round(results.gameWind.deltaRange)} m,
-                ΔAzimuth: ${Math.round(results.gameWind.deflectMils)} mils ${Math.round(results.gameWind.deflectMils) > 0 ? (currentLanguage === 'th' ? '(ขวา)' : '(right)') : Math.round(results.gameWind.deflectMils) < 0 ? (currentLanguage === 'th' ? '(ซ้าย)' : '(left)') : ''}
-            </div>
-            ` : ''}
-            ${results.aceWeather && results.aceWeather.enabled ? `
-            <div class="info-item">
-                <strong>🌦️ ACE Weather:</strong> ${currentLanguage === 'th' ? 'เปิด' : 'On'}${results.aceWeather.windSkipped ? ` — ${currentLanguage === 'th' ? 'ส่วนลมของ ACE ถูกข้าม (ใช้ลมในเกมแทน)' : 'ACE wind skipped (using in-game wind)'}` : ''}
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ชดเชยจากลม:' : 'Wind Adjustments:'}</strong>
-                ${currentLanguage === 'th' ? 'เฮดวินด์' : 'Headwind'}: ${results.aceWeather.headwind.toFixed(1)} m/s,
-                ${currentLanguage === 'th' ? 'ครอสวินด์' : 'Crosswind'}: ${results.aceWeather.crosswind.toFixed(1)} m/s,
-                ΔRange: ${Math.round(results.aceWeather.deltaRange)} m,
-                ΔAzimuth: ${results.aceWeather.deflectionMils.toFixed(1)} mils
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ชดเชยความหนาแน่นอากาศ:' : 'Air Density Adjustment:'}</strong>
-                ρ: ${(results.aceWeather.rho || 0).toFixed(3)} kg/m³, ΔElev: ${Math.round(results.aceWeather.deltaElevMils)} mils
-            </div>
-            ` : `
-            <div class="info-item">
-                <strong>🌦️ ACE Weather:</strong> ${currentLanguage === 'th' ? 'ปิด' : 'Off'}
-            </div>
-            `}
-            ${wasAdjusted ? `
-            <div class="info-item calculation-adjustment">
-                <strong>🔧 ${currentLanguage === 'th' ? 'การปรับปรุงการคำนวณ:' : 'Calculation Adjustment:'}</strong>
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ระยะทางเดิม:' : 'Original Distance:'}</strong> ${results.distance} m
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ระยะทางที่ใช้คำนวณ:' : 'Calculation Distance:'}</strong> ${results.adjustedDistance} m
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ความสูงเดิม:' : 'Original Height Diff:'}</strong> ${results.heightDiff > 0 ? '+' : ''}${results.heightDiff} m
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ความสูงที่ใช้คำนวณ:' : 'Calculation Height Diff:'}</strong> ${results.adjustedHeightDiff > 0 ? '+' : ''}${results.adjustedHeightDiff} m
-            </div>
-            <div class="info-item calculation-note">
-                <em>${results.calculationNote}</em>
-            </div>
-            ` : ''}
-            <div class="info-item physics-info">
-                <strong>📊 ${currentLanguage === 'th' ? 'ข้อมูลการคำนวณจาก BALLISTIC_DATA:' : 'Calculation Data from BALLISTIC_DATA:'}</strong>
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'มุมยกปืนจากตาราง:' : 'Table Elevation:'}</strong> ${results.originalElevation} mils
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ค่า Dispersion:' : 'Dispersion:'}</strong> ${results.dispersion}
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'สูตรการชดเชยมุมยก:' : 'Elevation Correction Formula:'}</strong> ${correctionFormula}
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ค่าชดเชยมุมยก:' : 'Elevation Correction:'}</strong> ${results.elevationCorrection > 0 ? '+' : ''}${results.elevationCorrection} mils
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'ค่าออฟเซ็ตผู้ใช้:' : 'User Offset:'}</strong> ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset} mils
-            </div>
-            <div class="info-item">
-                <strong>${currentLanguage === 'th' ? 'มุมยกปืนสุดท้าย:' : 'Final Elevation:'}</strong> ${results.elevation} mils
-                ${results.elevationOffset !== 0 ?
-                `<span class="offset-indicator" style="color: ${results.elevationOffset > 0 ? '#10b981' : '#ef4444'}; font-weight: bold;">
-                        (${results.originalElevation} ${results.elevationCorrection > 0 ? '+' : ''}${results.elevationCorrection} ${results.elevationOffset > 0 ? '+' : ''}${results.elevationOffset})
-                    </span>` : ''
-            }
-            </div>
-            ${showWarning ? `
-            <div class="accuracy-warning">
-                <div class="warning-header">
-                    <span class="warning-icon">⚠️</span>
-                    <strong>${currentLanguage === 'th' ? 'การปรับปรุงความแม่นยำ' : 'Accuracy Improvement'}</strong>
-                </div>
-                <div class="warning-text">
-                    ${currentLanguage === 'th' ?
-                    'ใช้สูตรพิเศษเมื่อความต่างความสูง > 100m เพื่อลดความคลาดเคลื่อน' :
-                    'Using special formula when height difference > 100m to reduce deviation'
-                }
-                </div>
-            </div>
-            ` : ''}
-            <div class="trajectory-hint">
-                🎯 ${currentLanguage === 'th' ?
-                (wasAdjusted ? 'ใช้สูตรปรับปรุงสำหรับความแม่นยำสูง' : 'ใช้ข้อมูลจาก BALLISTIC_DATA เป็นหลัก พร้อมค่าชดเชยจากความสูง') :
-                (wasAdjusted ? 'Using improved formula for high accuracy' : 'Using BALLISTIC_DATA with height compensation')
-            }
-            </div>
-        `;
     }
 
     highlightTableRow(range) {
@@ -4982,8 +5365,8 @@ class MortarCalculator {
     }
 
     showError(message) {
-        // Simple error display - could be enhanced with a proper toast system
-        alert(message);
+        // ใช้ toast แทน alert() เพราะ alert บล็อกทั้งหน้าและเด้งขึ้นมาแม้ตอนสลับภาษา
+        this.showMessage(message, 'error');
     }
 
     // Target Preset Management Functions
@@ -4999,7 +5382,8 @@ class MortarCalculator {
 
         // Validate that we have data to save
         if (!targetData.x || !targetData.y || !targetData.alt) {
-            this.showMessage(LANGUAGE_DATA[currentLanguage].presetSavedMessage.replace('{0}', presetNumber) + ' - กรุณากรอกข้อมูลเป้าหมายให้ครบ', 'warning');
+            // ของเดิมบอกว่า "บันทึกแล้ว" ต่อด้วย "กรุณากรอกให้ครบ" ซึ่งขัดกันเอง และเป็นไทยตายตัว
+            this.showMessage(T('presetIncompleteData', presetNumber), 'warning');
             return;
         }
 
@@ -5026,7 +5410,7 @@ class MortarCalculator {
         const preset = this.targetPresets[presetNumber];
 
         if (!preset) {
-            this.showMessage(`เป้าหมาย ${presetNumber} ยังไม่มีข้อมูล`, 'warning');
+            this.showMessage(T('presetEmptyMessage', presetNumber), 'warning');
             return;
         }
 
@@ -5093,11 +5477,11 @@ class MortarCalculator {
         if (preset) {
             button.classList.add('has-data');
             const date = new Date(preset.timestamp);
-            const timeStr = date.toLocaleTimeString('th-TH', {
+            const timeStr = date.toLocaleTimeString(localeTag(), {
                 hour: '2-digit',
                 minute: '2-digit'
             });
-            statusSpan.textContent = currentLanguage === 'th' ? 'มีข้อมูล' : 'Saved';
+            statusSpan.textContent = T('presetHasData');
 
             // Create tooltip with elevation offset info
             const offsetInfo = preset.elevationOffset ?
@@ -5106,9 +5490,7 @@ class MortarCalculator {
         } else {
             button.classList.remove('has-data');
             statusSpan.textContent = LANGUAGE_DATA[currentLanguage].presetEmpty;
-            button.title = currentLanguage === 'th' ?
-                'คลิกซ้าย: โหลด • คลิกขวา: บันทึก' :
-                'Left-click: Load • Right-click: Save';
+            button.title = T('presetButtonTooltip');
         }
     }
 
@@ -5123,6 +5505,17 @@ class MortarCalculator {
 
         // Hide results section
         this.resultsSection.classList.remove('show');
+
+        // ต้องล้างแถบติดขอบล่างด้วย ไม่งั้นค่าของเป้าเดิมยังค้างอยู่บนจอ
+        // (ผู้เล่นอ่านแถบนี้ตอนอยู่ในเกม ค่าค้างคือค่าที่ผิด)
+        const fixedBar = document.getElementById('fixed-firing-solution');
+        if (fixedBar) fixedBar.classList.remove('active', 'no-solution');
+        if (this.ringSection) this.ringSection.classList.remove('show');
+        this.lastReachableRings = null;
+        this.lastShotDistance = undefined;
+        clearTimeout(this._calcTimer);
+        clearTimeout(this._ringsTimer);
+        this.renderRingPickers();
 
         // Clear validation states
         [this.targetX, this.targetY, this.targetAlt].forEach(input => {
