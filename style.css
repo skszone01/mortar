@@ -3070,3 +3070,24 @@ body {
 #fs-elevation.over-limit {
     color: #f0883e;
 }
+
+/* รัศมีการกระจายที่ต่อท้ายเลขประจุ — ให้เล็กกว่าตัวเลขประจุ จะได้ไม่แย่งความสนใจ
+   ต้องเจาะจงกว่า `.result-item span` และ `.charge-result span` ที่ตั้งขนาด/สีไว้แล้ว */
+.result-item span .charge-dispersion,
+#charge .charge-dispersion,
+#fs-charge .charge-dispersion {
+    font-size: 0.6em;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0;
+}
+
+/* เลขประจุกับรัศมีต้องอยู่บรรทัดเดียวกันเสมอ ไม่ตกบรรทัดแม้กล่องจะแคบ */
+#charge,
+#fs-charge {
+    white-space: nowrap;
+}
+
+#fs-charge .charge-dispersion {
+    font-size: 0.72em;
+}

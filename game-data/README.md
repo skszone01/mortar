@@ -196,3 +196,81 @@ v0(ring) = InitSpeed ของกระสุน x ตัวคูณใน m_aC
 
 **ยังไม่ได้ทำ:** ค่าของเกมต้นฉบับ (`SHELL_PHYSICS.original`) ก็ปรับเทียบด้วยวิธีเดิมเช่นกัน
 คลาดจากค่า prefab ราว 0.14% (~4 m ที่ระยะไกลสุด) ยังไม่ได้เปลี่ยนตาม
+
+---
+
+## AVERAGE DISPERSION — ค่ารัศมีการกระจายที่เกมพิมพ์ไว้มุมบนขวาของใบตาราง
+
+**เว็บเคยตั้งชื่อคอลัมน์ที่ 4 ผิด** ว่า "การกระจาย / Dispersion" ทั้งที่ค่านั้นคือ **D ELEV PER 100M DR**
+(มุมยกที่ต้องเปลี่ยนต่อความสูงต่างกัน 100 m) แก้เป็น `D ELEV / 100M` แล้ว และเปลี่ยนชื่อ property
+ในโค้ดจาก `dispersion` เป็น `dElev100` ทั้ง 1,165 จุด
+
+หัวคอลัมน์จริงทั้ง 9 ของใบตารางในเกม (จาก `UI/layouts/Gadgets/BallisticTable/BallisticTable.layout`
+เทียบกับ `SCR_VisualisedBallisticConfig.c:79-116`) — **ไม่มีคอลัมน์การกระจายเลย**:
+
+| # | หัวคอลัมน์ | หน่วย |
+|---|---|---|
+| 0 | RANGE | M |
+| 1 | ELEV | MIL |
+| 2 | TIME OF FLIGHT | SEC |
+| 3 | **D ELEV PER 100M DR** | MIL |
+| 4 | TIME OF FLIGHT PER 100M | SEC |
+| 5 | PEAK ALT | M |
+| 6 | ANGLE OF IMPACT | DEG |
+| 7 | 10 M/S WIND CORRECT — CROSS | MIL |
+| 8 | 10 M/S WIND CORRECT — LONG | M |
+
+การกระจายอยู่**แยกที่หัวตาราง** ใต้ป้าย `AVERAGE DISPERSION` (`BallisticTable.layout:559`)
+เป็นค่าเดียวต่อ (กระสุน × ประจุ) ไม่ใช่ค่ารายระยะ:
+
+```
+[Attribute("0", desc: "Average dispersion", params: "0 inf")]
+protected float m_fStandardDispersion;          // SCR_BaseBallisticConfig.c:15-16
+```
+วาดที่ `SCR_VisualisedBallisticConfig.c:164-170` ด้วยฟอร์แมต `"%1 m"` (ฝั่งโซเวียตใช้ `"%1 м"`)
+
+**ที่มาของตัวเลข** (จับคู่หน้าตาราง → ประจุ ด้วย `m_fProjectileInitSpeedCoef` ซึ่งตรงกับ
+`m_aChargeRingConfig` ของกระสุนทุกนัด):
+
+| ชุด | ไฟล์ |
+|---|---|
+| เกมต้นฉบับ 81mm | `data007.pak : .../BallisticTable/BallisticTable_US_base.et` |
+| เกมต้นฉบับ 82mm | `data007.pak : .../BallisticTable/BallisticTable_USSR_base.et` |
+| Adult Mortars | `data.pak : .../BalisticTable_US.et` และ `BalisticTable_USSR.et` |
+| M777 | `data.pak : .../BallisticTable_US_Artillery.et` (ใช้ชุด High angle) |
+
+ค่าที่ใส่ในเว็บ (`DISPERSION_DATA` ใน `script.js`) หน่วยเมตร:
+
+| กระสุน | ชุด | R0 | R1 | R2 | R3 | R4 | R5 |
+|---|---|---|---|---|---|---|---|
+| M821 | เกมต้นฉบับ | 10 | 23 | 39 | 54 | 69 | — |
+| M821 | MOD | 5 | 21 | 31 | 34 | 43 | — |
+| M819 | เกมต้นฉบับ | — | 18 | 33 | 46 | 57 | — |
+| M819 | MOD | — | 9 | 12 | 16 | 20 | — |
+| M853A1 | เกมต้นฉบับ | — | 17 | 34 | 48 | 59 | — |
+| M853A1 | MOD | — | 7 | 11 | 17 | 20 | — |
+| 0-832Ay | เกมต้นฉบับ | 13 | 21 | 33 | 44 | 55 | — |
+| 0-832Ay | MOD | 6 | 14 | 17 | 26 | 34 | — |
+| A-832AY | เกมต้นฉบับ | 12 | 19 | 30 | 40 | — | — |
+| A-832AY | MOD | 3 | 9 | 14 | 20 | — | — |
+| C-832C | เกมต้นฉบับ | — | 15 | 28 | 39 | 53 | — |
+| C-832C | MOD | — | 5 | 8 | 13 | 19 | — |
+| M107 (M777) | MOD | — | 21.2 | 45 | 50 | 55 | 73 |
+
+กระสุน M777 อีก 3 ชนิด (`M107-AB`, `M116-WP`, `M485A2`) ใช้ `ShellMoveComponent` ตัวเดียวกับ M107
+จึงมีค่าเท่ากัน — เว็บผูกให้อัตโนมัติผ่าน `M777_SHELL_ALIASES`
+
+M777 มีสองชุด High angle / Low angle เว็บคำนวณเฉพาะวิถีโค้งสูงจึงใช้ชุด High angle
+(Low angle คือ 21 / 53 / 83 / 69 / 69)
+
+### สิ่งที่พิสูจน์ไม่ได้ (อย่าเอาไปคำนวณต่อ)
+
+- `InitSpeedVariation` เป็น **m/s** แน่นอน (เมตาดาต้าของเอนจิ้น: `"Projectile initial speed variation [m/s]"`)
+  เกมต้นฉบับตั้ง `3` ที่ `Ammo_MortarShell_Base.et:112-113` และกระสุนทั้ง 6 นัดไม่ override เลย
+  ส่วน Adult Mortars ลดเหลือ 0.48–1.26 ต่อนัด และ M777 ตั้ง 1.9
+  **แต่ไม่รู้ว่าเป็นค่าเบี่ยงเบนมาตรฐาน (σ) หรือครึ่งช่วงสุ่มแบบ uniform** — ตัวสุ่มอยู่ในโค้ด C++ ไม่มีสคริปต์ไหนอ่านมัน
+- กรวยเล็งของปืน: `Mortar_Base.et:295` ตั้ง `DispersionRange 48` แต่**ไม่ตั้ง** `DispersionDiameter`
+  (ใช้ค่า default ของเอนจิ้นซึ่งอ่านไม่ได้) — Adult Mortars เพิ่ม `DispersionRange` เป็น 82 (M252) และ 91 (2B14)
+  = ทำให้กรวยแคบลงเหลือ 58.5% และ 52.7% ของเดิม ส่วน M777 ตั้ง `DispersionDiameter 0.1 / DispersionRange 48` = 2.083 mrad
+
+จึงใช้ค่า `m_fStandardDispersion` ที่เกมแจกมาตรง ๆ ไม่คำนวณเอง
