@@ -53,12 +53,7 @@ html {
 
 body {
     font-family: var(--font-sans);
-    background:
-        radial-gradient(1200px 700px at 15% -10%, rgba(88, 166, 255, 0.08), transparent 60%),
-        radial-gradient(900px 600px at 110% 10%, rgba(168, 85, 247, 0.06), transparent 60%),
-        radial-gradient(800px 600px at 50% 120%, rgba(35, 134, 54, 0.06), transparent 60%),
-        linear-gradient(160deg, #07090d 0%, #0d1117 50%, #11161d 100%);
-    background-attachment: fixed;
+    background: var(--bg-base);
     min-height: 100vh;
     color: var(--text-secondary);
     line-height: 1.6;
@@ -66,6 +61,22 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+}
+
+/* พื้นหลังไล่สีวางเป็นเลเยอร์ตรึงแยกต่างหาก แทนการใช้ background-attachment: fixed บน body
+   ของเดิมบังคับให้เบราว์เซอร์วาดไล่สีทั้ง 4 ชั้นใหม่ทุกเฟรมที่เลื่อนหน้า ทำให้กระตุก
+   วิธีนี้ได้ภาพเหมือนเดิมแต่วาดครั้งเดียวแล้วเลื่อนเป็นเลเยอร์ */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(1200px 700px at 15% -10%, rgba(88, 166, 255, 0.08), transparent 60%),
+        radial-gradient(900px 600px at 110% 10%, rgba(168, 85, 247, 0.06), transparent 60%),
+        radial-gradient(800px 600px at 50% 120%, rgba(35, 134, 54, 0.06), transparent 60%),
+        linear-gradient(160deg, #07090d 0%, #0d1117 50%, #11161d 100%);
 }
 
 /* Container - Mobile First */
@@ -111,7 +122,7 @@ body {
     border-radius: 6px;
     padding: 4px 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     min-width: 32px;
     min-height: 32px;
     display: flex;
@@ -230,8 +241,6 @@ header {
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-soft);
     box-shadow: var(--shadow-md);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     position: relative;
     overflow: hidden;
 }
@@ -300,7 +309,7 @@ header::before {
     cursor: pointer;
     font-size: 0.82rem;
     font-weight: 500;
-    transition: all var(--transition-base);
+    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
     font-family: inherit;
     display: inline-flex;
     align-items: center;
@@ -371,8 +380,6 @@ header::before {
     background:
         linear-gradient(180deg, rgba(22, 27, 34, 0.75), rgba(13, 17, 23, 0.6));
     border: 1px solid var(--border-soft);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
     transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
@@ -412,7 +419,7 @@ header::before {
     padding: 10px;
     background: rgba(48, 54, 61, 0.3);
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     border: 2px solid transparent;
 }
 
@@ -432,7 +439,7 @@ header::before {
     border-radius: 50%;
     margin-right: 10px;
     position: relative;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
 }
 
 .type-option input[type="radio"]:checked+.checkmark {
@@ -499,7 +506,7 @@ header::before {
     font-size: 0.85rem;
     letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
 }
 
 .shell-btn:hover {
@@ -602,7 +609,7 @@ header::before {
     color: var(--accent-blue);
     font-family: var(--font-mono);
     font-weight: 600;
-    transition: all var(--transition-base);
+    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
     -webkit-appearance: none;
     appearance: none;
 }
@@ -670,7 +677,7 @@ header::before {
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
 }
 
 .grid-warning:hover {
@@ -680,7 +687,6 @@ header::before {
 
 .warning-icon {
     font-size: 1rem;
-    animation: pulse 2s infinite;
 }
 
 .warning-text {
@@ -719,7 +725,7 @@ header::before {
     text-transform: uppercase;
     letter-spacing: 3px;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
     margin-bottom: 20px;
     position: relative;
     box-shadow: 0 8px 24px rgba(35, 134, 54, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -824,7 +830,7 @@ header::before {
     text-align: center;
     border-left: 3px solid var(--accent-blue);
     border-top: 1px solid var(--border-soft);
-    transition: all var(--transition-base);
+    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
     position: relative;
     overflow: hidden;
 }
@@ -938,7 +944,7 @@ header::before {
     font-family: 'Consolas', monospace;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -1251,7 +1257,7 @@ footer > p {
 
 /* Touch feedback animations */
 .preset-btn {
-    transition: all 0.2s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.2s ease;
 }
 
 .preset-btn:active {
@@ -1320,7 +1326,7 @@ footer > p {
 .guide-toggle {
     cursor: pointer;
     user-select: none;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     padding: 8px;
     border-radius: 6px;
 }
@@ -1335,7 +1341,7 @@ footer > p {
     flex-direction: column;
     gap: 15px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
 }
 
 .guide-content.show {
@@ -1592,7 +1598,6 @@ footer > p {
     border-radius: 10px;
     padding: 15px;
     margin: 15px 0;
-    animation: warningPulse 2s infinite;
 }
 
 /* ระยะอยู่นอกตารางของประจุที่เลือก — ค่าที่แสดงถูกหนีบไว้ ใช้ยิงจริงไม่ได้ */
@@ -1633,7 +1638,6 @@ footer > p {
 .accuracy-warning .warning-icon {
     font-size: 1.2rem;
     color: #ffc107;
-    animation: shake 1s infinite;
 }
 
 .warning-header strong {
@@ -1705,7 +1709,7 @@ footer > p {
     gap: 5px;
     padding: 4px 8px;
     border-radius: 6px;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     background: rgba(255, 68, 68, 0.1);
     border: 1px solid rgba(255, 68, 68, 0.2);
 }
@@ -1719,7 +1723,6 @@ footer > p {
 
 .youtube-icon {
     font-size: 1.1rem;
-    animation: pulse 2s infinite;
 }
 
 /* Report Issue Link (Facebook) */
@@ -1732,7 +1735,7 @@ footer > p {
     gap: 5px;
     padding: 4px 10px;
     border-radius: 6px;
-    transition: all var(--transition-base);
+    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-base);
     background: rgba(79, 139, 255, 0.12);
     border: 1px solid rgba(79, 139, 255, 0.3);
     margin-left: 6px;
@@ -1824,7 +1827,7 @@ footer > p {
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     border: 2px solid transparent;
 }
 
@@ -1847,7 +1850,7 @@ footer > p {
     border-radius: 6px;
     text-align: center;
     border-left: 4px solid #fbbf24;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     position: relative;
 }
 
@@ -1989,7 +1992,7 @@ footer > p {
     font-family: 'Consolas', monospace;
     font-size: 0.65rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2139,7 +2142,7 @@ footer > p {
     font-size: 0.7rem;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color, border-color, color, box-shadow, transform, opacity 0.3s ease;
     min-width: 42px;
     min-height: 32px;
     text-align: center;
@@ -2330,12 +2333,12 @@ footer > p {
     border-top: 1px solid rgba(35, 134, 54, 0.5);
     box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.55), 0 -1px 0 rgba(46, 160, 67, 0.4);
     z-index: 1000;
+    /* ต้องทึบ เพราะเลิกใช้ backdrop-filter (ตัวการทำให้เลื่อนหน้ากระตุก) */
+    background: #0b0f15;
     padding: 10px 12px;
     padding-bottom: max(10px, env(safe-area-inset-bottom));
     padding-left: max(12px, env(safe-area-inset-left));
     padding-right: max(12px, env(safe-area-inset-right));
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
     display: none;
 }
 
@@ -2706,7 +2709,7 @@ body {
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: background-color, border-color, color, box-shadow, transform, opacity var(--transition-fast);
 }
 
 .wind-step-btn:hover {
@@ -2784,8 +2787,6 @@ body {
 .advanced-section {
     background: linear-gradient(180deg, rgba(22, 27, 34, 0.75), rgba(13, 17, 23, 0.6));
     border: 1px solid var(--border-soft);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
     padding: 16px;
     border-radius: var(--radius-md);
